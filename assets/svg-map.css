@@ -1,0 +1,70 @@
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+
+.basketwave {
+    background-image: url("/assets/svg/basketwave.svg");
+}
+
+.beater {
+    background-image: url("/assets/svg/beater.svg");
+}
+
+.bird {
+    background-image: url("/assets/svg/bird.svg");
+}
+
+.cat {
+    background-image: url("/assets/svg/cat.svg");
+}
+
+.cheese {
+    background-image: url("/assets/svg/cheese.svg");
+}
+
+.egg {
+    background-image: url("/assets/svg/egg.svg");
+}
+
+.milk {
+    background-image: url("/assets/svg/milk.svg");
+}
+
+.mitten {
+    background-image: url("/assets/svg/mitten.svg");
+}
+
+.oil {
+    background-image: url("/assets/svg/oil.svg");
+}
+
+.oven {
+    background-image: url("/assets/svg/oven.svg");
+}
+
+.rat {
+    background-image: url("/assets/svg/rat.svg");
+}
+
+
+.roller {
+    background-image: url("/assets/svg/roller.svg");
+}
+
+.scale {
+    background-image: url("/assets/svg/scale.svg");
+}
+
+.timer {
+    background-image: url("/assets/svg/timer.svg");
+}
+
+.wheat {
+    background-image: url("/assets/svg/wheat.svg");
+}
+
+.clock {
+    background-image: url("/assets/svg/clock.svg");
+}
+
+.flour {
+    background-image: url("/assets/svg/flour.svg");
+}
