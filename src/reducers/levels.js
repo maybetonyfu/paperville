@@ -117,7 +117,7 @@ let initLevels = {
             {
                 group: 0,
                 minimum: 10,
-
+                maximum: 15,
                 description: "Collect at least 10 flour"
             },
             {

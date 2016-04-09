@@ -9,33 +9,40 @@ import BoardContainer from "../containers/BoardContainer"
 import WinModal from "../components/WinModal"
 import LostModal from "../components/LostModal"
 
-const Game = Radium(({game, measurements, levels, onNextLevel, onRetryLevel}) => (
-    <div style={GameStyle}>
-        <ProgressContainer />
-        
-        <BoardContainer />
-        
-        <WinModal
-            modalOpen={game.status==="WIN"}
-            measurements={measurements}
-            onNextLevelClick = {() => {
-                let nextLevel = levels[game.currentLevel + 1]
-                onNextLevel(nextLevel.boardConfig, nextLevel.id)
-            }}
-            />
+const Game = Radium(({game, measurements, levels, onNextLevel, onRetryLevel}) => {
+    let isLastLevel = levels[game.currentLevel + 1] === undefined
+    return (
+        <div style={GameStyle}>
+            <ProgressContainer />
             
-        <LostModal
-            modalOpen={game.status==="LOSE"}
-            measurements={measurements}
-            onRetryLevelClick = {() => {
-                let level = levels[game.currentLevel]
-                onNextLevel(level.boardConfig, level.id)
-            }}
-            />
-
-        
-    </div>
-))
+            <BoardContainer />
+            
+            <WinModal
+                modalOpen={game.status==="WIN"}
+                measurements={measurements}
+                isLastLevel={isLastLevel}
+                onNextLevelClick = {() => {
+                    if(!isLastLevel ) {
+                        let nextLevel = levels[game.currentLevel + 1]
+                        onNextLevel(nextLevel.boardConfig, nextLevel.id)
+                    }
+                }}
+                />
+                
+            <LostModal
+                modalOpen={game.status==="LOSE"}
+                measurements={measurements}
+                onRetryLevelClick = {() => {
+                    let level = levels[game.currentLevel]
+                    onNextLevel(level.boardConfig, level.id)
+                }}
+                />
+    
+            
+        </div>
+    )
+    
+})
 
 
 let GameStyle = {

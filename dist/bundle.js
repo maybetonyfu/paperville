@@ -36992,6 +36992,8 @@
 	    var levels = _ref.levels;
 	    var onNextLevel = _ref.onNextLevel;
 	    var onRetryLevel = _ref.onRetryLevel;
+
+	    var isLastLevel = levels[game.currentLevel + 1] === undefined;
 	    return _react2.default.createElement(
 	        "div",
 	        { style: GameStyle },
@@ -37000,9 +37002,12 @@
 	        _react2.default.createElement(_WinModal2.default, {
 	            modalOpen: game.status === "WIN",
 	            measurements: measurements,
+	            isLastLevel: isLastLevel,
 	            onNextLevelClick: function onNextLevelClick() {
-	                var nextLevel = levels[game.currentLevel + 1];
-	                onNextLevel(nextLevel.boardConfig, nextLevel.id);
+	                if (!isLastLevel) {
+	                    var nextLevel = levels[game.currentLevel + 1];
+	                    onNextLevel(nextLevel.boardConfig, nextLevel.id);
+	                }
 	            }
 	        }),
 	        _react2.default.createElement(_LostModal2.default, {
@@ -37891,6 +37896,7 @@
 	    var measurements = _ref.measurements;
 	    var modalOpen = _ref.modalOpen;
 	    var onNextLevelClick = _ref.onNextLevelClick;
+	    var isLastLevel = _ref.isLastLevel;
 	    var _measurements$global = measurements.global;
 	    var appHeight = _measurements$global.appHeight;
 	    var appWidth = _measurements$global.appWidth;
@@ -37958,6 +37964,12 @@
 
 	    };
 
+	    var nextLevel = isLastLevel ? "" : _react2.default.createElement(
+	        'a',
+	        { style: LinkStyle, onClick: onNextLevelClick, href: '#' },
+	        'Next Level'
+	    );
+
 	    return _react2.default.createElement(
 	        _reactModal2.default,
 	        { style: modalStyle, isOpen: modalOpen },
@@ -37966,11 +37978,7 @@
 	            null,
 	            'Win'
 	        ),
-	        _react2.default.createElement(
-	            'a',
-	            { style: LinkStyle, onClick: onNextLevelClick, href: '#' },
-	            'Next Level'
-	        ),
+	        nextLevel,
 	        _react2.default.createElement(
 	            _Link2.default,
 	            { style: LinkStyle, to: '/campaign' },
@@ -40466,7 +40474,7 @@
 	        objectiveAmount: [{
 	            group: 0,
 	            minimum: 10,
-
+	            maximum: 15,
 	            description: "Collect at least 10 flour"
 	        }, {
 	            group: 1,

@@ -5,7 +5,7 @@ import Radium from 'radium'
 import Modal from "react-modal"
 
 
-const WinModal = Radium(({measurements, modalOpen, onNextLevelClick}) => {
+const WinModal = Radium(({measurements, modalOpen, onNextLevelClick, isLastLevel}) => {
 
     let { appHeight,
          appWidth } = measurements.global
@@ -73,13 +73,16 @@ const WinModal = Radium(({measurements, modalOpen, onNextLevelClick}) => {
 
     }
     
+    let nextLevel = isLastLevel ? 
+        "" : <a style={LinkStyle} onClick={onNextLevelClick}  href="#">Next Level</a>
+    
     
     return (
          <Modal style={modalStyle} isOpen={modalOpen}>
             
             <h1>Win</h1>
             
-            <a style={LinkStyle} onClick={onNextLevelClick}  href="#">Next Level</a>
+            {nextLevel}
             
             <Link style={LinkStyle} to="/campaign">Back</Link>
 
