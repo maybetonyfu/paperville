@@ -1,5 +1,4 @@
 import React, { PropTypes, Component } from "react"
-// import { Link } from "react-router"
 import Link from 'react-router/lib/Link'
 import Radium from 'radium'
 
@@ -16,7 +15,7 @@ class Progress extends Component {
     
     componentWillReceiveProps () {
         
-        let { level, board, onGameWinning, onGameLosing} = this.props
+        let { level, board, onGameWinning, onGameLosing, gameStatus} = this.props
         
         let violateMaxMove = false
 
@@ -46,13 +45,13 @@ class Progress extends Component {
                 
             })
             
-        if (fulfillMinAmount) {
+        if (fulfillMinAmount && gameStatus !== "WIN") {
             
             onGameWinning()
         
         }
         
-        if (violateMaxMove || violateMaxAmount ) {
+        if ( (violateMaxMove || violateMaxAmount) && gameStatus !== "LOSE") {
             
             onGameLosing()
             

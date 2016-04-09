@@ -36910,18 +36910,41 @@
 
 	var _Game2 = _interopRequireDefault(_Game);
 
+	var _actions = __webpack_require__(512);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var mapStateToProps = function mapStateToProps(state) {
+
 	  return {
+
 	    game: state.game,
-	    measurements: state.measurements
+
+	    measurements: state.measurements,
+
+	    levels: state.levels
+
 	  };
 	};
-	// import { willWin, willLose } from "src/actions/action"
 
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
-	var GameContainer = (0, _reactRedux.connect)(mapStateToProps)(_Game2.default);
+	  return {
+
+	    onNextLevel: function onNextLevel(boardConfig, levelId) {
+
+	      dispatch((0, _actions.createBoard)(boardConfig, levelId));
+	    },
+
+	    onRetryLevel: function onRetryLevel(boardConfig, levelId) {
+
+	      dispatch((0, _actions.createBoard)(boardConfig, levelId));
+	    }
+
+	  };
+	};
+
+	var GameContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Game2.default);
 
 	exports.default = GameContainer;
 
@@ -36966,6 +36989,9 @@
 	var Game = (0, _radium2.default)(function (_ref) {
 	    var game = _ref.game;
 	    var measurements = _ref.measurements;
+	    var levels = _ref.levels;
+	    var onNextLevel = _ref.onNextLevel;
+	    var onRetryLevel = _ref.onRetryLevel;
 	    return _react2.default.createElement(
 	        "div",
 	        { style: GameStyle },
@@ -36973,11 +36999,19 @@
 	        _react2.default.createElement(_BoardContainer2.default, null),
 	        _react2.default.createElement(_WinModal2.default, {
 	            modalOpen: game.status === "WIN",
-	            measurements: measurements
+	            measurements: measurements,
+	            onNextLevelClick: function onNextLevelClick() {
+	                var nextLevel = levels[game.currentLevel + 1];
+	                onNextLevel(nextLevel.boardConfig, nextLevel.id);
+	            }
 	        }),
 	        _react2.default.createElement(_LostModal2.default, {
 	            modalOpen: game.status === "LOSE",
-	            measurements: measurements
+	            measurements: measurements,
+	            onRetryLevelClick: function onRetryLevelClick() {
+	                var level = levels[game.currentLevel];
+	                onNextLevel(level.boardConfig, level.id);
+	            }
 	        })
 	    );
 	});
@@ -37013,6 +37047,7 @@
 
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
+	    gameStatus: state.game.status,
 	    progressSizing: state.measurements.progress,
 	    level: state.levels[state.game.currentLevel],
 	    board: state.board
@@ -37074,8 +37109,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import { Link } from "react-router"
-
 
 	var Progress = function (_Component) {
 	    _inherits(Progress, _Component);
@@ -37094,6 +37127,7 @@
 	            var board = _props.board;
 	            var onGameWinning = _props.onGameWinning;
 	            var onGameLosing = _props.onGameLosing;
+	            var gameStatus = _props.gameStatus;
 
 
 	            var violateMaxMove = false;
@@ -37120,12 +37154,12 @@
 	                return false;
 	            });
 
-	            if (fulfillMinAmount) {
+	            if (fulfillMinAmount && gameStatus !== "WIN") {
 
 	                onGameWinning();
 	            }
 
-	            if (violateMaxMove || violateMaxAmount) {
+	            if ((violateMaxMove || violateMaxAmount) && gameStatus !== "LOSE") {
 
 	                onGameLosing();
 	            }
@@ -37856,6 +37890,7 @@
 	var WinModal = (0, _radium2.default)(function (_ref) {
 	    var measurements = _ref.measurements;
 	    var modalOpen = _ref.modalOpen;
+	    var onNextLevelClick = _ref.onNextLevelClick;
 	    var _measurements$global = measurements.global;
 	    var appHeight = _measurements$global.appHeight;
 	    var appWidth = _measurements$global.appWidth;
@@ -37933,7 +37968,7 @@
 	        ),
 	        _react2.default.createElement(
 	            'a',
-	            { style: LinkStyle, href: '#' },
+	            { style: LinkStyle, onClick: onNextLevelClick, href: '#' },
 	            'Next Level'
 	        ),
 	        _react2.default.createElement(
@@ -39903,6 +39938,7 @@
 	var LostModal = (0, _radium2.default)(function (_ref) {
 	    var measurements = _ref.measurements;
 	    var modalOpen = _ref.modalOpen;
+	    var onRetryLevelClick = _ref.onRetryLevelClick;
 	    var _measurements$global = measurements.global;
 	    var appHeight = _measurements$global.appHeight;
 	    var appWidth = _measurements$global.appWidth;
@@ -39979,7 +40015,7 @@
 	        ),
 	        _react2.default.createElement(
 	            'a',
-	            { style: LinkStyle, href: '#' },
+	            { style: LinkStyle, onClick: onRetryLevelClick, href: '#' },
 	            'Try Again'
 	        ),
 	        _react2.default.createElement(
@@ -40494,7 +40530,7 @@
 
 	                return Object.assign({}, state, {
 	                    currentLevel: levelId,
-	                    status: ""
+	                    status: "INIT"
 	                });
 	            }
 

@@ -5,6 +5,7 @@ import Progress from "../components/Progress"
 
 const mapStateToProps = (state) => {
   return {
+    gameStatus: state.game.status,
     progressSizing: state.measurements.progress,
     level: state.levels[state.game.currentLevel],
     board: state.board

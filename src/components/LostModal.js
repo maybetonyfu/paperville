@@ -5,7 +5,7 @@ import Radium from 'radium'
 import Modal from "react-modal"
 
 
-const LostModal = Radium(({measurements, modalOpen}) => {
+const LostModal = Radium(({measurements, modalOpen, onRetryLevelClick}) => {
 
     let { appHeight,
          appWidth } = measurements.global
@@ -77,7 +77,7 @@ const LostModal = Radium(({measurements, modalOpen}) => {
             
             <h1>Lost</h1>
 
-            <a style={LinkStyle} href="#">Try Again</a>
+            <a style={LinkStyle} onClick={onRetryLevelClick} href="#">Try Again</a>
             
             <Link style={LinkStyle} to="/campaign">Back</Link>
 

@@ -14,7 +14,7 @@ const game = (state = initGame, action) => {
             
             return Object.assign({}, state, {
                 currentLevel: levelId,
-                status: ""
+                status: "INIT"
             })
             
         }

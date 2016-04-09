@@ -62,8 +62,7 @@ state = {
             id: 0,
             name: "Tony",
             completedLevels: [],
-            unlockedLevels: [0],
-            lastUpdate: 0
+            unlockedLevels: [0]
         }
     },
     measurements: {
