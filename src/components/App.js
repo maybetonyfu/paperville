@@ -50,7 +50,8 @@ class App extends Component {
                 <Style rules={{
                     "body, html": {
                         margin: 0,
-                        fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif'
+                        fontFamily: "'Amatic SC', cursive",
+                        fontStyle: "bold"
                     }
                 }} />
                 

@@ -3,18 +3,17 @@ var webpack = require('webpack')
 
 module.exports = {
   entry: [
-    'webpack-hot-middleware/client',
+    // 'webpack-hot-middleware/client',
     './index.js'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/static/'
+    filename: 'bundle.js'
   },
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin()
-  ],
+  // plugins: [
+  //   new webpack.optimize.OccurenceOrderPlugin(),
+  //   new webpack.HotModuleReplacementPlugin()
+  // ],
   module: {
     loaders: [
       {
@@ -23,8 +22,7 @@ module.exports = {
         exclude: /node_modules/,
         include: __dirname,
         query: {
-            "presets": ["es2015", "react"],
-            "plugins": ["transform-decorators"]
+            "presets": ["es2015", "react"]
         }
       }
     ]

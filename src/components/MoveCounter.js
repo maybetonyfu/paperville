@@ -12,6 +12,8 @@ const MoveCounter = Radium(({moveLeft}) => {
         
         margin: "10px 1vh 1vh 1vh",
         
+        lineHeight: "2vh"
+        
     }
     
     let indicatorStyle = {

@@ -16,24 +16,46 @@ class Progress extends Component {
     
     componentWillReceiveProps () {
         
-        // console.log("progress props update")
-        
         let { level, board, onGameWinning, onGameLosing} = this.props
         
-        if (level.maxMove === board.playerMove) {
-            
-            onGameLosing()
-            
-        }
+        let violateMaxMove = false
+
+        violateMaxMove = level.maxMove <= board.playerMove
         
-        let winConditionMet = level.winConditions
-            .noLessThan
-            .every((rule) => {return rule.objective <= board.progress[rule.group]})
+        let fulfillMinAmount = level.objectiveAmount
+            .every((rule) => {
+                
+                if (rule.minimum) {
+                    
+                    return rule.minimum <= board.progress[rule.group]
+                }
+                
+                return true
+                
+            })
             
-        if (winConditionMet) {
+        let violateMaxAmount = level.objectiveAmount
+            .some((rule) => {
+                
+                if (rule.maximum) {
+                    
+                    return rule.maximum <= board.progress[rule.group]
+                }
+                
+                return false
+                
+            })
+            
+        if (fulfillMinAmount) {
             
             onGameWinning()
         
+        }
+        
+        if (violateMaxMove || violateMaxAmount ) {
+            
+            onGameLosing()
+            
         }
         
     }
@@ -62,11 +84,12 @@ class Progress extends Component {
             
             <MoveCounter moveLeft={ level.maxMove - board.playerMove} />
     
-            { level.winConditions.noLessThan.map((rule, index) => {
+            { level.objectiveAmount.map((rule, index) => {
                 return ( <ProgressBox
                 key={index}
                 groupName={level.groupMap[rule.group]} 
-                objective={rule.objective}
+                minimum={rule.minimum || 0}
+                maximum={rule.maximum || null}
                 ruleProgress={board.progress[rule.group]}/>)
             } )}
     

@@ -4,12 +4,64 @@ import Radium from 'radium'
 
 const ProgressBox = Radium((prop) => {
     
-    let { groupName, objective, ruleProgress } = prop
+    let { groupName, minimum, maximum, ruleProgress } = prop
     
-    ruleProgress = ruleProgress > objective ? objective : ruleProgress
+    let objective = ruleProgress > minimum ? minimum : ruleProgress
     
-    let barWidth = Math.round( 100 * ruleProgress/objective) 
+    let overkill =  ruleProgress > minimum ? ruleProgress - minimum : 0
     
+    if (overkill > maximum - minimum) {
+        
+        overkill = maximum - minimum
+        
+    }
+
+    let objectiveWidth = 100 * objective/minimum
+    
+    let overkillWidth = 100 * overkill/(maximum - minimum)
+    
+    let objectiveTotal, overkillTotal, objectiveBorder, overkillBorder
+    
+    if ( maximum && minimum ) {
+        
+        objectiveTotal = 90 * minimum / maximum
+        
+        overkillTotal =  90 * (maximum - minimum) / maximum
+        
+        objectiveBorder = "2px 1px 2px 2px"
+        
+        overkillBorder = "2px 2px 2px 1px"
+        
+    }
+    
+    else {
+        
+        if (maximum) {
+            
+            objectiveTotal = 0
+            
+            overkillTotal = 90
+            
+            objectiveBorder = "0"
+            
+            overkillBorder = "2px"
+            
+        }
+        
+        if (minimum) {
+            
+            objectiveTotal = 90
+            
+            overkillTotal = 0
+            
+            objectiveBorder = "2px"
+            
+            overkillBorder = "0"
+            
+        }
+        
+    }
+     
     
     let boxStyle = {
         
@@ -19,25 +71,61 @@ const ProgressBox = Radium((prop) => {
         
         margin: "10px 1vh 1vh 1vh",
         
+        lineHeight: "2vh"
+        
     }
     
-    let barBorderStyle = {
+    let objectiveBorderStyle = {
         
-        display: "block",
+        display: "inline-block",
         
-        width: "100%",
+        width: objectiveTotal + "%",
         
         height: "2px",
         
-        border: "2px solid black"
+        borderWidth: objectiveBorder,
+        
+        borderStyle: "solid",
+        
+        borderColor: "black"
         
     }
     
-    let barStyle = {
+    let overkillBorderStyle = {
+        
+        display: "inline-block",
+        
+        width: overkillTotal + "%",
+        
+        height: "2px",
+        
+        backgroundColor : "#EF4836",
+        
+        borderWidth: overkillBorder,
+        
+        borderStyle: "solid",
+        
+        borderColor: "black"
+        
+    }
+    
+    let objectiveStyle = {
         
         display: "block",
         
-        width: barWidth + "%",
+        width: objectiveWidth + "%",
+        
+        height: "100%",
+        
+        background: "black"
+        
+    }
+    
+    let overkillStyle = {
+        
+        display: "block",
+        
+        width: overkillWidth + "%",
         
         height: "100%",
         
@@ -69,11 +157,19 @@ const ProgressBox = Radium((prop) => {
             </span>
             
             <span style={indicatorStyle}>
-                {ruleProgress}/{objective}
+                {ruleProgress}
+                <span>{minimum ? "/" + minimum : ""}</span>
+                <span style={{color: "#96281B"}}>{maximum ? "/" + maximum : ""}</span>
             </span>
             
-            <span style={barBorderStyle}>
-                <span style={barStyle}></span>
+            <br/>
+            
+            <span style={objectiveBorderStyle}>
+                <span style={objectiveStyle}></span>
+            </span>
+            
+            <span style={overkillBorderStyle}>
+                <span style={overkillStyle}></span>
             </span>
 
         </span>

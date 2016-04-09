@@ -22,7 +22,7 @@ const Menu = Radium(() => {
         
         fontSize: "4vh",
         
-        fontFamily: "'Pacifico', cursive"
+        fontFamily: "'Sue Ellen Francisco', cursive"
         
     }
 
