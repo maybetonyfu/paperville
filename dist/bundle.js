@@ -37242,26 +37242,34 @@
 	    var maximum = prop.maximum;
 	    var ruleProgress = prop.ruleProgress;
 
+	    // let objective = ruleProgress > minimum ? minimum : ruleProgress
 
-	    var objective = ruleProgress > minimum ? minimum : ruleProgress;
+	    // let overkill =  ruleProgress > minimum ? ruleProgress - minimum : 0
 
-	    var overkill = ruleProgress > minimum ? ruleProgress - minimum : 0;
+	    // if (overkill > maximum - minimum) {
 
-	    if (overkill > maximum - minimum) {
+	    //     overkill = maximum - minimum
 
-	        overkill = maximum - minimum;
-	    }
+	    // }
 
-	    var objectiveWidth = 100 * objective / minimum;
-
-	    var overkillWidth = 100 * overkill / (maximum - minimum);
-
-	    var objectiveTotal = void 0,
+	    var objective = void 0,
+	        overkill = void 0,
+	        objectiveWidth = void 0,
+	        overkillWidth = void 0,
+	        objectiveTotal = void 0,
 	        overkillTotal = void 0,
 	        objectiveBorder = void 0,
 	        overkillBorder = void 0;
 
 	    if (maximum && minimum) {
+
+	        objective = Math.min(minimum, ruleProgress);
+
+	        overkill = Math.min(maximum - minimum, Math.max(ruleProgress - minimum, 0));
+
+	        objectiveWidth = 100 * objective / minimum;
+
+	        overkillWidth = 100 * overkill / (maximum - minimum);
 
 	        objectiveTotal = 90 * minimum / maximum;
 
@@ -37270,29 +37278,44 @@
 	        objectiveBorder = "2px 1px 2px 2px";
 
 	        overkillBorder = "2px 2px 2px 1px";
-	    } else {
+	    }
 
-	        if (maximum) {
+	    if (maximum && !minimum) {
 
-	            objectiveTotal = 0;
+	        objective = 0;
 
-	            overkillTotal = 90;
+	        overkill = Math.min(maximum, ruleProgress);
 
-	            objectiveBorder = "0";
+	        objectiveWidth = 0;
 
-	            overkillBorder = "2px";
-	        }
+	        overkillWidth = 100 * overkill / maximum;
 
-	        if (minimum) {
+	        objectiveTotal = 0;
 
-	            objectiveTotal = 90;
+	        overkillTotal = 90;
 
-	            overkillTotal = 0;
+	        objectiveBorder = "0";
 
-	            objectiveBorder = "2px";
+	        overkillBorder = "2px";
+	    }
 
-	            overkillBorder = "0";
-	        }
+	    if (minimum && !maximum) {
+
+	        objective = Math.min(minimum, ruleProgress);
+
+	        overkill = 0;
+
+	        objectiveWidth = 100 * objective / minimum;
+
+	        overkillWidth = 0;
+
+	        objectiveTotal = 90;
+
+	        overkillTotal = 0;
+
+	        objectiveBorder = "2px";
+
+	        overkillBorder = "0";
 	    }
 
 	    var boxStyle = {

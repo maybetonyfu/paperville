@@ -5,24 +5,32 @@ import Radium from 'radium'
 const ProgressBox = Radium((prop) => {
     
     let { groupName, minimum, maximum, ruleProgress } = prop
-    
-    let objective = ruleProgress > minimum ? minimum : ruleProgress
-    
-    let overkill =  ruleProgress > minimum ? ruleProgress - minimum : 0
-    
-    if (overkill > maximum - minimum) {
-        
-        overkill = maximum - minimum
-        
-    }
 
-    let objectiveWidth = 100 * objective/minimum
+    let objective,
+        
+        overkill,
     
-    let overkillWidth = 100 * overkill/(maximum - minimum)
+        objectiveWidth,
     
-    let objectiveTotal, overkillTotal, objectiveBorder, overkillBorder
+        overkillWidth,
+        
+        objectiveTotal,
+        
+        overkillTotal,
+        
+        objectiveBorder,
+        
+        overkillBorder
     
     if ( maximum && minimum ) {
+        
+        objective =  Math.min(minimum , ruleProgress)
+        
+        overkill =  Math.min(maximum - minimum, Math.max(ruleProgress - minimum , 0))
+        
+        objectiveWidth = 100 * objective/minimum
+        
+        overkillWidth = 100 * overkill/(maximum - minimum)
         
         objectiveTotal = 90 * minimum / maximum
         
@@ -34,34 +42,45 @@ const ProgressBox = Radium((prop) => {
         
     }
     
-    else {
+    if (maximum && !minimum) {
         
-        if (maximum) {
-            
-            objectiveTotal = 0
-            
-            overkillTotal = 90
-            
-            objectiveBorder = "0"
-            
-            overkillBorder = "2px"
-            
-        }
+        objective = 0
         
-        if (minimum) {
-            
-            objectiveTotal = 90
-            
-            overkillTotal = 0
-            
-            objectiveBorder = "2px"
-            
-            overkillBorder = "0"
-            
-        }
+        overkill =  Math.min(maximum, ruleProgress)
+        
+        objectiveWidth = 0
+        
+        overkillWidth = 100 * overkill/maximum
+        
+        objectiveTotal = 0
+        
+        overkillTotal = 90
+        
+        objectiveBorder = "0"
+        
+        overkillBorder = "2px"
         
     }
-     
+    
+    if (minimum && !maximum) {
+        
+        objective = Math.min(minimum , ruleProgress)
+        
+        overkill =  0
+        
+        objectiveWidth = 100 * objective/minimum
+        
+        overkillWidth = 0
+        
+        objectiveTotal = 90
+        
+        overkillTotal = 0
+        
+        objectiveBorder = "2px"
+        
+        overkillBorder = "0"
+        
+    }
     
     let boxStyle = {
         
