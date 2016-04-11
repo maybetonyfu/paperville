@@ -18,7 +18,17 @@ const game = (state = initGame, action) => {
             })
             
         }
-
+        
+    case "GAME_START":
+        
+        {
+            
+            return Object.assign({}, state, {
+                status: "START"
+            })
+            
+        }
+        
     case "WILL_WIN":
         {
 

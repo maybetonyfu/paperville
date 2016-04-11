@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import Game from "../components/Game"
-import { createBoard} from "../actions"
+import { createBoard, gameStart } from "../actions"
 
 const mapStateToProps = (state) => {
   
@@ -30,6 +30,12 @@ const mapDispatchToProps = (dispatch) => {
       
             dispatch(createBoard(boardConfig, levelId))
       
+        },
+        
+        onGameStart: () => {
+            
+            dispatch(gameStart())
+            
         }
     
     }

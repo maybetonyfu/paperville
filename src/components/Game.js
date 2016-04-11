@@ -6,16 +6,26 @@ import Radium from 'radium'
 import ProgressContainer from "../containers/ProgressContainer"
 import BoardContainer from "../containers/BoardContainer"
 
+import StartModal from "../components/StartModal"
 import WinModal from "../components/WinModal"
 import LostModal from "../components/LostModal"
 
-const Game = Radium(({game, measurements, levels, onNextLevel, onRetryLevel}) => {
+const Game = Radium((prop) => {
+    
+    let {game, measurements, levels, onNextLevel, onRetryLevel, onGameStart} = prop
+    
     let isLastLevel = levels[game.currentLevel + 1] === undefined
     return (
         <div style={GameStyle}>
             <ProgressContainer />
             
             <BoardContainer />
+            
+            <StartModal
+                modalOpen={game.status==="INIT"}
+                measurements={measurements}
+                onStartClick={onGameStart}
+                />
             
             <WinModal
                 modalOpen={game.status==="WIN"}
@@ -34,7 +44,7 @@ const Game = Radium(({game, measurements, levels, onNextLevel, onRetryLevel}) =>
                 measurements={measurements}
                 onRetryLevelClick = {() => {
                     let level = levels[game.currentLevel]
-                    onNextLevel(level.boardConfig, level.id)
+                    onRetryLevel(level.boardConfig, level.id)
                 }}
                 />
     

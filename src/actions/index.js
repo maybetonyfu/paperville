@@ -8,6 +8,14 @@ export const createBoard = (boardConfig, levelId) => {
     }
 }
 
+export const gameStart = () => {
+    return {
+        type: "GAME_START",
+        payload: {}
+    }
+}
+
+
 export const gameInit = (measure) => {
     return {
         type: "GAME_INIT",
