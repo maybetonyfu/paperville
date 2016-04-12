@@ -37582,6 +37582,7 @@
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
 	    board: state.board,
+	    setting: state.profile.setting,
 	    level: state.levels[state.game.currentLevel],
 	    measurements: state.measurements
 	  };
@@ -37700,6 +37701,7 @@
 	            var level = _props.level;
 	            var measurements = _props.measurements;
 	            var onTileClick = _props.onTileClick;
+	            var setting = _props.setting;
 
 
 	            var BoardStyle = {
@@ -37726,7 +37728,26 @@
 	                        tileMeasurements: measurements.tile,
 	                        isActive: board.activeTiles.indexOf(tile.id) > -1,
 	                        onClick: function onClick() {
-	                            onTileClick(tile.id);
+
+	                            if (board.activeTiles.length === 1) {
+
+	                                var posA = board.tiles[board.activeTiles[0]].position;
+
+	                                var posB = tile.position;
+
+	                                var sameRow = Math.abs(posA - posB) === 1 && Math.floor(posA / board.cols) === Math.floor(posB / board.cols);
+
+	                                var sameCol = Math.abs(posA - posB) === board.cols;
+
+	                                if (sameCol || sameRow || setting.developer) {
+
+	                                    return onTileClick(tile.id);
+	                                }
+
+	                                return onTileClick("ILLEGAL_MOVE");
+	                            }
+
+	                            return onTileClick(tile.id);
 	                        }
 	                    });
 	                })
@@ -40930,24 +40951,20 @@
 	                var tileId = action.payload.tileId;
 
 
+	                if (tileId === "ILLEGAL_MOVE") {
+
+	                    return Object.assign({}, state, {
+
+	                        activeTiles: []
+
+	                    });
+	                }
+
 	                var activeTiles = [].concat(_toConsumableArray(state.activeTiles));
 
 	                activeTiles.push(tileId);
 
 	                if (activeTiles.length === 2) {
-
-	                    if (activeTiles[0] === activeTiles[1]) {
-
-	                        return Object.assign({}, state, {
-
-	                            activeTiles: []
-
-	                        });
-	                    }
-
-	                    var posA = state.tiles[activeTiles[0]].position;
-
-	                    var posB = state.tiles[activeTiles[1]].position;
 
 	                    var _board2 = _boardFactory.swapTiles.apply(undefined, [state].concat(_toConsumableArray(activeTiles)));
 
@@ -40962,6 +40979,7 @@
 
 	                });
 	            }
+
 	        case "PLAYER_MOVE":
 
 	            {
@@ -40983,7 +41001,9 @@
 	                if (matchCount === 0) {
 
 	                    return Object.assign({}, state, {
+
 	                        status: "WAIT_PLAYER_MOVE"
+
 	                    });
 	                }
 
@@ -40995,6 +41015,7 @@
 
 	                return (0, _boardFactory.removeAllMatch)(state);
 	            }
+
 	        case "DID_REMOVE":
 	            {
 
@@ -41007,6 +41028,7 @@
 
 	                return cascadedBoard;
 	            }
+
 	        case "DID_CASCADE":
 	            {
 
@@ -41019,13 +41041,16 @@
 	                var _match = (0, _boardFactory.findMatch)(state);
 
 	                var _matchCount = Object.values(_match).reduce(function (prevCount, curr) {
+
 	                    return prevCount + curr.size;
 	                }, 0);
 
 	                if (_matchCount === 0) {
 
 	                    return Object.assign({}, state, {
+
 	                        status: "WAIT_PLAYER_MOVE"
+
 	                    });
 	                }
 

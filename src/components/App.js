@@ -15,7 +15,9 @@ class App extends Component {
         
         let appHeight = document.documentElement.clientHeight
         
-        let appWidth = (document.documentElement.clientWidth > appHeight) ? 0.6 * appHeight : document.documentElement.clientWidth
+        let appWidth = (document.documentElement.clientWidth > appHeight) ? 
+        
+            0.6 * appHeight : document.documentElement.clientWidth
         
         this.props.onGameStart({appHeight, appWidth})
         

@@ -38,46 +38,41 @@ const board = (state = initBoard, action) => {
     case "PLAYER_CLICK":
         
         {
-            
+
             let {tileId} = action.payload
             
+            if(tileId ==="ILLEGAL_MOVE") {
+                
+                return Object.assign({}, state, {
+
+                    activeTiles : []
+
+                })
+                
+            }
+
             let activeTiles = [...state.activeTiles]
-            
+
             activeTiles.push(tileId)
-            
+
             if (activeTiles.length === 2 ) {
-                
-                if (activeTiles[0] === activeTiles[1]) {
-                    
-                    return Object.assign({}, state, {
-                
-                        activeTiles : []
-                
-                    })
-                    
-                }
-                
-                let posA = state.tiles[activeTiles[0]].position
-                
-                let posB = state.tiles[activeTiles[1]].position
-                
-                
-    
-               let board = swapTiles(state, ...activeTiles)
+
+                let board = swapTiles(state, ...activeTiles)
 
                 board.activeTiles = []
 
                 return board
-    
+
             }
-        
+
             return Object.assign({}, state, {
-                
+
                 activeTiles
-                
+
             })
-            
+
         }
+        
     case "PLAYER_MOVE":
         
         {
@@ -102,7 +97,9 @@ const board = (state = initBoard, action) => {
             if (matchCount === 0) {
                 
                 return Object.assign({}, state, {
+                    
                     status: "WAIT_PLAYER_MOVE"
+                    
                 })
                 
             }
@@ -117,6 +114,7 @@ const board = (state = initBoard, action) => {
             return removeAllMatch(state)
 
         }
+        
     case "DID_REMOVE":
         {
             
@@ -131,6 +129,7 @@ const board = (state = initBoard, action) => {
             return cascadedBoard
                 
         }
+        
     case "DID_CASCADE":
         {
             
@@ -143,16 +142,20 @@ const board = (state = initBoard, action) => {
 
             let match = findMatch(state)
             
-            let matchCount = Object
-                .values(match)
+            let matchCount = Object.values(match)
+                
                 .reduce((prevCount, curr) => {
+                    
                     return prevCount + curr.size
+                    
                 }, 0)
                 
             if (matchCount === 0) {
                 
                 return Object.assign({}, state, {
+                    
                     status: "WAIT_PLAYER_MOVE"
+                    
                 })
                 
             }

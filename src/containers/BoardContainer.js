@@ -6,6 +6,7 @@ import { playerClick, playerMove, transitionEnd } from "../actions"
 const mapStateToProps = (state) => {
   return {
     board: state.board,
+    setting: state.profile.setting,
     level: state.levels[state.game.currentLevel],
     measurements: state.measurements
   }

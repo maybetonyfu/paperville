@@ -75,7 +75,9 @@ class Board extends Component {
         
         measurements, 
         
-        onTileClick
+        onTileClick,
+        
+        setting
         
     } = this.props
     
@@ -105,7 +107,29 @@ class Board extends Component {
                 tileMeasurements={measurements.tile}
                 isActive={board.activeTiles.indexOf(tile.id) > -1}
                 onClick={() => {
-                        onTileClick(tile.id)
+                
+                        if (board.activeTiles.length === 1) {
+                        
+                            let posA = board.tiles[board.activeTiles[0]].position
+                            
+                            let posB = tile.position
+                            
+                            let sameRow = (Math.abs(posA - posB) === 1) &&
+                            (Math.floor(posA/board.cols) === Math.floor(posB/board.cols))
+        
+                            let sameCol = Math.abs(posA - posB) === board.cols
+                            
+                            if (sameCol || sameRow || setting.developer) {
+                                
+                                return onTileClick(tile.id)
+                            }
+
+                            return onTileClick("ILLEGAL_MOVE")
+
+                        }
+                        
+                        return onTileClick(tile.id)
+                        
                     }
                 }
                 />
