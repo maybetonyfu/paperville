@@ -5,8 +5,22 @@ import Radium from 'radium'
 import Modal from "react-modal"
 
 
-const WinModal = Radium(({measurements, modalOpen, onNextLevelClick, isLastLevel}) => {
+const WinModal = Radium((prop) => {
 
+    let {
+        
+        measurements,
+        
+        modalOpen, 
+        
+        onNextLevelClick, 
+        
+        isLastLevel, 
+        
+        winMessage
+        
+    } = prop
+    
     let { appHeight,
          appWidth } = measurements.global
 
@@ -29,10 +43,10 @@ const WinModal = Radium(({measurements, modalOpen, onNextLevelClick, isLastLevel
         },
         
         content : {
+
+            top: "20%",
             
-            top: "25%",
-            
-            bottom: "50%",
+            bottom: "35%",
             
             border: '2px solid',
             
@@ -73,6 +87,17 @@ const WinModal = Radium(({measurements, modalOpen, onNextLevelClick, isLastLevel
 
     }
     
+    let symbolStyle = {
+        
+        display: "block",
+        
+        margin: "auto",
+        
+        width: "5vh",
+        
+        height: "5vh"
+    } 
+    
     let nextLevel = isLastLevel ? 
         "" : <a style={LinkStyle} onClick={onNextLevelClick}  href="#">Next Level</a>
     
@@ -80,7 +105,11 @@ const WinModal = Radium(({measurements, modalOpen, onNextLevelClick, isLastLevel
     return (
          <Modal style={modalStyle} isOpen={modalOpen}>
             
-            <h1>Win</h1>
+            <h1>{winMessage.title || "Congrats!"}</h1>
+            
+            {winMessage.symbol ? <span style={symbolStyle} className={winMessage.symbol}/> : ""}
+            
+            {winMessage.message ? <h3> {winMessage.message} </h3> : ""}
             
             {nextLevel}
             

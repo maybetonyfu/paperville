@@ -32877,11 +32877,29 @@
 	                'div',
 	                { style: AppStyle },
 	                _react2.default.createElement(_radium.Style, { rules: {
+
 	                        "body, html": {
+
 	                            margin: 0,
+
 	                            fontFamily: "'Amatic SC', cursive",
+
 	                            fontStyle: "bold"
+
+	                        },
+
+	                        "p": {
+
+	                            fontFamily: "'Karla', sans-serif",
+
+	                            textAlign: "left",
+
+	                            fontSize: "2vh",
+
+	                            margin: "2vh"
+
 	                        }
+
 	                    } }),
 	                _react2.default.createElement(_Nav2.default, { navHeight: measurements.global.navHeight }),
 	                children || _react2.default.createElement(Menu, null)
@@ -37021,11 +37039,14 @@
 	        _react2.default.createElement(_StartModal2.default, {
 	            modalOpen: game.status === "INIT",
 	            measurements: measurements,
+	            levelName: levels[game.currentLevel]["name"],
+	            description: levels[game.currentLevel]["description"],
 	            onStartClick: onGameStart
 	        }),
 	        _react2.default.createElement(_WinModal2.default, {
 	            modalOpen: game.status === "WIN",
 	            measurements: measurements,
+	            winMessage: levels[game.currentLevel]["winMessage"],
 	            isLastLevel: isLastLevel,
 	            onNextLevelClick: function onNextLevelClick() {
 	                if (!isLastLevel) {
@@ -37037,6 +37058,7 @@
 	        _react2.default.createElement(_LostModal2.default, {
 	            modalOpen: game.status === "LOSE",
 	            measurements: measurements,
+	            lostMessage: levels[game.currentLevel]["lostMessage"],
 	            onRetryLevelClick: function onRetryLevelClick() {
 	                var level = levels[game.currentLevel];
 	                onRetryLevel(level.boardConfig, level.id);
@@ -37929,10 +37951,12 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var StartModal = (0, _radium2.default)(function (_ref) {
-	    var measurements = _ref.measurements;
-	    var modalOpen = _ref.modalOpen;
-	    var onStartClick = _ref.onStartClick;
+	var StartModal = (0, _radium2.default)(function (prop) {
+	    var measurements = prop.measurements;
+	    var modalOpen = prop.modalOpen;
+	    var onStartClick = prop.onStartClick;
+	    var levelName = prop.levelName;
+	    var description = prop.description;
 	    var _measurements$global = measurements.global;
 	    var appHeight = _measurements$global.appHeight;
 	    var appWidth = _measurements$global.appWidth;
@@ -37957,9 +37981,9 @@
 
 	        content: {
 
-	            top: "25%",
+	            top: "8%",
 
-	            bottom: "50%",
+	            bottom: "12%",
 
 	            border: '2px solid',
 
@@ -38006,8 +38030,15 @@
 	        _react2.default.createElement(
 	            'h1',
 	            null,
-	            'Start?'
+	            levelName
 	        ),
+	        description.map(function (text, index) {
+	            return _react2.default.createElement(
+	                'p',
+	                { key: index },
+	                text
+	            );
+	        }),
 	        _react2.default.createElement(
 	            'a',
 	            { style: LinkStyle, onClick: onStartClick, href: '#' },
@@ -39972,11 +40003,12 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var WinModal = (0, _radium2.default)(function (_ref) {
-	    var measurements = _ref.measurements;
-	    var modalOpen = _ref.modalOpen;
-	    var onNextLevelClick = _ref.onNextLevelClick;
-	    var isLastLevel = _ref.isLastLevel;
+	var WinModal = (0, _radium2.default)(function (prop) {
+	    var measurements = prop.measurements;
+	    var modalOpen = prop.modalOpen;
+	    var onNextLevelClick = prop.onNextLevelClick;
+	    var isLastLevel = prop.isLastLevel;
+	    var winMessage = prop.winMessage;
 	    var _measurements$global = measurements.global;
 	    var appHeight = _measurements$global.appHeight;
 	    var appWidth = _measurements$global.appWidth;
@@ -40001,9 +40033,9 @@
 
 	        content: {
 
-	            top: "25%",
+	            top: "20%",
 
-	            bottom: "50%",
+	            bottom: "35%",
 
 	            border: '2px solid',
 
@@ -40044,6 +40076,17 @@
 
 	    };
 
+	    var symbolStyle = {
+
+	        display: "block",
+
+	        margin: "auto",
+
+	        width: "5vh",
+
+	        height: "5vh"
+	    };
+
 	    var nextLevel = isLastLevel ? "" : _react2.default.createElement(
 	        'a',
 	        { style: LinkStyle, onClick: onNextLevelClick, href: '#' },
@@ -40056,8 +40099,16 @@
 	        _react2.default.createElement(
 	            'h1',
 	            null,
-	            'Win'
+	            winMessage.title || "Congrats!"
 	        ),
+	        winMessage.symbol ? _react2.default.createElement('span', { style: symbolStyle, className: winMessage.symbol }) : "",
+	        winMessage.message ? _react2.default.createElement(
+	            'h3',
+	            null,
+	            ' ',
+	            winMessage.message,
+	            ' '
+	        ) : "",
 	        nextLevel,
 	        _react2.default.createElement(
 	            _Link2.default,
@@ -40099,10 +40150,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var LostModal = (0, _radium2.default)(function (_ref) {
-	    var measurements = _ref.measurements;
-	    var modalOpen = _ref.modalOpen;
-	    var onRetryLevelClick = _ref.onRetryLevelClick;
+	var LostModal = (0, _radium2.default)(function (prop) {
+	    var measurements = prop.measurements;
+	    var modalOpen = prop.modalOpen;
+	    var onRetryLevelClick = prop.onRetryLevelClick;
+	    var lostMessage = prop.lostMessage;
 	    var _measurements$global = measurements.global;
 	    var appHeight = _measurements$global.appHeight;
 	    var appWidth = _measurements$global.appWidth;
@@ -40127,9 +40179,9 @@
 
 	        content: {
 
-	            top: "25%",
+	            top: "20%",
 
-	            bottom: "50%",
+	            bottom: "35%",
 
 	            border: '2px solid',
 
@@ -40175,7 +40227,12 @@
 	        _react2.default.createElement(
 	            'h1',
 	            null,
-	            'Lost'
+	            lostMessage.title || "Darn!"
+	        ),
+	        _react2.default.createElement(
+	            'h3',
+	            null,
+	            lostMessage.message || "Let's try again"
 	        ),
 	        _react2.default.createElement(
 	            'a',
@@ -40425,6 +40482,8 @@
 
 	        fontSize: "4vh",
 
+	        textAlign: "center",
+
 	        fontFamily: "'Sue Ellen Francisco', cursive"
 
 	    };
@@ -40523,51 +40582,19 @@
 	    value: true
 	});
 	var initLevels = {
-	    0: {
-	        id: 0,
-	        name: "Intro",
-	        description: "some description",
-	        boardConfig: {
-	            rows: 5,
-	            cols: 5,
-	            groups: {
-	                0: 1,
-	                1: 1,
-	                2: 1,
-	                3: 1
-	            },
-	            gravity: "DOWN"
-	        },
-	        groupMap: {
-	            0: "flour",
-	            1: "roller",
-	            2: "milk",
-	            3: "egg"
-	        },
-	        maxMove: 15,
-	        objectiveAmount: [{
-	            group: 0,
-	            minimum: 10,
-	            description: "Collect at least 10 flour"
-	        }, {
-	            group: 1,
-	            minimum: 10,
-	            description: "Collect at least 10 roller"
-	        }, {
-	            group: 2,
-	            minimum: 10,
-	            description: "Collect at least 10 milk"
-	        }, {
-	            group: 3,
-	            minimum: 10,
-	            description: "Collect at least 10 egg"
-	        }],
-	        lastUpdate: 0
-	    },
 	    1: {
 	        id: 1,
-	        name: "Intro",
-	        description: "some description",
+	        name: "Make a Cupcake",
+	        description: ["Kelly and Adam are the owners of Paper Bakery. You've heard that they are looking for a new baker, and this seems to be a perfect job for you", "Make a cupcake to prove you are a competent baker", "Recipe: ", "flour X 10", "sugar X 10", "milk X 10", "egg X 10", "(Tap two adjasent items to swap their positions, items will be collected when 3 or more same items connect to each other in a collumn or row)"],
+	        winMessage: {
+	            title: "Congrats!",
+	            symbol: "cupcake",
+	            message: "You made a lovely cupcake"
+	        },
+	        lostMessage: {
+	            title: "Darn!",
+	            message: ""
+	        },
 	        boardConfig: {
 	            rows: 5,
 	            cols: 5,
@@ -40581,11 +40608,11 @@
 	        },
 	        groupMap: {
 	            0: "flour",
-	            1: "roller",
+	            1: "sugar",
 	            2: "milk",
 	            3: "egg"
 	        },
-	        maxMove: 15,
+	        maxMove: 10,
 	        objectiveAmount: [{
 	            group: 0,
 	            minimum: 10,
@@ -40596,56 +40623,11 @@
 	            description: "Collect at least 10 roller"
 	        }, {
 	            group: 2,
-	            maximum: 10,
-	            description: "Collect at least 10 milk"
-	        }, {
-	            group: 3,
-	            maximum: 10,
-	            description: "Collect at least 10 egg"
-	        }],
-	        lastUpdate: 0
-	    },
-	    2: {
-	        id: 2,
-	        name: "Intro",
-	        description: "some description",
-	        boardConfig: {
-	            rows: 5,
-	            cols: 5,
-	            groups: {
-	                0: 1,
-	                1: 1,
-	                2: 1,
-	                3: 1
-	            },
-	            gravity: "DOWN"
-	        },
-	        groupMap: {
-	            0: "flour",
-	            1: "roller",
-	            2: "milk",
-	            3: "egg"
-	        },
-	        maxMove: 15,
-	        objectiveAmount: [{
-	            group: 0,
 	            minimum: 10,
-	            maximum: 15,
-	            description: "Collect at least 10 flour"
-	        }, {
-	            group: 1,
-	            minimum: 10,
-	            maximum: 15,
-	            description: "Collect at least 10 roller"
-	        }, {
-	            group: 2,
-	            minimum: 10,
-	            maximum: 15,
 	            description: "Collect at least 10 milk"
 	        }, {
 	            group: 3,
 	            minimum: 10,
-	            maximum: 15,
 	            description: "Collect at least 10 egg"
 	        }],
 	        lastUpdate: 0
@@ -40763,7 +40745,7 @@
 	                var boardConfig = action.payload.boardConfig;
 
 
-	                var _board = (0, _boardFactory2.default)(boardConfig);
+	                var _board = (0, _boardFactory.removeInitialMatch)((0, _boardFactory2.default)(boardConfig));
 
 	                return Object.assign({}, state, _board);
 	            }
@@ -40788,6 +40770,10 @@
 
 	                        });
 	                    }
+
+	                    var posA = state.tiles[activeTiles[0]].position;
+
+	                    var posB = state.tiles[activeTiles[1]].position;
 
 	                    var _board2 = _boardFactory.swapTiles.apply(undefined, [state].concat(_toConsumableArray(activeTiles)));
 
@@ -40890,7 +40876,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.swapTiles = exports.refillBoard = exports.cascadeBoard = exports.removeAllMatch = exports.markAllMatch = exports.findMatch = undefined;
+	exports.swapTiles = exports.refillBoard = exports.cascadeBoard = exports.removeAllMatch = exports.markAllMatch = exports.findMatch = exports.removeInitialMatch = undefined;
 
 	var _uniqueId = __webpack_require__(617);
 
@@ -41063,6 +41049,57 @@
 	    return board;
 	};
 
+	var removeInitialMatch = function removeInitialMatch(board) {
+
+	    var boardClone = Object.assign({}, board);
+
+	    var match = new Set();
+
+	    var groupTiles = (0, _groupBy2.default)(boardClone.tiles, function (tile) {
+	        return tile.value;
+	    });
+
+	    Object.keys(groupTiles).forEach(function (key) {
+
+	        boardClone.matchedPositions.forEach(function (position) {
+
+	            var match1 = groupTiles[key].find(function (tile) {
+	                return tile.position === position[0];
+	            });
+
+	            var match2 = groupTiles[key].find(function (tile) {
+	                return tile.position === position[1];
+	            });
+
+	            var match3 = groupTiles[key].find(function (tile) {
+	                return tile.position === position[2];
+	            });
+
+	            if (match1 && match2 && match3) {
+
+	                match.add(match1.id);
+
+	                match.add(match2.id);
+
+	                match.add(match3.id);
+	            }
+	        });
+	    });
+
+	    if (match.size === 0) return boardClone;
+
+	    match.forEach(function (id) {
+
+	        var valueIndex = (0, _random2.default)(boardClone.groupPool.length - 1);
+
+	        var value = boardClone.groupPool[valueIndex];
+
+	        boardClone.tiles[id]["value"] = value;
+	    });
+
+	    return removeInitialMatch(boardClone);
+	};
+
 	var swapTiles = function swapTiles(board, tileIdA, tileIdB) {
 
 	    var boardClone = Object.assign({}, board);
@@ -41149,8 +41186,6 @@
 	        return prevSize + cur.size;
 	    }, 0);
 
-	    //boardClone.animatingElem = boardClone.matchCount
-
 	    boardClone.dispatchAwait = boardClone.matchCount;
 
 	    boardClone.status = "DID_MARK";
@@ -41171,7 +41206,6 @@
 	            boardClone.tiles[id]["removed"] = true;
 	        });
 	    });
-	    //boardClone.animatingElem = boardClone.matchCount
 
 	    boardClone.dispatchAwait = boardClone.matchCount;
 
@@ -41200,33 +41234,33 @@
 	            The default gravity (DOWN) which will be handled in the default block
 	            */
 
-	            Object.values(tiles).sort(function (a, b) {
+	            Object.values(boardClone.match).reduce(function (flat, cur) {
+	                return [].concat(_toConsumableArray(flat), _toConsumableArray(cur));
+	            }, []).map(function (id) {
+	                return boardClone.tiles[id];
+	            }).sort(function (a, b) {
 	                return +a.position - +b.position;
-	            }).forEach(function (tile, index, tileArray) {
-
-	                if (!tile.removed) return;
+	            }).forEach(function (tile) {
 
 	                var upTilePosition = tile.position - cols;
 
 	                while (upTilePosition >= 0) {
 
-	                    var upTile = tileArray.find(function (tile) {
-	                        return tile.position === upTilePosition;
+	                    var upTile = Object.values(tiles).find(function (tile) {
+	                        return tile.position === upTilePosition && tile.removed === false;
 	                    });
 
-	                    if (upTile.removed == true) break;
+	                    if (!upTile) break;
 
-	                    var currentPosition = tile.position;
+	                    tiles[tile.id]["position"] -= cols;
 
-	                    tiles[tile.id]["position"] = upTilePosition;
-
-	                    tiles[upTile.id]["position"] = currentPosition;
+	                    tiles[upTile.id]["position"] += cols;
 
 	                    movingTiles.add(upTile.id);
 
 	                    movingTiles.add(tile.id);
 
-	                    upTilePosition = tile.position - cols;
+	                    upTilePosition -= cols;
 	                }
 	            });
 
@@ -41265,24 +41299,11 @@
 	        });
 	    });
 
-	    // Object.values(tiles).forEach(tile => {
-
-	    //     if (!tile.removed) return
-
-	    //     let valueIndex = _.random(groupPool.length - 1)
-
-	    //     let value = groupPool[valueIndex]
-
-	    //     tile.value = value
-
-	    //     tile.removed = false
-
-	    // })
-
 	    return boardClone;
 	};
 
 	exports.default = BoardFactory;
+	exports.removeInitialMatch = removeInitialMatch;
 	exports.findMatch = findMatch;
 	exports.markAllMatch = markAllMatch;
 	exports.removeAllMatch = removeAllMatch;

@@ -5,7 +5,21 @@ import Radium from 'radium'
 import Modal from "react-modal"
 
 
-const StartModal = Radium(({measurements, modalOpen, onStartClick}) => {
+const StartModal = Radium((prop) => {
+
+    let { 
+        
+        measurements, 
+        
+        modalOpen, 
+        
+        onStartClick, 
+        
+        levelName, 
+        
+        description
+        
+    } = prop
 
     let { appHeight,
          appWidth } = measurements.global
@@ -30,9 +44,9 @@ const StartModal = Radium(({measurements, modalOpen, onStartClick}) => {
         
         content : {
             
-            top: "25%",
+            top: "8%",
             
-            bottom: "50%",
+            bottom: "12%",
             
             border: '2px solid',
             
@@ -73,13 +87,14 @@ const StartModal = Radium(({measurements, modalOpen, onStartClick}) => {
 
     }
     
-
-    
-    
     return (
          <Modal style={modalStyle} isOpen={modalOpen}>
             
-            <h1>Start?</h1>
+            <h1>{levelName}</h1>
+            
+            {description.map((text, index) => {
+                return <p key={index}>{text}</p>
+            })}
             
              <a style={LinkStyle} onClick={onStartClick} href="#">I got it</a>
 

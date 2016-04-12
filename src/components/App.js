@@ -48,11 +48,29 @@ class App extends Component {
             <div style={AppStyle}>
             
                 <Style rules={{
+                
                     "body, html": {
+                    
                         margin: 0,
+                        
                         fontFamily: "'Amatic SC', cursive",
+                        
                         fontStyle: "bold"
+                        
+                    },
+                    
+                    "p" : {
+                    
+                        fontFamily: "'Karla', sans-serif",
+                        
+                        textAlign: "left",
+                        
+                        fontSize: "2vh",
+                        
+                        margin: "2vh"
+                        
                     }
+                    
                 }} />
                 
                 <Nav navHeight={measurements.global.navHeight} />

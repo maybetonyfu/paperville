@@ -22,6 +22,8 @@ const Menu = Radium(() => {
         
         fontSize: "4vh",
         
+        textAlign: "center",
+        
         fontFamily: "'Sue Ellen Francisco', cursive"
         
     }

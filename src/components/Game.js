@@ -24,12 +24,15 @@ const Game = Radium((prop) => {
             <StartModal
                 modalOpen={game.status==="INIT"}
                 measurements={measurements}
+                levelName={levels[game.currentLevel]["name"]}
+                description={levels[game.currentLevel]["description"]}
                 onStartClick={onGameStart}
                 />
             
             <WinModal
                 modalOpen={game.status==="WIN"}
                 measurements={measurements}
+                winMessage={levels[game.currentLevel]["winMessage"]}
                 isLastLevel={isLastLevel}
                 onNextLevelClick = {() => {
                     if(!isLastLevel ) {
@@ -42,6 +45,7 @@ const Game = Radium((prop) => {
             <LostModal
                 modalOpen={game.status==="LOSE"}
                 measurements={measurements}
+                lostMessage={levels[game.currentLevel]["lostMessage"]}
                 onRetryLevelClick = {() => {
                     let level = levels[game.currentLevel]
                     onRetryLevel(level.boardConfig, level.id)

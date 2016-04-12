@@ -66,3 +66,11 @@
 .flour {
     background-image: url("/assets/svg/flour.svg");
 }
+
+.sugar {
+    background-image: url("/assets/svg/sugar.svg");
+}
+
+.cupcake {
+    background-image: url("/assets/svg/cupcake.svg");
+}
