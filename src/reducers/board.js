@@ -1,5 +1,7 @@
 import boardFactory, {
     
+    removeInitialMatch,
+    
     findMatch, 
     
     markAllMatch,
@@ -26,7 +28,7 @@ const board = (state = initBoard, action) => {
             
             let { boardConfig } = action.payload
             
-            let board = boardFactory(boardConfig)
+            let board = removeInitialMatch(boardFactory(boardConfig))
             
             
             return Object.assign({}, state, board)
@@ -54,6 +56,12 @@ const board = (state = initBoard, action) => {
                     })
                     
                 }
+                
+                let posA = state.tiles[activeTiles[0]].position
+                
+                let posB = state.tiles[activeTiles[1]].position
+                
+                
     
                let board = swapTiles(state, ...activeTiles)
 

@@ -165,6 +165,54 @@ let BoardFactory = (boardConfig) => {
 
 }
 
+let removeInitialMatch = (board) => {
+    
+    let boardClone = Object.assign({}, board)
+    
+    let match = new Set()
+
+    let groupTiles = groupBy(boardClone.tiles, tile => tile.value)
+
+    Object.keys(groupTiles).forEach((key) => {
+
+        boardClone.matchedPositions.forEach(position => {
+
+            let match1 = groupTiles[key].find(tile => tile.position === position[0])
+            
+            let match2 = groupTiles[key].find(tile => tile.position === position[1])
+            
+            let match3 = groupTiles[key].find(tile => tile.position === position[2])
+
+            if (match1 && match2 && match3) {
+
+                match.add(match1.id)
+                
+                match.add(match2.id)
+                
+                match.add(match3.id)
+
+            }
+
+        })
+
+    })
+    
+    if (match.size === 0) return boardClone
+    
+    match.forEach(id => {
+            
+        let valueIndex = random(boardClone.groupPool.length - 1)
+
+        let value = boardClone.groupPool[valueIndex]
+
+        boardClone.tiles[id]["value"] = value
+
+    })
+
+    return removeInitialMatch(boardClone)
+
+}
+
 let swapTiles = (board, tileIdA, tileIdB) => {
     
     let boardClone = Object.assign({}, board)
@@ -248,8 +296,6 @@ let markAllMatch = (board, match) => {
     boardClone.matchCount = Object.values(match)
         .reduce((prevSize, cur) => { return prevSize + cur.size }, 0)
         
-    //boardClone.animatingElem = boardClone.matchCount
-    
     boardClone.dispatchAwait = boardClone.matchCount
     
     boardClone.status = "DID_MARK"
@@ -273,8 +319,7 @@ let removeAllMatch = (board) => {
         })
 
     })
-    //boardClone.animatingElem = boardClone.matchCount
-    
+
     boardClone.dispatchAwait = boardClone.matchCount
     
     boardClone.status = "DID_REMOVE"
@@ -302,36 +347,39 @@ let cascadeBoard = (board) => {
         /*
         The default gravity (DOWN) which will be handled in the default block
         */
-
-        Object.values(tiles)
         
+        
+        Object.values(boardClone.match)
+            
+            .reduce((flat, cur) => { return [...flat, ...cur] }, [])
+            
+            .map(id => boardClone.tiles[id])
+            
             .sort((a, b) => (+ a.position) - (+ b.position))
             
-            .forEach((tile, index, tileArray) => {
+            .forEach((tile) => {
 
-            if (!tile.removed) return
-
-            let upTilePosition = tile.position - cols
-
-            while (upTilePosition >= 0) {
-
-                let upTile = tileArray.find(tile => tile.position === upTilePosition)
-
-                if (upTile.removed == true) break
-
-                let currentPosition = tile.position
-
-                tiles[tile.id]["position"] = upTilePosition
-
-                tiles[upTile.id]["position"] = currentPosition
-                
-                movingTiles.add(upTile.id)
-                
-                movingTiles.add(tile.id)
-
-                upTilePosition = tile.position - cols
-
-            }
+                let upTilePosition = tile.position - cols
+    
+                while (upTilePosition >= 0) {
+    
+                    let upTile = Object.values(tiles)
+                                
+                        .find(tile => tile.position === upTilePosition && tile.removed === false)
+    
+                    if (!upTile) break
+    
+                    tiles[tile.id]["position"] -= cols
+    
+                    tiles[upTile.id]["position"] += cols
+                    
+                    movingTiles.add(upTile.id)
+                    
+                    movingTiles.add(tile.id)
+    
+                    upTilePosition -= cols
+    
+                }
 
         })
 
@@ -375,27 +423,15 @@ let refillBoard = (board) => {
 
     })
 
-    // Object.values(tiles).forEach(tile => {
-
-    //     if (!tile.removed) return
-
-    //     let valueIndex = _.random(groupPool.length - 1)
-
-    //     let value = groupPool[valueIndex]
-
-    //     tile.value = value
-
-    //     tile.removed = false
-
-    // })
-
-    return boardClone
+     return boardClone
 
 }
 
 export default BoardFactory
 
 export {
+    
+    removeInitialMatch,
     
     findMatch, 
     
