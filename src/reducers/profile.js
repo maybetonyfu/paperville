@@ -4,7 +4,8 @@ let initProfile = {
     completedLevels: [],
     unlockedLevels: [0],
     setting: {
-        developer: false
+        developer: false,
+        vibrator: false
     }
 }
 

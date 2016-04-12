@@ -44,7 +44,7 @@ const LostModal = Radium((prop) => {
             
             top: "20%",
             
-            bottom: "35%",
+            bottom: "30%",
             
             border: '2px solid',
             

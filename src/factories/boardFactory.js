@@ -287,7 +287,7 @@ let markAllMatch = (board, match) => {
 
         })
         
-        boardClone.progress[key] += match[key].size
+        // boardClone.progress[key] += match[key].size
 
     })
     
@@ -308,15 +308,17 @@ let removeAllMatch = (board) => {
 
     let boardClone = Object.assign({}, board)
 
-    Object.values(boardClone.match).forEach(match => {
+    Object.keys(boardClone.match).forEach(key => {
 
-        match.forEach(id => {
+        boardClone.match[key].forEach(id => {
 
             boardClone.tiles[id]["willMark"] = false
             
             boardClone.tiles[id]["removed"] = true
 
         })
+        
+        boardClone.progress[key] += boardClone.match[key].size
 
     })
 

@@ -45,16 +45,16 @@ class Progress extends Component {
                 
             })
             
-        if (fulfillMinAmount && gameStatus == "START") {
-            
-            onGameWinning()
-        
-        }
-        
         if ( (violateMaxMove || violateMaxAmount) && gameStatus == "START") {
             
             onGameLosing()
             
+        }
+
+        if (fulfillMinAmount && gameStatus == "START") {
+            
+            onGameWinning()
+        
         }
         
     }

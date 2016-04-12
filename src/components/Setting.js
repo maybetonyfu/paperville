@@ -69,6 +69,12 @@ const Setting = Radium((prop) => {
                         checkBoxStyle.checked: checkBoxStyle.unchecked]}></span>
                 <span style={settingItemStyle}>Developer</span>
             </div>
+            <div onClick={()=> {onChangeSetting("vibrator", !profile.setting.vibrator )}}> 
+                <span style={[checkBoxStyle.base,
+                    profile.setting.vibrator?
+                        checkBoxStyle.checked: checkBoxStyle.unchecked]}></span>
+                <span style={settingItemStyle}>Vibrator <small>Not available in iOS and desktop devices</small></span>
+            </div>
         </div>
 
     )}

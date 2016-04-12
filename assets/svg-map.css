@@ -74,3 +74,27 @@
 .cupcake {
     background-image: url("/assets/svg/cupcake.svg");
 }
+
+.salt {
+    background-image: url("/assets/svg/salt.svg");
+}
+
+.croisant {
+    background-image: url("/assets/svg/croisant.svg");
+}
+
+.butter {
+    background-image: url("/assets/svg/butter.svg");
+}
+
+.apple {
+    background-image: url("/assets/svg/apple.svg");
+}
+
+.pie {
+    background-image: url("/assets/svg/pie.svg");
+}
+
+.mushroom {
+    background-image: url("/assets/svg/mushroom.svg");
+}

@@ -24,7 +24,9 @@ const Menu = Radium(() => {
         
         textAlign: "center",
         
-        fontFamily: "'Sue Ellen Francisco', cursive"
+        fontFamily: "'Sue Ellen Francisco', cursive",
+        
+        marginBottom: "10%"
         
     }
 
@@ -52,7 +54,8 @@ const Menu = Radium(() => {
         
         border: "2px solid black",
         
-        marginTop : "10%"
+        marginTop : "2vh"
+
     }
     
     return (

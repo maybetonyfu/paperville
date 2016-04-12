@@ -46,7 +46,7 @@ const WinModal = Radium((prop) => {
 
             top: "20%",
             
-            bottom: "35%",
+            bottom: "30%",
             
             border: '2px solid',
             
@@ -93,9 +93,9 @@ const WinModal = Radium((prop) => {
         
         margin: "auto",
         
-        width: "5vh",
+        width: "8vh",
         
-        height: "5vh"
+        height: "8vh"
     } 
     
     let nextLevel = isLastLevel ? 

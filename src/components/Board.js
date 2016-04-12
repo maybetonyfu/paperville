@@ -22,6 +22,11 @@ class Board extends Component {
 
         e.stopPropagation()
         
+        if (this.props.board.status === "DID_MARK" && this.props.setting.vibrator) {
+            
+            window.navigator.vibrate(500)
+        }
+        
         if (this.props.board.status === "WAIT_PLAYER_MOVE") return
         
         eventAccumulator ++ 
