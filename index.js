@@ -13,6 +13,7 @@ import { createStore } from "redux"
 import AppContainer from "./src/containers/AppContainer.js"
 import GameContainer from "./src/containers/GameContainer.js"
 import CampaignContainer from "./src/containers/CampaignContainer.js"
+import SettingContainer from "./src/containers/SettingContainer.js"
 import Menu from "./src/components/Menu.js"
 import reducer from "./src/reducers"
 
@@ -30,6 +31,7 @@ ReactDOM.render(
             <Route path="/" component={AppContainer}>
             <IndexRoute component={Menu}/>
               <Route path="/campaign" component={CampaignContainer} />
+              <Route path="/setting" component={SettingContainer} />
               <Route path="/game" component={GameContainer} />
             </Route>
         </Router>

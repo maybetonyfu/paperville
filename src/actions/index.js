@@ -82,9 +82,12 @@ export const addActiveTile = () => {
     }
 }
 
-export const updateBoardProgress = () => {
+export const changeSetting = (key, value) => {
     return {
-        type: "UPDATE_BOARD_PROGRESS",
-        payload: {}
+        type: "CHANGE_SETTING",
+        payload: {
+            key,
+            value
+        }
     }
 }

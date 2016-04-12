@@ -34,7 +34,7 @@ const Menu = Radium(() => {
         
         textAlign: "center",
         
-        display: "inline-block",
+        display: "block",
         
         width: "15vh",
         
@@ -44,7 +44,9 @@ const Menu = Radium(() => {
         
         color: "black",
         
-        marginLeft: "1vh",
+        marginLeft: "50%",
+        
+        transform: "translateX(-50%)",
         
         borderRadius: "10px",
         
@@ -58,6 +60,7 @@ const Menu = Radium(() => {
         <div style={menuStyle}>
             <p style={titleStyle}>Paper Bakery</p>
             <Link style={menuLinkStyle} to="/campaign">Campaign</Link>
+            <Link style={menuLinkStyle} to="/setting">Setting</Link>
         </div>
 
     )}
