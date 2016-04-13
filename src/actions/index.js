@@ -44,6 +44,16 @@ export const playerMove = (activeTiles) => {
     }
 }
 
+export const playerPan = (tileId, direction) => {
+    return {
+        type: "PLAYER_PAN",
+        payload: {
+            tileId,
+            direction
+        }
+    }
+}
+
 export const willWin = () => {
     return {
         type: "WILL_WIN",

@@ -89,10 +89,10 @@ let initLevels = {
             rows: 6,
             cols: 6,
             groups: {
-                0: 2,
-                1: 2,
-                2: 2,
-                3: 2,
+                0: 3,
+                1: 3,
+                2: 3,
+                3: 3,
                 4: 1,
             },
             gravity: "DOWN"
@@ -141,7 +141,7 @@ let initLevels = {
             "Make an mushroom pie",
             "Recipe: ",
             "flour  X 10",
-            "butter X 10",
+            "milk X 10",
             "egg    X 10",
             "mushroom  X 3",
             "* sugar  < 10",
@@ -160,10 +160,10 @@ let initLevels = {
             rows: 6,
             cols: 6,
             groups: {
-                0: 2,
-                1: 2,
-                2: 2,
-                3: 2,
+                0: 3,
+                1: 3,
+                2: 3,
+                3: 3,
                 4: 1,
             },
             gravity: "DOWN"
@@ -171,11 +171,11 @@ let initLevels = {
         groupMap: {
             0: "sugar",
             1: "flour",
-            2: "butter",
+            2: "milk",
             3: "egg",
             4: "mushroom"
         },
-        maxMove: 15,
+        maxMove: 20,
         objectiveAmount: [
             {
                 group: 0,

@@ -237,6 +237,121 @@ let swapTiles = (board, tileIdA, tileIdB) => {
 
 }
 
+let panTile = (board, tileId, direction) => {
+    
+    let boardClone = Object.assign({}, board)
+    
+    let {cols, tiles, positions} = boardClone
+    
+    let originTile = tiles[tileId]
+    
+    let originPosition = originTile.position
+    
+    let destPosition
+    
+    switch (direction) {
+        
+        case 'panup':
+            {
+                destPosition = originPosition - cols
+                
+                let outOfBoard = destPosition < 0 || destPosition >= positions.length
+                
+                if (outOfBoard) {
+                    
+                    return boardClone
+                }
+
+            }
+
+            break
+            
+        case 'pandown':
+            {
+                destPosition = originPosition + cols
+
+                let outOfBoard = destPosition < 0 || destPosition >= positions.length
+                
+                if (outOfBoard) {
+                    
+                    return boardClone
+                }
+            }
+
+            break
+            
+        case 'panleft':
+            {
+                destPosition = originPosition - 1
+                
+                let exceedRow = (
+                    Math.floor(originPosition/cols) !== Math.floor(destPosition/cols)
+                )
+                
+                let outOfBoard = destPosition < 0 || destPosition >= positions.length
+                
+                if (exceedRow || outOfBoard) {
+                    
+                    return boardClone
+                }
+                
+            }
+
+            break
+
+        case 'panright':
+            {
+                destPosition = originPosition + 1
+
+                let exceedRow = (
+                    Math.floor(originPosition/cols) !== Math.floor(destPosition/cols)
+                )
+                
+                let outOfBoard = destPosition < 0 || destPosition >= positions.length
+                
+                if (exceedRow || outOfBoard) {
+                    
+                    return boardClone
+                }
+                
+            }
+
+            break
+
+        default:
+            
+            return boardClone
+            
+    }
+    
+    let destTile = Object.values(tiles)
+            
+        .find(tile => tile.position === destPosition)
+    
+    originTile.position = destPosition
+    
+    destTile.position = originPosition
+    
+    // let { tiles } = boardClone
+    
+    // let positionA = tiles[tileIdA].position
+    
+    // let positionB = tiles[tileIdB].position
+    
+    // tiles[tileIdA].position = positionB
+    
+    // tiles[tileIdB].position = positionA
+    
+    boardClone.dispatchAwait = 2
+    
+    boardClone.playerMove ++
+    
+    boardClone.status = "DID_SWAP"
+
+    return boardClone
+
+}
+
 let findMatch = (board) => {
 
     let match = {}
@@ -445,6 +560,8 @@ export {
     
     refillBoard, 
     
-    swapTiles
+    swapTiles,
+    
+    panTile
     
 }

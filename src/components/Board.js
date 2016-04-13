@@ -82,6 +82,8 @@ class Board extends Component {
         
         onTileClick,
         
+        onPlayerPan,
+        
         setting
         
     } = this.props
@@ -106,35 +108,14 @@ class Board extends Component {
             return <Tile 
                 key={tile.id}
                 tile={tile}
-                canClick={board.status==="WAIT_PLAYER_MOVE"}
+                canMove={board.status==="WAIT_PLAYER_MOVE"}
                 symbolName={level.groupMap[tile.value]}
                 positions={board.positions}
                 tileMeasurements={measurements.tile}
                 isActive={board.activeTiles.indexOf(tile.id) > -1}
-                onClick={() => {
-                
-                        if (board.activeTiles.length === 1) {
-                        
-                            let posA = board.tiles[board.activeTiles[0]].position
-                            
-                            let posB = tile.position
-                            
-                            let sameRow = (Math.abs(posA - posB) === 1) &&
-                            (Math.floor(posA/board.cols) === Math.floor(posB/board.cols))
-        
-                            let sameCol = Math.abs(posA - posB) === board.cols
-                            
-                            if (sameCol || sameRow || setting.developer) {
-                                
-                                return onTileClick(tile.id)
-                            }
-
-                            return onTileClick("ILLEGAL_MOVE")
-
-                        }
-                        
-                        return onTileClick(tile.id)
-                        
+                panEnd={
+                    (direction) => {
+                        onPlayerPan(tile.id, direction)
                     }
                 }
                 />

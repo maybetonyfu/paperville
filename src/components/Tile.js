@@ -2,12 +2,14 @@ import React, { PropTypes } from "react"
 import Radium from "radium"
 import ReactDOM from "react-dom"
 
+import Hammer from "react-hammerjs"
+
 
 
 
 const Tile = Radium( prop => {
             
-        let { tile, tileMeasurements, symbolName, positions, onClick, isActive, canClick} = prop
+        let { tile, tileMeasurements, symbolName, positions, isActive, canMove, panEnd} = prop
         
         let { tileWidth, tileHeight, tileBleeding, tileMargin} = tileMeasurements
         
@@ -94,6 +96,8 @@ const Tile = Radium( prop => {
             
         }
         
+        
+        
         if (tile.removed) {
             
             //tileStyle.transition = "none"
@@ -102,29 +106,54 @@ const Tile = Radium( prop => {
 
         }
         
-        return (
-    
-            <span 
-                style={tileStyle} 
-                onClick={() => {
+        
+        // let touchOptions = {
+            
+        //     touchAction:true,
+            
+        //     recognizers: {
                 
-                    if (canClick) { onClick() }
+        //         pan: {
                     
-                    }
+        //             threshold: 100,
+                    
+        //         }
                 
+        //     }
+            
+        // }
+
+        return (
+            <Hammer vertical={true} onPanEnd={
+                (ev) => {
+                    if(ev.additionalEvent && canMove) {
+                        panEnd(ev.additionalEvent)
+                    }
+
                 }
-            >
-                <span
-                    style={[contentStyle.base, contentStyle.selected]}
-                > </span>
-                <span
-                    style={[contentStyle.base, contentStyle.marked]}
-                > </span>
-                <span
-                    style={[contentStyle.base, contentStyle.symbol]}
-                    className={symbolName}
-                > </span>
-            </span>
+            }>
+                <span 
+                    style={tileStyle} 
+                    // onClick={() => {
+                    
+                    //     if (canClick) { onClick() }
+                        
+                    //     }
+                    
+                    // }
+                >
+                    <span
+                        style={[contentStyle.base, contentStyle.selected]}
+                    > </span>
+                    <span
+                        style={[contentStyle.base, contentStyle.marked]}
+                    > </span>
+                    <span
+                        style={[contentStyle.base, contentStyle.symbol]}
+                        className={symbolName}
+                    > </span>
+                </span>
+            </Hammer>
     
         )
 

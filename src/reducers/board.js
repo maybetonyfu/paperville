@@ -12,7 +12,9 @@ import boardFactory, {
     
     refillBoard, 
     
-    swapTiles
+    swapTiles,
+    
+    panTile
     
 } from "../factories/boardFactory"
 
@@ -80,6 +82,16 @@ const board = (state = initBoard, action) => {
             let {activeTiles} = action.payload
             
             return swapTiles(state, ...activeTiles)
+            
+        }
+
+    case "PLAYER_PAN":
+        
+        {
+            
+            let {tileId, direction} = action.payload
+            
+            return panTile(state, tileId, direction)
             
         }
 
