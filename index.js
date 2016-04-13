@@ -17,7 +17,6 @@ import SettingContainer from "./src/containers/SettingContainer.js"
 import Menu from "./src/components/Menu.js"
 import reducer from "./src/reducers"
 
-
 let store = createStore(reducer, {}, 
     window.devToolsExtension ? window.devToolsExtension() : undefined
   )

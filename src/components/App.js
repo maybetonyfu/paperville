@@ -47,7 +47,14 @@ class App extends Component {
 
         return (
             
-            <div style={AppStyle}>
+            <div onTouchMove={
+                    (e) => {
+                        // To stop stupid iOS browser rubber-band scrolling
+                        e.preventDefault()
+                    }
+                } 
+                style={AppStyle}
+            >
             
                 <Style rules={{
                 

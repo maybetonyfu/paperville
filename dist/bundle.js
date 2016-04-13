@@ -109,9 +109,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// document.ontouchmove = function(event){
+	//     event.preventDefault();
+	// }
+
 	// import { Router, Route, browserHistory, IndexRoute} from "react-router"
-
-
 	var store = (0, _redux.createStore)(_reducers2.default, {}, window.devToolsExtension ? window.devToolsExtension() : undefined);
 
 	// let store = createStore(reducer)
@@ -32895,7 +32897,11 @@
 
 	            return _react2.default.createElement(
 	                'div',
-	                { style: AppStyle },
+	                { onTouchMove: function onTouchMove(e) {
+	                        e.preventDefault();
+	                    },
+	                    style: AppStyle
+	                },
 	                _react2.default.createElement(_radium.Style, { rules: {
 
 	                        "body, html": {
