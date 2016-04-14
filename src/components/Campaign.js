@@ -7,7 +7,13 @@ import Level from "./Level"
 
 const Campaign = Radium(({ levels, measurements, onLevelClick }) => {
     
-    let {activeHeight, activeWidth} = measurements.global
+    let {
+        
+        activeHeight, 
+        
+        activeWidth
+        
+    } = measurements.global
     
     
     let campaignStyle = {
@@ -23,21 +29,34 @@ const Campaign = Radium(({ levels, measurements, onLevelClick }) => {
     }
 
     return (
+        
         <div style={campaignStyle}>
             {
                 Object.values(levels).map(level => 
                     <Level key={level.id} 
-                    onClick={() => { onLevelClick(level.boardConfig, level.id) }} 
+                    onClick={
+                    
+                        () => { 
+                        
+                            onLevelClick(level.boardConfig, level.id) 
+                            
+                        }
+                        
+                    } 
                     level={level}/>
                 )
             }
         </div>
+        
     )
 })
 
 Campaign.PropTypes = {
+    
     levels: PropTypes.object.isRequired,
+    
     onLevelClick: PropTypes.func.isRequired
+    
 }
 
 export default Campaign

@@ -4,6 +4,7 @@ let initGame = {
 }
 
 const game = (state = initGame, action) => {
+    
     switch (action.type) {
         
     case "CREATE_BOARD":
@@ -48,6 +49,7 @@ const game = (state = initGame, action) => {
         }
 
     default:
+
         return state
     }
 }

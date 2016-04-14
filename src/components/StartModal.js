@@ -21,8 +21,13 @@ const StartModal = Radium((prop) => {
         
     } = prop
 
-    let { appHeight,
-         appWidth } = measurements.global
+    let { 
+        
+        appHeight,
+         
+        appWidth 
+        
+    } = measurements.global
 
         
     let modalStyle = {

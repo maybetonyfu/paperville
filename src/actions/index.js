@@ -26,24 +26,6 @@ export const gameInit = (measure) => {
     }
 }
 
-export const playerClick = (tileId) => {
-    return {
-        type: "PLAYER_CLICK",
-        payload: {
-            tileId
-        }
-    }
-}
-
-export const playerMove = (activeTiles) => {
-    return {
-        type: "PLAYER_MOVE",
-        payload: {
-            activeTiles
-        }
-    }
-}
-
 export const playerPan = (tileId, direction) => {
     return {
         type: "PLAYER_PAN",
@@ -68,27 +50,9 @@ export const willLose = () => {
     }
 }
 
-// export const transitionEnd = (tileId, boardStatus) => {
-//     return {
-//         type: "TRANSITION_END",
-//         payload: {
-//             tileId,
-//             boardStatus
-//         }
-//     }
-// }
-
 export const transitionEnd = (status) => {
     return {
         type: status,
-    }
-}
-
-
-export const addActiveTile = () => {
-    return {
-        type: "ADD_ACTIVE_TILE",
-        payload: {}
     }
 }
 

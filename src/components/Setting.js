@@ -4,7 +4,13 @@ import Radium from 'radium'
 
 const Setting = Radium((prop) => {
 
-    let { profile, onChangeSetting } = prop
+    let { 
+        
+        profile, 
+        
+        onChangeSetting 
+        
+    } = prop
     
     let settingStyle = {
         

@@ -17,18 +17,22 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     
     return {
+        
         onChangeSetting : (key, value) => {
+            
             dispatch(changeSetting(key, value))
+            
         }
+        
     }
     
 }
 
 const SettingContainer = connect(
 
-  mapStateToProps,
+    mapStateToProps,
   
-  mapDispatchToProps
+    mapDispatchToProps
   
 )(Setting)
 

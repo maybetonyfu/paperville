@@ -9,9 +9,31 @@ import Hammer from "react-hammerjs"
 
 const Tile = Radium( prop => {
             
-        let { tile, tileMeasurements, symbolName, positions, canMove, panEnd} = prop
+        let { 
+            
+            tile, 
+            
+            tileMeasurements, 
+            
+            symbolName, 
+            
+            positions, 
+            
+            canMove, 
+            
+            panEnd} = prop
         
-        let { tileWidth, tileHeight, tileBleeding, tileMargin} = tileMeasurements
+        let { 
+            
+            tileWidth, 
+            
+            tileHeight, 
+            
+            tileBleeding, 
+            
+            tileMargin
+            
+        } = tileMeasurements
         
         let translateX = positions[tile.position][1] * 
             (tileWidth + tileBleeding)

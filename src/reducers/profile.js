@@ -1,19 +1,28 @@
 let initProfile = {
+    
     id: 0,
+    
     name: "Tony",
+    
     completedLevels: [],
+    
     unlockedLevels: [0],
+    
     setting: {
+        
         developer: false,
+        
         vibrator: false
+        
     }
+    
 }
 
 const profile = (state = initProfile, action) => {
+    
     switch (action.type) {
         
     case "CHANGE_SETTING":
-        
         {
             let { key, value } = action.payload
             
@@ -25,7 +34,6 @@ const profile = (state = initProfile, action) => {
         }
         
     case "GAME_START":
-        
         {
             
         }

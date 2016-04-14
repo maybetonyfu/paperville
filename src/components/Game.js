@@ -12,7 +12,21 @@ import LostModal from "../components/LostModal"
 
 const Game = Radium((prop) => {
     
-    let {game, measurements, levels, onNextLevel, onRetryLevel, onGameStart} = prop
+    let {
+        
+            game, 
+            
+            measurements, 
+            
+            levels, 
+            
+            onNextLevel, 
+            
+            onRetryLevel, 
+            
+            onGameStart
+        
+    } = prop
     
     let isLastLevel = levels[game.currentLevel + 1] === undefined
     return (
