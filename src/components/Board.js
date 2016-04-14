@@ -35,7 +35,7 @@ class Board extends Component {
 
         eventAccumulator = 0 
         
-        this.props.onTransitionEnd(this.props.board.status)
+        this.props.onBoardMoveEnd(this.props.board.status)
         
     }
     
@@ -80,8 +80,6 @@ class Board extends Component {
         
         measurements, 
         
-        onTileClick,
-        
         onPlayerPan,
         
         setting
@@ -100,9 +98,11 @@ class Board extends Component {
 
     return (
         
-    <div style={BoardStyle} ref={node => { this.boardNode = node }}>
+    <div style={BoardStyle} 
+         ref={node => { this.boardNode = node }}>
     
         {
+        
             Object.values(board.tiles).map(tile => {
         
             return <Tile 
@@ -112,7 +112,6 @@ class Board extends Component {
                 symbolName={level.groupMap[tile.value]}
                 positions={board.positions}
                 tileMeasurements={measurements.tile}
-                isActive={board.activeTiles.indexOf(tile.id) > -1}
                 panEnd={
                     (direction) => {
                         onPlayerPan(tile.id, direction)

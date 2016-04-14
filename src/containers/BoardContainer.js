@@ -13,26 +13,22 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
+    return {
     
-    onTileClick: (tileId) => {
-        dispatch(playerClick(tileId))
-    },
+        onPlayerPan: (tileId, direction) => {
+            dispatch(playerPan(tileId, direction))
+        },
+        
+        onBoardMoveEnd: (boardStatus) => {
+            dispatch(transitionEnd(boardStatus))
+        }
     
-    onPlayerPan: (tileId, direction) => {
-        dispatch(playerPan(tileId, direction))
-    },
-    
-    onTransitionEnd: (boardStatus) => {
-        dispatch(transitionEnd(boardStatus))
     }
-    
-  }
 }
 
 const BoardContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(Board)
 
 export default BoardContainer

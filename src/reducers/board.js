@@ -36,54 +36,6 @@ const board = (state = initBoard, action) => {
             return Object.assign({}, state, board)
             
         }
-        
-    case "PLAYER_CLICK":
-        
-        {
-
-            let {tileId} = action.payload
-            
-            if(tileId ==="ILLEGAL_MOVE") {
-                
-                return Object.assign({}, state, {
-
-                    activeTiles : []
-
-                })
-                
-            }
-
-            let activeTiles = [...state.activeTiles]
-
-            activeTiles.push(tileId)
-
-            if (activeTiles.length === 2 ) {
-
-                let board = swapTiles(state, ...activeTiles)
-
-                board.activeTiles = []
-
-                return board
-
-            }
-
-            return Object.assign({}, state, {
-
-                activeTiles
-
-            })
-
-        }
-        
-    case "PLAYER_MOVE":
-        
-        {
-            
-            let {activeTiles} = action.payload
-            
-            return swapTiles(state, ...activeTiles)
-            
-        }
 
     case "PLAYER_PAN":
         

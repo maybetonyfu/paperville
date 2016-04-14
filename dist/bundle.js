@@ -109,11 +109,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// document.ontouchmove = function(event){
-	//     event.preventDefault();
-	// }
-
 	// import { Router, Route, browserHistory, IndexRoute} from "react-router"
+
+
 	var store = (0, _redux.createStore)(_reducers2.default, {}, window.devToolsExtension ? window.devToolsExtension() : undefined);
 
 	// let store = createStore(reducer)
@@ -32898,6 +32896,7 @@
 	            return _react2.default.createElement(
 	                'div',
 	                { onTouchMove: function onTouchMove(e) {
+	                        // To stop stupid iOS browser rubber-band scrolling
 	                        e.preventDefault();
 	                    },
 	                    style: AppStyle
@@ -37607,15 +37606,11 @@
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	    return {
 
-	        onTileClick: function onTileClick(tileId) {
-	            dispatch((0, _actions.playerClick)(tileId));
-	        },
-
 	        onPlayerPan: function onPlayerPan(tileId, direction) {
 	            dispatch((0, _actions.playerPan)(tileId, direction));
 	        },
 
-	        onTransitionEnd: function onTransitionEnd(boardStatus) {
+	        onBoardMoveEnd: function onBoardMoveEnd(boardStatus) {
 	            dispatch((0, _actions.transitionEnd)(boardStatus));
 	        }
 
@@ -37696,7 +37691,7 @@
 
 	            eventAccumulator = 0;
 
-	            this.props.onTransitionEnd(this.props.board.status);
+	            this.props.onBoardMoveEnd(this.props.board.status);
 	        }
 	    }, {
 	        key: 'componentWillMount',
@@ -37725,7 +37720,6 @@
 	            var board = _props.board;
 	            var level = _props.level;
 	            var measurements = _props.measurements;
-	            var onTileClick = _props.onTileClick;
 	            var onPlayerPan = _props.onPlayerPan;
 	            var setting = _props.setting;
 
@@ -37740,7 +37734,8 @@
 
 	            return _react2.default.createElement(
 	                'div',
-	                { style: BoardStyle, ref: function ref(node) {
+	                { style: BoardStyle,
+	                    ref: function ref(node) {
 	                        _this2.boardNode = node;
 	                    } },
 	                Object.values(board.tiles).map(function (tile) {
@@ -37752,7 +37747,6 @@
 	                        symbolName: level.groupMap[tile.value],
 	                        positions: board.positions,
 	                        tileMeasurements: measurements.tile,
-	                        isActive: board.activeTiles.indexOf(tile.id) > -1,
 	                        panEnd: function panEnd(direction) {
 	                            onPlayerPan(tile.id, direction);
 	                        }
@@ -37814,7 +37808,6 @@
 	    var tileMeasurements = prop.tileMeasurements;
 	    var symbolName = prop.symbolName;
 	    var positions = prop.positions;
-	    var isActive = prop.isActive;
 	    var canMove = prop.canMove;
 	    var panEnd = prop.panEnd;
 	    var tileWidth = tileMeasurements.tileWidth;
@@ -37870,13 +37863,11 @@
 
 	            //transition: "opacity 50ms ease",
 
-	            transition: "opacity 500ms ease",
+	            // transition: "opacity 500ms ease",
 
-	            borderRadius: "50%",
+	            // borderRadius: "50%",
 
-	            opacity: isActive ? 1 : 0,
-
-	            backgroundColor: "#F4D03F"
+	            // backgroundColor: "#F4D03F",
 
 	        },
 
@@ -37949,7 +37940,7 @@
 	            _react2.default.createElement(
 	                "span",
 	                {
-	                    style: [contentStyle.base, contentStyle.selected]
+	                    style: [contentStyle.base]
 	                },
 	                " "
 	            ),
@@ -43803,8 +43794,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	var initBoard = {};
 
 	var board = function board() {
@@ -43825,59 +43814,15 @@
 	                return Object.assign({}, state, _board);
 	            }
 
-	        case "PLAYER_CLICK":
-
-	            {
-	                var tileId = action.payload.tileId;
-
-
-	                if (tileId === "ILLEGAL_MOVE") {
-
-	                    return Object.assign({}, state, {
-
-	                        activeTiles: []
-
-	                    });
-	                }
-
-	                var activeTiles = [].concat(_toConsumableArray(state.activeTiles));
-
-	                activeTiles.push(tileId);
-
-	                if (activeTiles.length === 2) {
-
-	                    var _board2 = _boardFactory.swapTiles.apply(undefined, [state].concat(_toConsumableArray(activeTiles)));
-
-	                    _board2.activeTiles = [];
-
-	                    return _board2;
-	                }
-
-	                return Object.assign({}, state, {
-
-	                    activeTiles: activeTiles
-
-	                });
-	            }
-
-	        case "PLAYER_MOVE":
-
-	            {
-	                var _activeTiles = action.payload.activeTiles;
-
-
-	                return _boardFactory.swapTiles.apply(undefined, [state].concat(_toConsumableArray(_activeTiles)));
-	            }
-
 	        case "PLAYER_PAN":
 
 	            {
 	                var _action$payload = action.payload;
-	                var _tileId = _action$payload.tileId;
+	                var tileId = _action$payload.tileId;
 	                var direction = _action$payload.direction;
 
 
-	                return (0, _boardFactory.panTile)(state, _tileId, direction);
+	                return (0, _boardFactory.panTile)(state, tileId, direction);
 	            }
 
 	        case "DID_SWAP":

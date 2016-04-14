@@ -9,7 +9,7 @@ import Hammer from "react-hammerjs"
 
 const Tile = Radium( prop => {
             
-        let { tile, tileMeasurements, symbolName, positions, isActive, canMove, panEnd} = prop
+        let { tile, tileMeasurements, symbolName, positions, canMove, panEnd} = prop
         
         let { tileWidth, tileHeight, tileBleeding, tileMargin} = tileMeasurements
         
@@ -62,13 +62,11 @@ const Tile = Radium( prop => {
                 
                 //transition: "opacity 50ms ease",
                 
-                transition: "opacity 500ms ease",
+                // transition: "opacity 500ms ease",
                 
-                borderRadius: "50%",
+                // borderRadius: "50%",
                 
-                opacity: isActive? 1 : 0,
-                
-                backgroundColor: "#F4D03F",
+                // backgroundColor: "#F4D03F",
                 
             },
             
@@ -143,7 +141,7 @@ const Tile = Radium( prop => {
                     // }
                 >
                     <span
-                        style={[contentStyle.base, contentStyle.selected]}
+                        style={[contentStyle.base]}
                     > </span>
                     <span
                         style={[contentStyle.base, contentStyle.marked]}
