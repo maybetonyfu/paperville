@@ -7,9 +7,127 @@
         <link href='https://fonts.googleapis.com/css?family=Sue+Ellen+Francisco' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Karla' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="assets/svg-map.css" type="text/css" />
+        <style>
+            @-webkit-keyframes swing {
+                from {
+                    -webkit-transform: rotate(-77deg);
+                            transform: rotate(-77deg);
+                    opacity: 0;
+                }
+                20% {
+                    -webkit-transform: rotate(45deg);
+                            transform: rotate(45deg);
+                }
+                40% {
+                    -webkit-transform: rotate(-35deg);
+                            transform: rotate(-35deg);
+                }
+                60% {
+                    -webkit-transform: rotate(20deg);
+                            transform: rotate(20deg);
+                }
+                80% {
+                    -webkit-transform: rotate(-15deg);
+                            transform: rotate(-15deg);
+                }
+                to {
+                    -webkit-transform: rotate(0deg);
+                            transform: rotate(0deg);
+                    opacity: 1;
+                }
+            }
+            @keyframes swing {
+                from {
+                    -webkit-transform: rotate(-77deg);
+                            transform: rotate(-77deg);
+                    opacity: 0;
+                }
+                20% {
+                    -webkit-transform: rotate(45deg);
+                            transform: rotate(45deg);
+                }
+                40% {
+                    -webkit-transform: rotate(-35deg);
+                            transform: rotate(-35deg);
+                }
+                60% {
+                    -webkit-transform: rotate(20deg);
+                            transform: rotate(20deg);
+                }
+                80% {
+                    -webkit-transform: rotate(-15deg);
+                            transform: rotate(-15deg);
+                }
+                to {
+                    -webkit-transform: rotate(0deg);
+                            transform: rotate(0deg);
+                    opacity: 1;
+                }
+            }
+            #sign {
+              width: 2px;
+              height: 2px;
+              position: relative;
+              top: 100px;
+              left: 50%;
+              margin-left: -2px;
+              border-radius: 50%;
+              border: 2px solid black;
+            }
+            #sign:before {
+              content: "";
+              display: block;
+              width: 2px;
+              height: 30px;
+              background-color: black;
+              position: absolute;
+              top: 2px;
+              left: -1px;
+              -webkit-transform: rotate(45deg);
+                    transform: rotate(45deg);
+              -webkit-transform-origin: top left;
+                    transform-origin: top left;
+              border-radius: 5px;
+            }
+            #sign:after {
+              content: "";
+              display: block;
+              width: 2px;
+              height: 30px;
+              background-color: black;
+              position: absolute;
+              top: 4px;
+              left: 4px;
+              -webkit-transform: rotate(-45deg);
+                    transform: rotate(-45deg);
+              -webkit-transform-origin: top left;
+                    transform-origin: top left;
+              border-radius: 5px;
+            }
+            #signtext {
+              width: 80px;
+              height: 30px;
+              position: absolute;
+              top: 24px;
+              left: -40px;
+              border: 2px solid black;
+              border-radius: 2px;
+              color: black;
+              font-family: 'Amatic SC', cursive;
+              text-align: center;
+              margin: 0;
+            }
+            #text {
+              height: 20px;
+              line-height: 30px;
+            }
+        </style>
     </head>
     <body>
-         <div id="root"></div>
-         <script src="dist/bundle.js"></script>
+        <div id="sign">
+          <p id="signtext"><span id="text">CLOSE</span></p>
+        </div>
+        <div id="root"></div>
+        <script src="dist/bundle.js"></script>
     </body>
 </html>

@@ -20,20 +20,49 @@ import reducer from "./src/reducers"
 let store = createStore(reducer, {}, 
     window.devToolsExtension ? window.devToolsExtension() : undefined
   )
+
+let sign = document.getElementById("sign")
+
+let text = document.getElementById("text")
+
+sign.addEventListener("animationend", startEverything, false)
+
+sign.addEventListener("webkitAnimationEnd", startEverything, false)
+
+sign.style.animation = "swing 1s ease"
+
+sign.style.webkitAnimation = "swing 1s ease"
+
+text.innerHTML = "OPEN"
+
+function startEverything (e) {
+
+    e.preventDefault()
+    
+    document.body.removeChild(sign)
+    
+    ReactDOM.render(
+        <Provider store={store}>
+            <Router history={browserHistory}>
+                <Route path="/" component={AppContainer}>
+                <IndexRoute component={Menu}/>
+                  <Route path="/campaign" component={CampaignContainer} />
+                  <Route path="/setting" component={SettingContainer} />
+                  <Route path="/game" component={GameContainer} />
+                </Route>
+            </Router>
+        </Provider>,
+        document.getElementById("root")
+    )
+}
+
+
+
+// let store = createStore(reducer, {}, 
+//     window.devToolsExtension ? window.devToolsExtension() : undefined
+//   )
   
 // let store = createStore(reducer)
 
 
-ReactDOM.render(
-    <Provider store={store}>
-        <Router history={browserHistory}>
-            <Route path="/" component={AppContainer}>
-            <IndexRoute component={Menu}/>
-              <Route path="/campaign" component={CampaignContainer} />
-              <Route path="/setting" component={SettingContainer} />
-              <Route path="/game" component={GameContainer} />
-            </Route>
-        </Router>
-    </Provider>,
-    document.getElementById("root")
-)
+
