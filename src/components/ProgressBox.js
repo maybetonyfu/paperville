@@ -90,7 +90,7 @@ const ProgressBox = Radium((prop) => {
         
         margin: "10px 1vh 1vh 1vh",
         
-        lineHeight: "2vh"
+        lineHeight: "2vh",
         
     }
     
@@ -101,6 +101,8 @@ const ProgressBox = Radium((prop) => {
         width: objectiveTotal + "%",
         
         height: "2px",
+        
+        backgroundColor: "white",
         
         borderWidth: objectiveBorder,
         

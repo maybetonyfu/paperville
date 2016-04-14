@@ -54,7 +54,9 @@ const Menu = Radium(() => {
         
         border: "2px solid black",
         
-        marginTop : "2vh"
+        marginTop : "2vh",
+        
+        backgroundColor: "white",
 
     }
     

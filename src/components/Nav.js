@@ -1,6 +1,7 @@
 import React, { PropTypes } from "react"
 // import { Link } from "react-router"
-import Link from 'react-router/lib/Link'
+// import Link from 'react-router/lib/Link'
+import IndexLink from 'react-router/lib/IndexLink'
 import Radium from 'radium'
 
 
@@ -48,13 +49,15 @@ const Nav = Radium(({navHeight}) => {
         
         border: "2px solid black",
         
+        backgroundColor: "white"
+        
     }
     
     return (
         <div style={NavStyle}>
             <ul style={navList}>
-                <li style={navItem}> <Link style={navLinkStyle} to="/"> Menu </Link></li>
-                <li style={navItem}> <Link style={navLinkStyle} to="/campaign" > Campaign </Link></li>
+                <li style={navItem}> <IndexLink style={navLinkStyle} activeStyle={{backgroundColor:"transparent"}} to="/"> Menu </IndexLink></li>
+                <li style={navItem}> <IndexLink style={navLinkStyle} activeStyle={{backgroundColor:"transparent"}} to="/campaign" > Campaign </IndexLink></li>
             </ul>
         </div>
         

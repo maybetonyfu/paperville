@@ -81,7 +81,9 @@ const LostModal = Radium((prop) => {
         
         borderRadius: "10px",
         
-        border: "2px solid black"
+        border: "2px solid black",
+        
+        backgroundColor: "white",
 
     }
     return (
