@@ -65,3 +65,18 @@ export const changeSetting = (key, value) => {
         }
     }
 }
+
+export const toggleFullscreen = (measure) => {
+    return {
+        type: "TOGGLE_FULLSCREEN",
+        payload: {
+            
+            appWidth: measure.appWidth,
+            
+            appHeight: measure.appHeight,
+            
+            newValue: measure.newValue
+            
+        }
+    }
+}

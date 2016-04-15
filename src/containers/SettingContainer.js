@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 
-import { changeSetting } from "../actions"
+import { changeSetting, toggleFullscreen } from "../actions"
 
 import Setting from "../components/Setting"
 
@@ -21,6 +21,12 @@ const mapDispatchToProps = (dispatch) => {
         onChangeSetting : (key, value) => {
             
             dispatch(changeSetting(key, value))
+            
+        },
+        
+        onToggleFullscreen : (measure) => {
+            
+            dispatch(toggleFullscreen(measure))
             
         }
         

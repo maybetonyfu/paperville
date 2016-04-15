@@ -8,7 +8,9 @@ const Setting = Radium((prop) => {
         
         profile, 
         
-        onChangeSetting 
+        onChangeSetting,
+        
+        onToggleFullscreen
         
     } = prop
     
@@ -80,6 +82,51 @@ const Setting = Radium((prop) => {
                     profile.setting.vibrator?
                         checkBoxStyle.checked: checkBoxStyle.unchecked]}></span>
                 <span style={settingItemStyle}>Vibrator <small>Not available in iOS and desktop devices</small></span>
+            </div>
+            <div onClick={()=> {
+                let root = document.getElementById("root")
+                if (root.requestFullscreen) {
+                    root.requestFullscreen();
+                } else if (root.msRequestFullscreen) {
+                    root.msRequestFullscreen();
+                } else if (root.mozRequestFullScreen) {
+                    root.mozRequestFullScreen();
+                } else if (root.webkitRequestFullscreen) {
+                    root.webkitRequestFullscreen();
+                }
+                
+                if (!profile.setting.fullscreen) {
+                
+                    onToggleFullscreen({
+                    
+                        appWidth: window.screen.width, 
+                        
+                        appHeight: window.screen.height,
+                        
+                        newValue: true
+                        
+                    })
+                    
+                }
+                
+                if (profile.setting.fullscreen) {
+                
+                    onToggleFullscreen({
+                    
+                        appWidth: document.documentElement.clientWidth, 
+                        
+                        appHeight: document.documentElement.clientHeight,
+                        
+                        newValue: false
+                        
+                    })
+                }
+                
+            }}>
+                <span style={[checkBoxStyle.base,
+                    profile.setting.fullscreen?
+                        checkBoxStyle.checked: checkBoxStyle.unchecked]}></span>
+                <span style={settingItemStyle}>Full Screen</span>
             </div>
         </div>
 

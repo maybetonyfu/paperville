@@ -12,6 +12,8 @@ let initProfile = {
         
         developer: false,
         
+        fullscreen: false,
+        
         vibrator: false
         
     }
@@ -33,8 +35,16 @@ const profile = (state = initProfile, action) => {
             return profile
         }
         
-    case "GAME_START":
+    case "TOGGLE_FULLSCREEN":
         {
+            
+            let { newValue } = action.payload
+            
+            let profile = Object.assign({}, state)
+            
+            profile.setting.fullscreen = newValue
+            
+            return profile
             
         }
         

@@ -27,50 +27,98 @@ const measurements = (state = initMeasurements, action) => {
     switch (action.type) {
         
     case "GAME_INIT":
+        {
+            
+            let { appHeight, appWidth } = action.payload
+            
+            return Object.assign({}, state, {
+                
+                global: {
+                    
+                    appHeight: appHeight,
+                    
+                    appWidth: appWidth,
+                    
+                    navHeight: appHeight * 0.06,
+                    
+                    activeWidth: appWidth,
+                    
+                    activeHeight: appHeight * 0.94
+                    
+                },
+                
+                progress: {
+                    
+                    progressWidth: appWidth - 10,
+                    
+                    progressHeight: appHeight * 0.94 - appWidth - 10,
+                    
+                    progressPadding : 5,
+                    
+                    progressBleeding : 10, 
+                    
+                    // boxWidth : (appWidth - 10 )/4 - 24,
+                    // boxMargin: 5,
+                    // rowHeight: (appHeight * 0.9 - appWidth - 10) / 10,
+                    
+                },
+                
+                board: {
+                    
+                    boardWidth: appWidth,
+                    
+                    boardHeight: appWidth
+                    
+                }
+                
+            })
         
-        let { appHeight, appWidth } = action.payload
+        }
         
-        return Object.assign({}, state, {
+    case "TOGGLE_FULLSCREEN":
+        {
             
-            global: {
-                
-                appHeight: appHeight,
-                
-                appWidth: appWidth,
-                
-                navHeight: appHeight * 0.06,
-                
-                activeWidth: appWidth,
-                
-                activeHeight: appHeight * 0.94
-                
-            },
+            let { appHeight, appWidth } = action.payload
             
-            progress: {
+            return Object.assign({}, state, {
                 
-                progressWidth: appWidth - 10,
+                global: {
+                    
+                    appHeight: appHeight,
+                    
+                    appWidth: appWidth,
+                    
+                    navHeight: appHeight * 0.06,
+                    
+                    activeWidth: appWidth,
+                    
+                    activeHeight: appHeight * 0.94
+                    
+                },
                 
-                progressHeight: appHeight * 0.94 - appWidth - 10,
+                progress: {
+                    
+                    progressWidth: appWidth - 10,
+                    
+                    progressHeight: appHeight * 0.94 - appWidth - 10,
+                    
+                    progressPadding : 5,
+                    
+                    progressBleeding : 10, 
+                    
+                },
                 
-                progressPadding : 5,
+                board: {
+                    
+                    boardWidth: appWidth,
+                    
+                    boardHeight: appWidth
+                    
+                }
                 
-                progressBleeding : 10, 
-                
-                // boxWidth : (appWidth - 10 )/4 - 24,
-                // boxMargin: 5,
-                // rowHeight: (appHeight * 0.9 - appWidth - 10) / 10,
-                
-            },
+            })
             
-            board: {
-                
-                boardWidth: appWidth,
-                
-                boardHeight: appWidth
-                
-            }
-            
-        })
+        }
         
     case "CREATE_BOARD":
         
