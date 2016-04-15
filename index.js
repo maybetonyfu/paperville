@@ -25,6 +25,8 @@ let sign = document.getElementById("sign")
 
 let text = document.getElementById("text")
 
+let parent = document.getElementById("parent")
+
 sign.addEventListener("animationend", startEverything, false)
 
 sign.addEventListener("webkitAnimationEnd", startEverything, false)
@@ -36,10 +38,16 @@ sign.style.webkitAnimation = "swing 1s ease"
 text.innerHTML = "OPEN"
 
 function startEverything (e) {
+    
+    console.log("first event fired")
 
     e.preventDefault()
     
-    document.body.removeChild(sign)
+    setTimeout(() => { document.body.removeChild(parent) }, 1000)
+    
+    parent.style.animation = "leave 1s ease-in"
+    
+    parent.style.webkitAnimation = "leave 1s ease-in"
     
     ReactDOM.render(
         <Provider store={store}>
@@ -55,14 +63,5 @@ function startEverything (e) {
         document.getElementById("root")
     )
 }
-
-
-
-// let store = createStore(reducer, {}, 
-//     window.devToolsExtension ? window.devToolsExtension() : undefined
-//   )
-  
-// let store = createStore(reducer)
-
 
 

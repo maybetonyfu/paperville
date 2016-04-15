@@ -3,6 +3,7 @@
     <head>
         <title>Paper Bakery</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <script src="dist/bundle.js" async></script>
         <link href='https://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Sue+Ellen+Francisco' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Karla' rel='stylesheet' type='text/css'>
@@ -36,6 +37,7 @@
                     opacity: 1;
                 }
             }
+
             @keyframes swing {
                 from {
                     -webkit-transform: rotate(-77deg);
@@ -64,13 +66,40 @@
                     opacity: 1;
                 }
             }
+            
+            @-webkit-keyframes leave {
+              from {
+                bottom: 0;
+              }
+              to {
+                bottom: 100%;
+              }
+            }
+            
+            @keyframes leave {
+              from {
+                bottom: 0;
+              }
+              to {
+                bottom: 100%;
+              }
+            }
+            html, body {
+                margin: 0;
+            }
+            #parent {
+                width: 100%;
+                height:100%;
+                position: absolute;
+                background-color: white;
+            }
             #sign {
               width: 2px;
               height: 2px;
               position: relative;
-              top: 100px;
+              top: 40%;
               left: 50%;
-              margin-left: -2px;
+              margin-left: -1px;
               border-radius: 50%;
               border: 2px solid black;
             }
@@ -97,7 +126,7 @@
               background-color: black;
               position: absolute;
               top: 4px;
-              left: 4px;
+              left: 3px;
               -webkit-transform: rotate(-45deg);
                     transform: rotate(-45deg);
               -webkit-transform-origin: top left;
@@ -111,9 +140,9 @@
               top: 24px;
               left: -40px;
               border: 2px solid black;
-              border-radius: 2px;
+              border-radius: 5px;
               color: black;
-              font-family: 'Amatic SC', cursive;
+              font-family: sans-serif;
               text-align: center;
               margin: 0;
             }
@@ -124,10 +153,13 @@
         </style>
     </head>
     <body>
-        <div id="sign">
-          <p id="signtext"><span id="text">CLOSE</span></p>
-        </div>
+
         <div id="root"></div>
-        <script src="dist/bundle.js"></script>
+        <div id="parent">
+            <div id="sign">
+              <span id="signtext"><span id="text">CLOSE</span></span>
+            </div>
+        </div>
+        
     </body>
 </html>
