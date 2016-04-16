@@ -4,8 +4,6 @@
 import uniqueId from "lodash/uniqueId"
 import range from "lodash/range"
 import random from "lodash/random"
-import groupBy from "lodash/groupBy"
-
 
 /**
  * Create a board object from boardConfig
@@ -176,31 +174,28 @@ let removeInitialMatch = (board) => {
     
     let match = new Set()
 
-    let groupTiles = groupBy(boardClone.tiles, tile => tile.value)
+    boardClone.matchedPositions.forEach(position => {
 
-    Object.keys(groupTiles).forEach((key) => {
+        let match1 = boardClone.positionToTile.get(position[0])
+        
+        let match2 = boardClone.positionToTile.get(position[1])
+        
+        let match3 = boardClone.positionToTile.get(position[2])
 
-        boardClone.matchedPositions.forEach(position => {
+        if ((boardClone.tiles[match1].value === boardClone.tiles[match2].value) 
+        
+            && (boardClone.tiles[match2].value === boardClone.tiles[match3].value)) {
 
-            let match1 = groupTiles[key].find(tile => tile.position === position[0])
+            match.add(match1)
             
-            let match2 = groupTiles[key].find(tile => tile.position === position[1])
+            match.add(match2)
             
-            let match3 = groupTiles[key].find(tile => tile.position === position[2])
+            match.add(match3)
 
-            if (match1 && match2 && match3) {
-
-                match.add(match1.id)
-                
-                match.add(match2.id)
-                
-                match.add(match3.id)
-
-            }
-
-        })
+        }
 
     })
+
     
     if (match.size === 0) return boardClone
     
@@ -290,7 +285,9 @@ let panTile = (board, tileId, direction) => {
                 destPosition = originPosition - 1
                 
                 let exceedRow = (
+                    
                     Math.floor(originPosition/cols) !== Math.floor(destPosition/cols)
+                    
                 )
                 
                 let outOfBoard = destPosition < 0 || destPosition >= positions.length
@@ -309,7 +306,9 @@ let panTile = (board, tileId, direction) => {
                 destPosition = originPosition + 1
 
                 let exceedRow = (
+                    
                     Math.floor(originPosition/cols) !== Math.floor(destPosition/cols)
+                    
                 )
                 
                 let outOfBoard = destPosition < 0 || destPosition >= positions.length
@@ -353,33 +352,32 @@ let findMatch = (board) => {
 
     let match = {}
 
-    let groupTiles = groupBy(board.tiles, tile => tile.value)
+    board.matchedPositions.forEach(position => {
 
-    Object.keys(groupTiles).forEach((key) => {
+        let match1 = board.positionToTile.get(position[0])
+        
+        let match2 = board.positionToTile.get(position[1])
+        
+        let match3 = board.positionToTile.get(position[2])
 
-        let matchedItems = new Set()
-
-        board.matchedPositions.forEach(position => {
-
-            let match1 = groupTiles[key].find(tile => tile.position === position[0])
+        if ((board.tiles[match1].value === board.tiles[match2].value) && 
+            (board.tiles[match2].value === board.tiles[match3].value)) {
             
-            let match2 = groupTiles[key].find(tile => tile.position === position[1])
+            let value = board.tiles[match1].value
             
-            let match3 = groupTiles[key].find(tile => tile.position === position[2])
-
-            if (match1 && match2 && match3) {
-
-                matchedItems.add(match1.id)
+            if (!match[value]) {
                 
-                matchedItems.add(match2.id)
+                match[value] = new Set()
                 
-                matchedItems.add(match3.id)
-
             }
+            
+            match[value].add(match1)
+            
+            match[value].add(match2)
+            
+            match[value].add(match3)
 
-        })
-
-        match[key] = matchedItems
+        }
 
     })
 
@@ -476,10 +474,6 @@ let cascadeBoard = (board) => {
                 let upTilePosition = tile.position - cols
     
                 while (upTilePosition >= 0) {
-    
-                    // let upTile = Object.values(tiles)
-                                
-                    //     .find(tile => tile.position === upTilePosition && tile.removed === false)
                         
                     let upTileId = positionToTile.get(upTilePosition)
                     
@@ -523,7 +517,7 @@ let refillBoard = (board) => {
 
     let {
         
-        tiles, groupPool
+        groupPool
         
     } = boardClone
     
