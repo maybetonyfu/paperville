@@ -105,6 +105,8 @@ let BoardFactory = (boardConfig) => {
     
     const activeTiles = []
     
+    const positionToTile = new Map()
+    
     const playerMove = 0
 
     let board = {
@@ -119,7 +121,8 @@ let BoardFactory = (boardConfig) => {
         progress,
         matchedPositions,
         groupPool,
-        tiles: {}
+        tiles: {},
+        positionToTile,
     }
 
     /*
@@ -158,9 +161,11 @@ let BoardFactory = (boardConfig) => {
             removed: false,
 
         }
+        
+        board.positionToTile.set(index, id)
 
     })
-
+    console.log(board.positionToTile)
     return board
 
 }
@@ -241,7 +246,7 @@ let panTile = (board, tileId, direction) => {
     
     let boardClone = Object.assign({}, board)
     
-    let {cols, tiles, positions} = boardClone
+    let {cols, tiles, positions, positionToTile} = boardClone
     
     let originTile = tiles[tileId]
     
@@ -324,23 +329,15 @@ let panTile = (board, tileId, direction) => {
             
     }
     
-    let destTile = Object.values(tiles)
-            
-        .find(tile => tile.position === destPosition)
+    let destTile = tiles[positionToTile.get(destPosition)]
     
     originTile.position = destPosition
     
     destTile.position = originPosition
     
-    // let { tiles } = boardClone
+    positionToTile.set(originTile.position, originTile.id)
     
-    // let positionA = tiles[tileIdA].position
-    
-    // let positionB = tiles[tileIdB].position
-    
-    // tiles[tileIdA].position = positionB
-    
-    // tiles[tileIdB].position = positionA
+    positionToTile.set(destTile.position, destTile.id)
     
     boardClone.dispatchAwait = 2
     
@@ -450,7 +447,7 @@ let cascadeBoard = (board) => {
     let boardClone = Object.assign({}, board)
 
     let {
-        cols, gravity, tiles
+        cols, gravity, tiles, positionToTile
     } = boardClone
     
     
@@ -480,15 +477,25 @@ let cascadeBoard = (board) => {
     
                 while (upTilePosition >= 0) {
     
-                    let upTile = Object.values(tiles)
+                    // let upTile = Object.values(tiles)
                                 
-                        .find(tile => tile.position === upTilePosition && tile.removed === false)
+                    //     .find(tile => tile.position === upTilePosition && tile.removed === false)
+                        
+                    let upTileId = positionToTile.get(upTilePosition)
+                    
+                    if (!upTileId) break
+                    
+                    let upTile = tiles[upTileId]
     
-                    if (!upTile) break
+                    if (upTile.removed) break
     
                     tiles[tile.id]["position"] -= cols
     
                     tiles[upTile.id]["position"] += cols
+                    
+                    positionToTile.set(tiles[tile.id]["position"], tile.id)
+                    
+                    positionToTile.set(tiles[upTile.id]["position"], upTile.id)
                     
                     movingTiles.add(upTile.id)
                     
