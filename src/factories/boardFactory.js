@@ -397,7 +397,7 @@ let markAllMatch = (board, match) => {
 
         })
         
-        // boardClone.progress[key] += match[key].size
+        boardClone.progress[key] += match[key].size
 
     })
     
@@ -428,7 +428,7 @@ let removeAllMatch = (board) => {
 
         })
         
-        boardClone.progress[key] += boardClone.match[key].size
+        // boardClone.progress[key] += boardClone.match[key].size
 
     })
 

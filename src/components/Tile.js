@@ -112,6 +112,8 @@ const Tile = Radium( prop => {
                 
                 margin: "20%",
                 
+                backgroundRepeat: "no-repeat",
+                
             }
             
         }

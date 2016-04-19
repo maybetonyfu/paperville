@@ -168,7 +168,9 @@ const ProgressBox = Radium((prop) => {
         
         width: "3vh",
         
-        height: "3vh"
+        height: "3vh",
+        
+        backgroundRepeat: "no-repeat",
         
     }
     

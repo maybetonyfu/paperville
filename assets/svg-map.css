@@ -131,6 +131,10 @@
     background-image: url("/assets/svg/sprouts.svg");
 }
 
+.sprouts-1 {
+    background-image: url("/assets/svg/sprouts-1.svg");
+}
+
 .sunflower {
     background-image: url("/assets/svg/sunflower.svg");
 }
@@ -169,5 +173,37 @@
 
 .mouse {
     background-image: url("/assets/svg/mouse.svg");
+}
+
+.clock {
+    background-image: url("/assets/svg/clock.svg");
+}
+
+.beetle {
+    background-image: url("/assets/svg/beetle.svg");
+}
+
+.bug {
+    background-image: url("/assets/svg/bug.svg");
+}
+
+.fly {
+    background-image: url("/assets/svg/fly.svg");
+}
+
+.caterpillar {
+    background-image: url("/assets/svg/caterpillar.svg");
+}
+
+.ladybug {
+    background-image: url("/assets/svg/ladybug.svg");
+}
+
+.sun {
+    background-image: url("/assets/svg/sun.svg");
+}
+
+.rain {
+    background-image: url("/assets/svg/rain.svg");
 }
 
