@@ -36,22 +36,18 @@ let initLevels = {
             {
                 group: 0,
                 minimum: 10,
-                description: "Collect at least 10 flour"
             },
             {
                 group: 1,
                 minimum: 10,
-                description: "Collect at least 10 roller"
             },
             {
                 group: 2,
                 minimum: 10,
-                description: "Collect at least 10 milk"
             },
             {
                 group: 3,
                 minimum: 10,
-                description: "Collect at least 10 egg"
             }
         ]
     },
@@ -83,38 +79,33 @@ let initLevels = {
             gravity: "DOWN"
         },
         groupMap: {
-            0: "sprouts",
+            0: "sprouts-1",
             1: "scythe",
             2: "sun",
             3: "product-bag",
             4: "rain"
         },
-        maxMove: 15,
+        maxMove: 12,
         objectiveAmount: [
             {
                 group: 0,
                 minimum: 10,
-                description: "Collect at least 10 flour"
           },
             {
                 group: 1,
                 minimum: 10,
-                description: "Collect at least 10 roller"
           },
             {
                 group: 2,
                 minimum: 10,
-                description: "Collect at least 10 milk"
           },
             {
                 group: 3,
                 minimum: 10,
-                description: "Collect at least 10 egg"
           },
             {
                 group: 4,
                 minimum: 5,
-                description: "Collect at least 5 salt"
           }
         ]
     },
@@ -157,27 +148,22 @@ let initLevels = {
             {
                 group: 0,
                 maximum: 10,
-                description: "Collect at most 11 sugar"
           },
             {
                 group: 1,
                 minimum: 10,
-                description: "Collect at least 10 flour"
           },
             {
                 group: 2,
                 minimum: 10,
-                description: "Collect at least 10 butter"
           },
             {
                 group: 3,
                 minimum: 10,
-                description: "Collect at least 10 egg"
           },
             {
                 group: 4,
-                minimum: 10,
-                description: "Collect at least 5 mushroom"
+                minimum: 10
           }
       ]
     },
@@ -215,37 +201,32 @@ let initLevels = {
             3: "irrigation",
             4: "sun",
         },
-        maxMove: 20,
+        maxMove: 15,
         objectiveAmount: [
             {
                 group: 0,
                 minimum: 10,
-                maximum: 15,
-                description: "Collect at most 11 sugar"
+                maximum: 15
           },
             {
                 group: 1,
                 minimum: 10,
-                maximum: 15,
-                description: "Collect at least 10 flour"
+                maximum: 15
           },
             {
                 group: 2,
                 minimum: 10,
-                maximum: 15,
-                description: "Collect at least 10 butter"
+                maximum: 15
           },
             {
                 group: 3,
                 minimum: 10,
-                maximum: 15,
-                description: "Collect at least 10 egg"
+                maximum: 15
           },
             {
                 group: 4,
                 minimum: 10,
-                maximum: 15,
-                description: "Collect at least 10 egg"
+                maximum: 15
           }
       ]
     },

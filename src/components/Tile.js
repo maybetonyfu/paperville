@@ -82,13 +82,11 @@ const Tile = Radium( prop => {
             
             selected: {
                 
-                //transition: "opacity 50ms ease",
+                background: "#e5e5e5",
                 
-                // transition: "opacity 500ms ease",
+                borderRadius: "13%",
                 
-                // borderRadius: "50%",
-                
-                // backgroundColor: "#F4D03F",
+                boxShadow: "0px 0px 3vh 0 rgba(66,65,66,.5)"
                 
             },
             
@@ -96,7 +94,7 @@ const Tile = Radium( prop => {
                 
                 transition: tile.willMark? "opacity 500ms ease":"none",
                 
-                borderRadius: "50%",
+                borderRadius: "13%",
                 
                 opacity: tile.willMark? 1 : 0,
                 
@@ -165,7 +163,7 @@ const Tile = Radium( prop => {
                     // }
                 >
                     <span
-                        style={[contentStyle.base]}
+                        style={[contentStyle.base, contentStyle.selected]}
                     > </span>
                     <span
                         style={[contentStyle.base, contentStyle.marked]}

@@ -43,11 +43,7 @@ function startEverything (e) {
 
     e.preventDefault()
     
-    setTimeout(() => { document.body.removeChild(parent) }, 1000)
-    
-    parent.style.animation = "leave 1s ease-in"
-    
-    parent.style.webkitAnimation = "leave 1s ease-in"
+    document.body.removeChild(parent)
     
     ReactDOM.render(
         <Provider store={store}>
