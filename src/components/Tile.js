@@ -1,8 +1,9 @@
 import React, { PropTypes } from "react"
 import Radium from "radium"
 import ReactDOM from "react-dom"
-
 import Hammer from "react-hammerjs"
+
+import svgSymbols from "../assets/svg"
 
 
 
@@ -170,8 +171,13 @@ const Tile = Radium( prop => {
                     > </span>
                     <span
                         style={[contentStyle.base, contentStyle.symbol]}
-                        className={symbolName}
-                    > </span>
+                    >
+                        <svg viewBox={svgSymbols[symbolName]["viewBox"]}>
+                            <path d={svgSymbols[symbolName]["paths"][0]} />
+                        </svg>
+                    </span>
+
+
                 </span>
             </Hammer>
     
