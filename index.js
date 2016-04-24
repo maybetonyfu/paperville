@@ -38,8 +38,6 @@ sign.style.webkitAnimation = "swing 1s ease"
 text.innerHTML = "OPEN"
 
 function startEverything (e) {
-    
-    console.log("first event fired")
 
     e.preventDefault()
     

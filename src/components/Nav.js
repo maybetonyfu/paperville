@@ -26,7 +26,9 @@ const Nav = Radium(({navHeight}) => {
     }
     
     let navItem = {
+        
         display: "inline"
+        
     }
     
     let navLinkStyle = {

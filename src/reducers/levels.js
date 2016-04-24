@@ -79,10 +79,10 @@ let initLevels = {
             gravity: "DOWN"
         },
         groupMap: {
-            0: "sprouts-1",
+            0: "sprouts",
             1: "scythe",
             2: "sun",
-            3: "product-bag",
+            3: "productBag",
             4: "rain"
         },
         maxMove: 12,
@@ -138,8 +138,8 @@ let initLevels = {
         },
         groupMap: {
             0: "rain",
-            1: "product-bag",
-            2: "sprouts-1",
+            1: "productBag",
+            2: "sprouts",
             3: "scythe",
             4: "sun"
         },
@@ -196,7 +196,7 @@ let initLevels = {
         },
         groupMap: {
             0: "rain",
-            1: "product-bag",
+            1: "productBag",
             2: "tools",
             3: "irrigation",
             4: "sun",

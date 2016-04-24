@@ -163,7 +163,7 @@ let BoardFactory = (boardConfig) => {
         board.positionToTile.set(index, id)
 
     })
-    console.log(board.positionToTile)
+    
     return board
 
 }
