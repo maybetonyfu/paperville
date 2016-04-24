@@ -6,13 +6,13 @@ import boardFactory, {
     
     markAllMatch,
     
+    unmarkAllMatch,
+    
     removeAllMatch,
     
     cascadeBoard, 
     
     refillBoard, 
-    
-    swapTiles,
     
     panTile
     
@@ -75,8 +75,16 @@ const board = (state = initBoard, action) => {
     case "DID_MARK":
         {
             
-            return removeAllMatch(state)
+            return unmarkAllMatch(state)
+            
 
+        }
+        
+    case "DID_UNMARK":
+        {
+        
+            return removeAllMatch(state)
+            
         }
         
     case "DID_REMOVE":

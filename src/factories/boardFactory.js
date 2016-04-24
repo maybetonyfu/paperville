@@ -414,7 +414,7 @@ let markAllMatch = (board, match) => {
 
 }
 
-let removeAllMatch = (board) => {
+let unmarkAllMatch = (board) => {
 
     let boardClone = Object.assign({}, board)
 
@@ -423,6 +423,26 @@ let removeAllMatch = (board) => {
         boardClone.match[key].forEach(id => {
 
             boardClone.tiles[id]["willMark"] = false
+
+        })
+
+    })
+    
+    boardClone.dispatchAwait = boardClone.matchCount
+    
+    boardClone.status = "DID_UNMARK"
+
+    return boardClone
+
+}
+
+let removeAllMatch = (board) => {
+
+    let boardClone = Object.assign({}, board)
+
+    Object.keys(boardClone.match).forEach(key => {
+
+        boardClone.match[key].forEach(id => {
             
             boardClone.tiles[id]["removed"] = true
 
@@ -554,6 +574,8 @@ export {
     findMatch, 
     
     markAllMatch,
+    
+    unmarkAllMatch,
     
     removeAllMatch,
     
