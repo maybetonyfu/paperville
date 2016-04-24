@@ -1,6 +1,8 @@
 import React, { PropTypes } from "react"
 import Radium from 'radium'
 
+import svgSymbols from "../assets/svg"
+
 
 const MoveCounter = Radium(({moveLeft}) => {
     
@@ -36,7 +38,10 @@ const MoveCounter = Radium(({moveLeft}) => {
     
     return (
         <span style={boxStyle}>
-            <span style={groupSymbleStyle} className={"clock"}>
+            <span style={groupSymbleStyle}>
+                <svg viewBox={svgSymbols["clock"]["viewBox"]}>
+                    <path d={svgSymbols["clock"]["paths"][0]} />
+                </svg>
             </span>
             
             <span style={indicatorStyle}>

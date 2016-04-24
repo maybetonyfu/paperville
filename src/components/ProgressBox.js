@@ -1,6 +1,8 @@
 import React, { PropTypes } from "react"
 import Radium from 'radium'
 
+import svgSymbols from "../assets/svg"
+
 
 const ProgressBox = Radium((prop) => {
     
@@ -56,7 +58,7 @@ const ProgressBox = Radium((prop) => {
         
         overkillTotal = 90
         
-        objectiveBorder = "0"
+        objectiveBorder = "0px"
         
         overkillBorder = "2px"
         
@@ -78,7 +80,7 @@ const ProgressBox = Radium((prop) => {
         
         objectiveBorder = "2px"
         
-        overkillBorder = "0"
+        overkillBorder = "0px"
         
     }
     
@@ -170,13 +172,26 @@ const ProgressBox = Radium((prop) => {
         
         height: "3vh",
         
-        backgroundRepeat: "no-repeat",
-        
     }
+    
+            
+    // let svgStyle = {
+
+    //     position: "absolute",
+        
+    //     left: "0px",
+        
+    //     top: "0px",
+
+    // }
+        
     
     return (
         <span style={boxStyle}>
-            <span style={groupSymbleStyle} className={groupName}>
+            <span style={groupSymbleStyle}>
+                <svg viewBox={svgSymbols[groupName]["viewBox"]}>
+                    <path d={svgSymbols[groupName]["paths"][0]} />
+                </svg>
             </span>
             
             <span style={indicatorStyle}>

@@ -87,7 +87,7 @@ const Tile = Radium( prop => {
                 
                 borderRadius: "13%",
                 
-                boxShadow: "0px 0px 3vh 0 rgba(66,65,66,.5)"
+                boxShadow: "0px 0px 1vh 0 rgba(66,65,66,.5)"
                 
             },
             
@@ -117,7 +117,15 @@ const Tile = Radium( prop => {
             
         }
         
-        
+        let svgStyle = {
+
+            position: "absolute",
+            
+            left: "0px",
+            
+            top: "0px",
+
+        }
         
         if (tile.removed) {
             
@@ -172,7 +180,7 @@ const Tile = Radium( prop => {
                     <span
                         style={[contentStyle.base, contentStyle.symbol]}
                     >
-                        <svg viewBox={svgSymbols[symbolName]["viewBox"]}>
+                        <svg style={svgStyle} viewBox={svgSymbols[symbolName]["viewBox"]}>
                             <path d={svgSymbols[symbolName]["paths"][0]} />
                         </svg>
                     </span>
