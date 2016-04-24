@@ -13,7 +13,7 @@
     "babel-polyfill": "^6.3.14",
     "lodash": "^4.8.2",
     "radium": "^0.17.1",
-    "react": "^0.14.7",
+    "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-hammerjs": "^0.4.5",
     "react-modal": "^0.6.1",
