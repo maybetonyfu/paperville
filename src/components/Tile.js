@@ -60,7 +60,12 @@ const Tile = Radium( prop => {
             
             transform: `translate(${translateX}px, ${translateY}px) scale(1)`,
             
-            transition: "transform 500ms ease"
+            transitionProperty: "transform",
+            
+            transitionDuration: "500ms",
+            
+            transitionTimingFunction: "ease"
+            
         }
         
         let contentStyle = {
@@ -95,7 +100,9 @@ const Tile = Radium( prop => {
                 
                 transition: tile.willMark? 
                 
-                    "opacity 300ms ease-out":"opacity 150ms ease-in",
+                    "opacity 300ms ease-out":
+                    
+                    "opacity 150ms ease-in " +  (Math.random() * 300) + "ms",
                 
                 borderRadius: "13%",
                 
@@ -134,6 +141,8 @@ const Tile = Radium( prop => {
             //tileStyle.transition = "none"
             
             tileStyle.transform = `translate(${translateX}px, ${translateY}px) scale(0)`
+            
+            tileStyle.transitionDelay = Math.random() * 300 + "ms"
 
         }
         
