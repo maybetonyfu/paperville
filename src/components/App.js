@@ -62,7 +62,7 @@ class App extends Component {
                     
                         margin: 0,
                         
-                        fontFamily: "'Amatic SC', cursive",
+                        fontFamily: "'BenchNine', sans-serif",
                         
                         fontStyle: "bold"
                         
@@ -70,7 +70,7 @@ class App extends Component {
                     
                     "p" : {
                     
-                        fontFamily: "'Karla', sans-serif",
+                        fontFamily: "'BenchNine', sans-serif",
                         
                         textAlign: "left",
                         
