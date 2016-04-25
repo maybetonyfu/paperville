@@ -22,7 +22,11 @@ const Tile = Radium( prop => {
             
             canMove, 
             
-            panEnd} = prop
+            panEnd,
+            
+            animationEnd
+            
+        } = prop
         
         let { 
             
@@ -98,15 +102,21 @@ const Tile = Radium( prop => {
             
             marked: {
                 
-                transition: tile.willMark? 
+                // transition: tile.willMark? 
                 
-                    "opacity 300ms ease-out":
+                //     "opacity 300ms ease-out":
                     
-                    "opacity 150ms ease-in " +  (Math.random() * 300) + "ms",
+                //     "opacity 150ms ease-in",
                 
                 borderRadius: "13%",
                 
-                opacity: tile.willMark? 1 : 0,
+                opacity: 0,
+                
+                animation: "x 1.5s ease 0s 1" ,
+                
+                animationName: tile.willMark? markKeyframes : "none",
+                
+                // opacity: tile.willMark? 1 : 0,
                 
                 backgroundColor: "#66CC99",
                 
@@ -136,32 +146,15 @@ const Tile = Radium( prop => {
 
         }
         
+
+
+        
         if (tile.removed) {
             
-            //tileStyle.transition = "none"
-            
             tileStyle.transform = `translate(${translateX}px, ${translateY}px) scale(0)`
-            
-            tileStyle.transitionDelay = Math.random() * 300 + "ms"
 
         }
         
-        
-        // let touchOptions = {
-            
-        //     touchAction:true,
-            
-        //     recognizers: {
-                
-        //         pan: {
-                    
-        //             threshold: 100,
-                    
-        //         }
-                
-        //     }
-            
-        // }
 
         return (
             <Hammer vertical={true} onPanEnd={
@@ -174,20 +167,14 @@ const Tile = Radium( prop => {
             }>
                 <span 
                     style={tileStyle} 
-                    // onClick={() => {
-                    
-                    //     if (canClick) { onClick() }
-                        
-                    //     }
-                    
-                    // }
                 >
                     <span
                         style={[contentStyle.base, contentStyle.selected]}
                     > </span>
                     <span
                         style={[contentStyle.base, contentStyle.marked]}
-                    > </span>
+                        onAnimationEnd={animationEnd}
+                    / >
                     <span
                         style={[contentStyle.base, contentStyle.symbol]}
                     >
@@ -204,6 +191,18 @@ const Tile = Radium( prop => {
 
     }
 )
+
+let markKeyframes = Radium.keyframes({
+    '0%': {
+        opacity: '0'
+    },
+    '50%': {
+        opacity: '1'
+    },
+    '100%': {
+        opacity: '0'
+    },
+})
 
 
 

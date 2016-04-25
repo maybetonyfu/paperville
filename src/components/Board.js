@@ -117,6 +117,7 @@ class Board extends Component {
                         onPlayerPan(tile.id, direction)
                     }
                 }
+                animationEnd={this.transitionEndHandle.bind(this)}
                 />
                 
             })

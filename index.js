@@ -10,6 +10,8 @@ import Router from 'react-router/lib/Router'
 import { Provider } from "react-redux"
 import { createStore } from "redux"
 
+import {StyleRoot} from 'radium';
+
 import AppContainer from "./src/containers/AppContainer.js"
 import GameContainer from "./src/containers/GameContainer.js"
 import CampaignContainer from "./src/containers/CampaignContainer.js"
@@ -45,14 +47,16 @@ function startEverything (e) {
     
     ReactDOM.render(
         <Provider store={store}>
-            <Router history={browserHistory}>
-                <Route path="/" component={AppContainer}>
-                <IndexRoute component={Menu}/>
-                  <Route path="/campaign" component={CampaignContainer} />
-                  <Route path="/setting" component={SettingContainer} />
-                  <Route path="/game" component={GameContainer} />
-                </Route>
-            </Router>
+            <StyleRoot>
+                <Router history={browserHistory}>
+                    <Route path="/" component={AppContainer}>
+                    <IndexRoute component={Menu}/>
+                      <Route path="/campaign" component={CampaignContainer} />
+                      <Route path="/setting" component={SettingContainer} />
+                      <Route path="/game" component={GameContainer} />
+                    </Route>
+                </Router>
+            </StyleRoot>
         </Provider>,
         document.getElementById("root")
     )

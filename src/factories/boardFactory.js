@@ -385,6 +385,68 @@ let findMatch = (board) => {
 
 }
 
+let findMatchAndMark = (board) => {
+
+    let match = {}
+    
+    let boardClone = Object.assign({}, board)
+
+    boardClone.matchedPositions.forEach(position => {
+
+        let match1 = boardClone.positionToTile.get(position[0])
+        
+        let match2 = boardClone.positionToTile.get(position[1])
+        
+        let match3 = boardClone.positionToTile.get(position[2])
+
+        if ((boardClone.tiles[match1].value === boardClone.tiles[match2].value) && 
+            (boardClone.tiles[match2].value === boardClone.tiles[match3].value)) {
+            
+            let value = boardClone.tiles[match1].value
+            
+            if (!match[value]) {
+                
+                match[value] = new Set()
+                
+            }
+            
+            match[value].add(match1)
+            
+            match[value].add(match2)
+            
+            match[value].add(match3)
+            
+            boardClone.tiles[match1]["willMark"] = true
+            
+            boardClone.tiles[match2]["willMark"] = true
+            
+            boardClone.tiles[match3]["willMark"] = true
+
+        }
+
+    })
+    
+    boardClone.match = match
+    
+    boardClone.matchCount = Object.values(match)
+        .reduce((prevSize, cur) => { return prevSize + cur.size }, 0)
+        
+    boardClone.dispatchAwait = boardClone.matchCount
+        
+    if (boardClone.matchCount === 0) {
+        
+        boardClone.status = "WAIT_PLAYER_MOVE"
+        
+    } else {
+        
+        boardClone.status = "DID_MARK"
+        
+    }
+
+    return boardClone
+
+}
+
 let markAllMatch = (board, match) => {
 
     let boardClone = Object.assign({}, board)
@@ -444,11 +506,13 @@ let removeAllMatch = (board) => {
 
         boardClone.match[key].forEach(id => {
             
+            boardClone.tiles[id]["willMark"] = false
+            
             boardClone.tiles[id]["removed"] = true
 
         })
         
-        // boardClone.progress[key] += boardClone.match[key].size
+        boardClone.progress[key] += boardClone.match[key].size
 
     })
 
@@ -571,7 +635,9 @@ export {
     
     removeInitialMatch,
     
-    findMatch, 
+    findMatch,
+    
+    findMatchAndMark,
     
     markAllMatch,
     

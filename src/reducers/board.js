@@ -4,6 +4,8 @@ import boardFactory, {
     
     findMatch, 
     
+    findMatchAndMark,
+    
     markAllMatch,
     
     unmarkAllMatch,
@@ -50,32 +52,33 @@ const board = (state = initBoard, action) => {
     case "DID_SWAP":
         {
 
-            let match = findMatch(state)
+            // let match = findMatch(state)
             
-            let matchCount = Object
-                .values(match)
-                .reduce((prevCount, curr) => {
-                    return prevCount + curr.size
-                }, 0)
+            // let matchCount = Object
+            //     .values(match)
+            //     .reduce((prevCount, curr) => {
+            //         return prevCount + curr.size
+            //     }, 0)
                 
-            if (matchCount === 0) {
+            // if (matchCount === 0) {
                 
-                return Object.assign({}, state, {
+            //     return Object.assign({}, state, {
                     
-                    status: "WAIT_PLAYER_MOVE"
+            //         status: "WAIT_PLAYER_MOVE"
                     
-                })
+            //     })
                 
-            }
+            // }
             
-            return markAllMatch(state, match)
+            return findMatchAndMark(state)
 
         }
         
     case "DID_MARK":
         {
             
-            return unmarkAllMatch(state)
+            return removeAllMatch(state)
+            // return unmarkAllMatch(state)
             
 
         }
