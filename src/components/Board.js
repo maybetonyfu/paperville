@@ -27,8 +27,6 @@ class Board extends Component {
             window.navigator.vibrate(500)
         }
         
-        if (this.props.board.status === "WAIT_PLAYER_MOVE") return
-        
         eventAccumulator ++ 
         
         if (eventAccumulator !== this.props.board.dispatchAwait) return
@@ -40,7 +38,7 @@ class Board extends Component {
     }
     
     componentWillMount () {
-        
+
         if (this.boardNode) {
             
             this.boardNode.removeEventListener(
@@ -90,11 +88,9 @@ class Board extends Component {
         
         width: measurements.board.boardWidth,
         
-        height: measurements.board.boardWidth
+        height: measurements.board.boardWidth,
         
     }
-    
-
 
     return (
         

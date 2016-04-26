@@ -13,10 +13,16 @@ class Progress extends Component {
         
     }
     
-    componentWillReceiveProps () {
+    componentDidUpdate () {
         
         let { level, board, onGameWinning, onGameLosing, gameStatus} = this.props
         
+        if (board.status !== "WAIT_PLAYER_MOVE") {
+            
+            return
+            
+        }
+
         let violateMaxMove = false
 
         violateMaxMove = level.maxMove <= board.playerMove
@@ -44,16 +50,34 @@ class Progress extends Component {
                 return false
                 
             })
-            
-        if ( (violateMaxMove || violateMaxAmount) && gameStatus == "START") {
+        
+        console.log("vilate Max Move: " + violateMaxMove)
+        
+        console.log("violate Max Amount: " + violateMaxAmount)
+        
+        console.log("fulfill Min Amount: " + fulfillMinAmount)
+        
+        if ( violateMaxAmount && gameStatus == "START") {
             
             onGameLosing()
+            
+            return
             
         }
 
         if (fulfillMinAmount && gameStatus == "START") {
             
             onGameWinning()
+            
+            return
+        
+        }
+        
+        if (violateMaxMove && gameStatus == "START") {
+            
+            onGameLosing()
+            
+            return
         
         }
         
@@ -69,11 +93,17 @@ class Progress extends Component {
     
             height: progressHeight,
             
-            width: progressWidth,
+            // width: progressWidth,
             
             padding: progressPadding,
             
-            backgroundColor: "#ECECEC"
+            backgroundColor: "#ECECEC",
+            
+            borderBottom: "3px solid",
+            
+            borderBottomColor: board.status === "WAIT_PLAYER_MOVE" ? "#66CC99": "#FEA786",
+            
+            boxSizing: "border-box"
     
         }
 

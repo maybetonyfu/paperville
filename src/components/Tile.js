@@ -102,21 +102,13 @@ const Tile = Radium( prop => {
             
             marked: {
                 
-                // transition: tile.willMark? 
-                
-                //     "opacity 300ms ease-out":
-                    
-                //     "opacity 150ms ease-in",
-                
                 borderRadius: "13%",
                 
                 opacity: 0,
                 
-                animation: "x 1.5s ease 0s 1" ,
+                animation: "x 1s ease-in 0s 1" ,
                 
                 animationName: tile.willMark? markKeyframes : "none",
-                
-                // opacity: tile.willMark? 1 : 0,
                 
                 backgroundColor: "#66CC99",
                 
