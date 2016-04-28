@@ -8,7 +8,8 @@ import Route from 'react-router/lib/Route'
 import Router from 'react-router/lib/Router'
 
 import { Provider } from "react-redux"
-import { createStore } from "redux"
+import { createStore, applyMiddleware, compose } from "redux"
+import thunk from "redux-thunk"
 
 import {StyleRoot} from 'radium';
 
@@ -19,9 +20,21 @@ import SettingContainer from "./src/containers/SettingContainer.js"
 import Menu from "./src/components/Menu.js"
 import reducer from "./src/reducers"
 
-let store = createStore(reducer, {}, 
-    window.devToolsExtension ? window.devToolsExtension() : undefined
-  )
+let store = createStore(
+    
+    reducer, 
+    
+    {},
+    
+    compose (
+        
+        applyMiddleware(thunk),
+        
+        window.devToolsExtension ? window.devToolsExtension() : f => f
+        
+    )
+
+)
 
 let sign = document.getElementById("sign")
 
