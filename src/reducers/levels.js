@@ -1,6 +1,6 @@
 let initLevels = {
     1: {
-        id: 1,
+        index: 1,
         name: "January",
         description: [
             "As solid as the ground we stand on",
@@ -52,7 +52,7 @@ let initLevels = {
         ]
     },
     2: {
-        id: 2,
+        index: 2,
         name: "Feburay",
         description: [
           "Spring is here",
@@ -110,7 +110,7 @@ let initLevels = {
         ]
     },
     3: {
-        id: 3,
+        index: 3,
         name: "March",
         description: [
           "Rain season is coming",
@@ -128,11 +128,11 @@ let initLevels = {
             rows: 6,
             cols: 6,
             groups: {
-                0: 2,
-                1: 1,
-                2: 1,
-                3: 1,
-                4: 1,
+                0: 3,
+                1: 2,
+                2: 2,
+                3: 2,
+                4: 2,
             },
             gravity: "DOWN"
         },
@@ -168,7 +168,7 @@ let initLevels = {
       ]
     },
     4: {
-        id: 4,
+        index: 4,
         name: "April",
         description: [
           "Balance it out",

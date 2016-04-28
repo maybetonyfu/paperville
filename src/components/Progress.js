@@ -51,12 +51,6 @@ class Progress extends Component {
                 
             })
         
-        console.log("vilate Max Move: " + violateMaxMove)
-        
-        console.log("violate Max Amount: " + violateMaxAmount)
-        
-        console.log("fulfill Min Amount: " + fulfillMinAmount)
-        
         if ( violateMaxAmount && gameStatus == "START") {
             
             onGameLosing()
@@ -67,7 +61,7 @@ class Progress extends Component {
 
         if (fulfillMinAmount && gameStatus == "START") {
             
-            onGameWinning()
+            onGameWinning(level.index)
             
             return
         
@@ -111,7 +105,10 @@ class Progress extends Component {
     
             <div style={ProgressStyle}>
             
-            <MoveCounter moveLeft={ level.maxMove - board.playerMove} />
+            <MoveCounter 
+                levelIndex={level.index}
+                rotateHourglass={board.status !== "WAIT_PLAYER_MOVE"}
+                moveLeft={ level.maxMove - board.playerMove} />
     
             { level.objectiveAmount.map((rule, index) => {
                 return ( <ProgressBox

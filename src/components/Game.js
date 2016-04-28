@@ -51,7 +51,7 @@ const Game = Radium((prop) => {
                 onNextLevelClick = {() => {
                     if(!isLastLevel ) {
                         let nextLevel = levels[game.currentLevel + 1]
-                        onNextLevel(nextLevel.boardConfig, nextLevel.id)
+                        onNextLevel(nextLevel.boardConfig, nextLevel.index)
                     }
                 }}
                 />
@@ -62,7 +62,7 @@ const Game = Radium((prop) => {
                 lostMessage={levels[game.currentLevel]["lostMessage"]}
                 onRetryLevelClick = {() => {
                     let level = levels[game.currentLevel]
-                    onRetryLevel(level.boardConfig, level.id)
+                    onRetryLevel(level.boardConfig, level.index)
                 }}
                 />
     

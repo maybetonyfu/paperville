@@ -5,7 +5,7 @@ import Radium from 'radium'
 
 import Level from "./Level"
 
-const Campaign = Radium(({ levels, measurements, onLevelClick }) => {
+const Campaign = Radium(({ levels, profile, measurements, onLevelClick }) => {
     
     let {
         
@@ -33,12 +33,14 @@ const Campaign = Radium(({ levels, measurements, onLevelClick }) => {
         <div style={campaignStyle}>
             {
                 Object.values(levels).map(level => 
-                    <Level key={level.id} 
+                    <Level 
+                    key={level.index}
+                    unlocked={ (profile.unlockedLevels.indexOf(level.index) !== -1) || profile.setting.developer }
                     onClick={
                     
-                        () => { 
+                        () => {
                         
-                            onLevelClick(level.boardConfig, level.id) 
+                            onLevelClick(level.boardConfig, level.index) 
                             
                         }
                         

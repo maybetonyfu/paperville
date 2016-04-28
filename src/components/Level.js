@@ -3,7 +3,7 @@ import React, { PropTypes } from "react"
 import Link from 'react-router/lib/Link'
 import Radium from 'radium'
 
-const Level = Radium(({ level, onClick }) => {
+const Level = Radium(({ level, onClick, unlocked}) => {
     
 
     let levelStyle = {
@@ -30,14 +30,23 @@ const Level = Radium(({ level, onClick }) => {
         
         border: "2px solid black",
         
-        backgroundColor: "white",
+        backgroundColor: unlocked? "white" : "none",
     }
     
     return (
         
-            <Link style={levelStyle} 
-                onClick={onClick} 
-                to="/game">{level.id}</Link>
+            <Link style={levelStyle}
+                onClick={ (e)=> {
+                        if (unlocked) {
+                            onClick()
+                        }
+                        else {
+                            e.preventDefault()
+                        }
+                        
+                    }
+                }
+                to="/game">{level.index}</Link>
             
     )
     

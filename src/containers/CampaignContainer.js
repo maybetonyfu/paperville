@@ -10,6 +10,8 @@ const mapStateToProps = (state) => {
     
         levels: state.levels,
         
+        profile: state.profile,
+        
         measurements: state.measurements
     
     }
@@ -20,9 +22,9 @@ const mapDispatchToProps = (dispatch) => {
   
     return {
     
-        onLevelClick: (boardConfig, levelId) => {
+        onLevelClick: (boardConfig, levelIndex) => {
           
-            dispatch(createBoard(boardConfig, levelId))
+            dispatch(createBoard(boardConfig, levelIndex))
           
         }
     

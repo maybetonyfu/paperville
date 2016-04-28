@@ -6,7 +6,7 @@ let initProfile = {
     
     completedLevels: [],
     
-    unlockedLevels: [0],
+    unlockedLevels: [1],
     
     setting: {
         
@@ -35,12 +35,22 @@ const profile = (state = initProfile, action) => {
         
     case "GAME_START":
         {
-            
+
         }
         
     case "WILL_WIN":
         {
-
+            
+            let { levelIndex } = action.payload
+            
+            let profile = Object.assign({}, state)
+            
+            profile.completedLevels.push(levelIndex)
+            
+            profile.unlockedLevels.push(levelIndex + 1)
+            
+            return profile
+            
         }
         
     case "WILL_LOSE":

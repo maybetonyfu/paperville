@@ -11,10 +11,10 @@ const game = (state = initGame, action) => {
         
         {
             
-            let { levelId } = action.payload
+            let { levelIndex } = action.payload
             
             return Object.assign({}, state, {
-                currentLevel: levelId,
+                currentLevel: levelIndex,
                 status: "INIT"
             })
             

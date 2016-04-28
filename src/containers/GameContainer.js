@@ -20,15 +20,15 @@ const mapDispatchToProps = (dispatch) => {
   
     return {
     
-        onNextLevel: (boardConfig, levelId) => {
+        onNextLevel: (boardConfig, levelIndex) => {
       
-            dispatch(createBoard(boardConfig, levelId))
+            dispatch(createBoard(boardConfig, levelIndex))
       
         },
         
-        onRetryLevel: (boardConfig, levelId) => {
+        onRetryLevel: (boardConfig, levelIndex) => {
       
-            dispatch(createBoard(boardConfig, levelId))
+            dispatch(createBoard(boardConfig, levelIndex))
       
         },
         

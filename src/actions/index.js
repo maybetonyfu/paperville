@@ -1,9 +1,9 @@
-export const createBoard = (boardConfig, levelId) => {
+export const createBoard = (boardConfig, levelIndex) => {
     return {
         type: "CREATE_BOARD",
         payload: {
-            boardConfig: boardConfig,
-            levelId: levelId
+            boardConfig,
+            levelIndex,
         }
     }
 }
@@ -36,10 +36,12 @@ export const playerPan = (tileId, direction) => {
     }
 }
 
-export const willWin = () => {
+export const willWin = (levelIndex) => {
     return {
         type: "WILL_WIN",
-        payload: {}
+        payload: {
+            levelIndex
+        }
     }
 }
 

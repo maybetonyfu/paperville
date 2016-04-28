@@ -23,9 +23,9 @@ const mapDispatchToProps = (dispatch) => {
     
     return {
         
-        onGameWinning: () => {
+        onGameWinning: (levelIndex) => {
             
-            dispatch(willWin())
+            dispatch(willWin(levelIndex))
             
         },
         
