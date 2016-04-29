@@ -20,6 +20,8 @@ import SettingContainer from "./src/containers/SettingContainer.js"
 import Menu from "./src/components/Menu.js"
 import reducer from "./src/reducers"
 
+import { fetchLevels } from "./src/actions"
+
 let store = createStore(
     
     reducer, 
@@ -35,6 +37,8 @@ let store = createStore(
     )
 
 )
+
+store.dispatch(fetchLevels())
 
 let sign = document.getElementById("sign")
 

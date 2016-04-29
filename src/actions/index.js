@@ -82,7 +82,7 @@ export const receiveLevels = (json) => {
     return {
         type: "RECEIVE_LEVELS",
         payload: {
-            json
+            rawLevels : json.data
         }
     }
 }
@@ -93,7 +93,7 @@ export const fetchLevels = (json) => {
 
         dispatch(requestLevels())
 
-        return fetch("https://paperville.stamplayapp.com/api/cobject/v1/levels")
+        return fetch("https://paperville.stamplayapp.com/api/cobject/v1/levels?sort=index")
 
             .then(response => response.json())
     
