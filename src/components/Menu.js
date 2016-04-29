@@ -63,9 +63,13 @@ const Menu = Radium(() => {
     return (
 
         <div style={menuStyle}>
+        
             <p style={titleStyle}>Paperville</p>
+            
             <Link style={menuLinkStyle} to="/campaign">Campaign</Link>
+            
             <Link style={menuLinkStyle} to="/setting">Setting</Link>
+            
         </div>
 
     )}

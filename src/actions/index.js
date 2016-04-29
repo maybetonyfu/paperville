@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch'
+
 export const createBoard = (boardConfig, levelIndex) => {
     return {
         type: "CREATE_BOARD",
@@ -66,4 +68,37 @@ export const changeSetting = (key, value) => {
             value
         }
     }
+}
+
+export const requestLevels = () => {
+    return {
+        type: "REQUEST_LEVELS",
+        payload: {
+        }
+    }
+}
+
+export const receiveLevels = (json) => {
+    return {
+        type: "RECEIVE_LEVELS",
+        payload: {
+            rawLevels : json.data
+        }
+    }
+}
+
+export const fetchLevels = (json) => {
+
+    return dispatch => {
+
+        dispatch(requestLevels())
+
+        return fetch("https://paperville.stamplayapp.com/api/cobject/v1/levels?sort=index")
+
+            .then(response => response.json())
+    
+            .then(json => dispatch(receiveLevels(json)))
+
+    }
+
 }

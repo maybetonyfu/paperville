@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.7.4",
+    "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.11.1",
     "radium": "^0.17.1",
     "react": "^15.0.1",
@@ -18,7 +19,8 @@
     "react-modal": "^1.2.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.3.0",
-    "redux": "^3.5.1"
+    "redux": "^3.5.1",
+    "redux-thunk": "^2.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.3.15",
