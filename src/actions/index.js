@@ -102,3 +102,18 @@ export const fetchLevels = (json) => {
     }
 
 }
+
+
+export const showMenu = () => {
+    return {
+        type: "SHOW_MENU",
+        payload: {}
+    }
+}
+
+export const hideMenu = () => {
+    return {
+        type: "HIDE_MENU",
+        payload: {}
+    }
+}

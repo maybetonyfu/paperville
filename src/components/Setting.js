@@ -18,9 +18,7 @@ const Setting = Radium((prop) => {
         
         height: "100%",
         
-        textAlign: "left",
-        
-        padding: "5vh"
+        textAlign: "left"
         
     }
     
@@ -63,24 +61,57 @@ const Setting = Radium((prop) => {
         
         verticalAlign: "5px",
         
-        margin: "5px"
+        margin: "5px",
+        
+    }
+    
+    let LinkStyle = {
+        
+        textDecoration: "none",
+
+        textAlign: "center",
+
+        display: "block",
+
+        width: "15vh",
+
+        height: "4vh",
+
+        lineHeight: "4vh",
+
+        color: "black",
+
+        marginLeft: "50%",
+
+        transform: "translateX(-50%)",
+
+        borderRadius: "10px",
+
+        border: "2px solid black",
+
+        marginTop : "2vh",
+
+        backgroundColor: "white",
+
     }
 
     return (
 
         <div style={settingStyle}>
-            <div onClick={()=> {onChangeSetting("developer", !profile.setting.developer )}}> 
+            <div style={{padding: "2vh"}} onClick={()=> {onChangeSetting("developer", !profile.setting.developer )}}> 
                 <span style={[checkBoxStyle.base,
                     profile.setting.developer?
                         checkBoxStyle.checked: checkBoxStyle.unchecked]}></span>
                 <span style={settingItemStyle}>Developer</span>
             </div>
-            <div onClick={()=> {onChangeSetting("vibrator", !profile.setting.vibrator )}}> 
+            <div style={{padding: "2vh"}} onClick={()=> {onChangeSetting("vibrator", !profile.setting.vibrator )}}> 
                 <span style={[checkBoxStyle.base,
                     profile.setting.vibrator?
                         checkBoxStyle.checked: checkBoxStyle.unchecked]}></span>
                 <span style={settingItemStyle}>Vibrator <small>Not available in iOS and desktop devices</small></span>
             </div>
+            
+            <Link style={LinkStyle} to="/">Home</Link>
         </div>
 
     )}

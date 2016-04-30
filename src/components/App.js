@@ -81,10 +81,9 @@ class App extends Component {
                     }
                     
                 }} />
-                
-                <Nav navHeight={measurements.global.navHeight} />
-                
+
                 { children || <Menu/> }
+
             </div>
             
         )

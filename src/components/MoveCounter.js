@@ -10,7 +10,7 @@ const MoveCounter = Radium(({levelIndex, moveLeft, rotateHourglass}) => {
         
         display: "inline-block",
         
-        width: "18%",
+        width: "20%",
         
         margin: "10px 1vh 1vh 1vh",
         

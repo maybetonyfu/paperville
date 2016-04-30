@@ -1,6 +1,7 @@
 let initGame = {
     currentLevel: 0,
-    status: ""
+    status: "",
+    menuModalOpen: false
 }
 
 const game = (state = initGame, action) => {
@@ -10,20 +11,21 @@ const game = (state = initGame, action) => {
     case "CREATE_BOARD":
         
         {
-            
+
             let { levelIndex } = action.payload
             
             return Object.assign({}, state, {
                 currentLevel: levelIndex,
-                status: "INIT"
+                status: "INIT",
+                menuModalOpen: false
             })
-            
+
         }
         
     case "GAME_START":
         
         {
-            
+
             return Object.assign({}, state, {
                 status: "START"
             })
@@ -34,16 +36,36 @@ const game = (state = initGame, action) => {
         {
 
             return Object.assign({}, state, {
-                status: "WIN"
+                status: "WIN",
+                menuModalOpen: false
             })
-            
+
         }
         
     case "WILL_LOSE":
         {
+
+            return Object.assign({}, state, {
+                status: "LOSE",
+                menuModalOpen: false
+            })
+
+        }
+
+    case "SHOW_MENU":
+        {
+
+            return Object.assign({}, state, {
+                menuModalOpen: true
+            })
+
+        }
+
+    case "HIDE_MENU":
+        {
             
             return Object.assign({}, state, {
-                status: "LOSE"
+                menuModalOpen: false
             })
             
         }

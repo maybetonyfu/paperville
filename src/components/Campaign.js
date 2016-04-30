@@ -18,14 +18,44 @@ const Campaign = Radium(({ levels, profile, measurements, onLevelClick }) => {
     
     let campaignStyle = {
         
-        width: activeWidth,
+        width: "100%",
         
-        height: activeHeight,
+        height: "100%",
         
         paddingTop: "30px",
         
         textAlign: "center"
         
+    }
+    
+    let LinkStyle = {
+        
+        textDecoration: "none",
+
+        textAlign: "center",
+
+        display: "block",
+
+        width: "15vh",
+
+        height: "4vh",
+
+        lineHeight: "4vh",
+
+        color: "black",
+
+        marginLeft: "50%",
+
+        transform: "translateX(-50%)",
+
+        borderRadius: "10px",
+
+        border: "2px solid black",
+
+        marginTop : "2vh",
+
+        backgroundColor: "white",
+
     }
 
     return (
@@ -48,6 +78,7 @@ const Campaign = Radium(({ levels, profile, measurements, onLevelClick }) => {
                     level={level}/>
                 )
             }
+            <Link style={LinkStyle} to="/">Home</Link>
         </div>
         
     )

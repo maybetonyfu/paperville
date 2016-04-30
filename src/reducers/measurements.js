@@ -50,7 +50,7 @@ const measurements = (state = initMeasurements, action) => {
                 
                 progressWidth: appWidth - 10,
                 
-                progressHeight: appHeight * 0.94 - appWidth - 10,
+                progressHeight: appHeight - appWidth - 10,
                 
                 progressPadding : 5,
                 
