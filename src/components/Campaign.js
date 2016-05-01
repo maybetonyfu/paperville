@@ -36,25 +36,27 @@ const Campaign = Radium(({ levels, profile, measurements, onLevelClick }) => {
 
         display: "block",
 
-        width: "15vh",
+        width: "16vh",
 
-        height: "4vh",
+        height: "5vh",
 
-        lineHeight: "4vh",
-
-        color: "black",
+        lineHeight: "5vh",
 
         marginLeft: "50%",
 
         transform: "translateX(-50%)",
 
-        borderRadius: "10px",
-
-        border: "2px solid black",
+        borderRadius: "6px",
 
         marginTop : "2vh",
 
-        backgroundColor: "white",
+        backgroundColor: "#5ad8a4",
+        
+        color: "white",
+        
+        position: "absolute",
+        
+        bottom: "20%"
 
     }
 

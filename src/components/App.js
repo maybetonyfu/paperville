@@ -41,7 +41,9 @@ class App extends Component {
             
             overflow: "hidden",
             
-            backgroundColor: "#ECECEC"
+            backgroundColor: "#303844",
+            
+            color: "#EFF5f4"
             
         }
 
@@ -64,13 +66,17 @@ class App extends Component {
                         
                         fontFamily: "'BenchNine', sans-serif",
                         
+                        // fontFamily: "'Roboto', sans-serif",
+                        
                         fontStyle: "bold"
                         
                     },
                     
                     "p" : {
                     
-                        fontFamily: "'BenchNine', sans-serif",
+                        // fontFamily: "'BenchNine', sans-serif",
+                        
+                        fontFamily: "'Roboto', sans-serif",
                         
                         textAlign: "left",
                         

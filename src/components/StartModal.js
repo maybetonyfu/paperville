@@ -36,13 +36,15 @@ const StartModal = Radium((prop) => {
             
             position: "absolute",
             
-            width: appWidth,
+            width: "100%",
             
-            height: appHeight,
+            height: "100%",
             
             top: "0px",
             
             left: "50%",
+            
+            backgroundColor: "rgba(48, 56, 68, 0.8)",
             
             transform: "translateX(-50%)"
         },
@@ -53,11 +55,13 @@ const StartModal = Radium((prop) => {
             
             bottom: "12%",
             
-            border: '2px solid',
+            border: "none",
             
             textAlign: "center",
             
-            backgroundColor: "#ECECEC",
+            backgroundColor: "#262d37",
+            
+            color: "white",
             
             overflow: 'hidden',
             
@@ -71,26 +75,32 @@ const StartModal = Radium((prop) => {
     let LinkStyle = {
         
         textDecoration: "none",
-        
+
         textAlign: "center",
+
+        display: "block",
+
+        width: "16vh",
+
+        height: "5vh",
+
+        lineHeight: "5vh",
+
+        marginLeft: "50%",
+
+        transform: "translateX(-50%)",
+
+        borderRadius: "6px",
+
+        marginTop : "2vh",
+
+        backgroundColor: "#5ad8a4",
         
-        display: "inline-block",
+        color: "white",
         
-        width: "15vh",
+        position: "absolute",
         
-        height: "4vh",
-        
-        lineHeight: "4vh",
-        
-        color: "black",
-        
-        marginLeft: "1vh",
-        
-        borderRadius: "10px",
-        
-        border: "2px solid black",
-        
-        backgroundColor: "white",
+        bottom: "20%"
 
     }
     

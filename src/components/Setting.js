@@ -34,7 +34,7 @@ const Setting = Radium((prop) => {
             
             borderRadius: "1vh",
             
-            border: "2px solid black",
+            border: "2px solid #59d4d9",
             
             margin: "5px"
             
@@ -42,7 +42,7 @@ const Setting = Radium((prop) => {
         
         checked: {
             
-            backgroundColor: "black"
+            backgroundColor: "#59d4d9"
             
         },
         
@@ -73,42 +73,46 @@ const Setting = Radium((prop) => {
 
         display: "block",
 
-        width: "15vh",
+        width: "16vh",
 
-        height: "4vh",
+        height: "5vh",
 
-        lineHeight: "4vh",
-
-        color: "black",
+        lineHeight: "5vh",
 
         marginLeft: "50%",
 
         transform: "translateX(-50%)",
 
-        borderRadius: "10px",
-
-        border: "2px solid black",
+        borderRadius: "6px",
 
         marginTop : "2vh",
 
-        backgroundColor: "white",
+        backgroundColor: "#5ad8a4",
+        
+        color: "white",
+        
+        position: "absolute",
+        
+        bottom: "20%"
 
     }
 
     return (
 
         <div style={settingStyle}>
-            <div style={{padding: "2vh"}} onClick={()=> {onChangeSetting("developer", !profile.setting.developer )}}> 
-                <span style={[checkBoxStyle.base,
-                    profile.setting.developer?
-                        checkBoxStyle.checked: checkBoxStyle.unchecked]}></span>
-                <span style={settingItemStyle}>Developer</span>
-            </div>
-            <div style={{padding: "2vh"}} onClick={()=> {onChangeSetting("vibrator", !profile.setting.vibrator )}}> 
-                <span style={[checkBoxStyle.base,
-                    profile.setting.vibrator?
-                        checkBoxStyle.checked: checkBoxStyle.unchecked]}></span>
-                <span style={settingItemStyle}>Vibrator <small>Not available in iOS and desktop devices</small></span>
+            <div style={{padding: "2vh"}}>
+                <div onClick={()=> {onChangeSetting("developer", !profile.setting.developer )}}> 
+                    <span style={[checkBoxStyle.base,
+                        profile.setting.developer?
+                            checkBoxStyle.checked: checkBoxStyle.unchecked]}></span>
+                    <span style={settingItemStyle}>Developer</span>
+                </div>
+                <div onClick={()=> {onChangeSetting("vibrator", !profile.setting.vibrator )}}> 
+                    <span style={[checkBoxStyle.base,
+                        profile.setting.vibrator?
+                            checkBoxStyle.checked: checkBoxStyle.unchecked]}></span>
+                    <span style={settingItemStyle}>Vibrator <small>Not available in iOS and desktop devices</small></span>
+                </div>
             </div>
             
             <Link style={LinkStyle} to="/">Home</Link>

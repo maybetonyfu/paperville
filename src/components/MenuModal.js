@@ -30,15 +30,18 @@ const MenuModal = Radium((prop) => {
             
             position: "absolute",
             
-            width: appWidth,
+            width: "100%",
             
-            height: appHeight,
+            height: "100%",
             
             top: "0px",
             
             left: "50%",
             
+            backgroundColor: "rgba(48, 56, 68, 0.8)",
+            
             transform: "translateX(-50%)"
+            
         },
         
         content : {
@@ -47,18 +50,20 @@ const MenuModal = Radium((prop) => {
             
             bottom: "30%",
             
-            border: '2px solid',
+            border: "none",
             
             textAlign: "center",
             
-            backgroundColor: "#ECECEC",
+            backgroundColor: "#262d37",
+            
+            color: "white",
             
             overflow: 'hidden',
             
             borderRadius: '12px',
             
             padding: '2vh 1vh'
-        
+            
         }
     }
     
@@ -70,25 +75,23 @@ const MenuModal = Radium((prop) => {
 
         display: "block",
 
-        width: "15vh",
+        width: "16vh",
 
-        height: "4vh",
+        height: "5vh",
 
-        lineHeight: "4vh",
-
-        color: "black",
+        lineHeight: "5vh",
 
         marginLeft: "50%",
 
         transform: "translateX(-50%)",
 
-        borderRadius: "10px",
+        borderRadius: "6px",
 
-        border: "2px solid black",
+        marginTop : "10%",
 
-        marginTop : "2vh",
-
-        backgroundColor: "white",
+        backgroundColor: "#5ad8a4",
+        
+        color: "white",
 
     }
     

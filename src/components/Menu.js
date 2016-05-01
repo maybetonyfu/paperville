@@ -20,7 +20,7 @@ const Menu = Radium(() => {
 
         marginTop: "30%",
 
-        fontSize: "4vh",
+        fontSize: "6vh",
 
         textAlign: "center",
 
@@ -38,25 +38,27 @@ const Menu = Radium(() => {
 
         display: "block",
 
-        width: "15vh",
+        width: "16vh",
 
-        height: "4vh",
+        height: "5vh",
 
-        lineHeight: "4vh",
+        lineHeight: "5vh",
 
-        color: "black",
+        // color: "black",
 
         marginLeft: "50%",
 
         transform: "translateX(-50%)",
 
-        borderRadius: "10px",
+        borderRadius: "6px",
 
-        border: "2px solid black",
+        // border: "2px solid black",
 
         marginTop : "2vh",
 
-        backgroundColor: "white",
+        backgroundColor: "#5ad8a4",
+        
+        color: "white",
 
     }
 

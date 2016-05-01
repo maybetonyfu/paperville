@@ -14,23 +14,23 @@ const Level = Radium(({ level, onClick, unlocked}) => {
         
         display: "inline-block",
         
-        width: "7vh",
+        width: "8vh",
         
-        height: "7vh",
+        height: "8vh",
         
-        lineHeight: "7vh",
+        lineHeight: "8vh",
         
         fontSize: "4vh",
         
         margin: "1vh",
         
-        color: "black",
+        color: "white",
         
-        borderRadius: "10px",
+        borderRadius: "50%",
         
-        border: "2px solid black",
+        // border: "2px solid black",
         
-        backgroundColor: unlocked? "white" : "none",
+        backgroundColor: unlocked? "#59d4d9" : "#BDC3C7",
     }
     
     return (

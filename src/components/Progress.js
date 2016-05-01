@@ -91,7 +91,7 @@ class Progress extends Component {
             
             padding: progressPadding,
             
-            backgroundColor: "#ECECEC",
+            // backgroundColor: "#ECECEC",
             
             borderBottom: "3px solid",
             
