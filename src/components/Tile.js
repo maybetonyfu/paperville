@@ -18,6 +18,8 @@ const Tile = Radium( prop => {
             
             symbolName, 
             
+            symbolColor,
+            
             positions, 
             
             canMove, 
@@ -78,15 +80,15 @@ const Tile = Radium( prop => {
             
                 position: "absolute",
                 
-                width: "90%",
+                width: "96%",
                 
-                height: "90%",
+                height: "96%",
                 
                 left: 0,
                 
                 right: 0,
                 
-                margin: "5%",
+                margin: "2%",
                 
             },
             
@@ -94,13 +96,17 @@ const Tile = Radium( prop => {
                 
                 background: "#7695BC",
                 
-                borderRadius: "13%",
+                borderRadius: "5%",
+                
+                background: "white",
+                
+                opacity: "0.1"
                 
             },
             
             marked: {
                 
-                borderRadius: "13%",
+                borderRadius: "5%",
                 
                 opacity: 0,
                 
@@ -134,7 +140,7 @@ const Tile = Radium( prop => {
             
             top: "0px",
             
-            fill: "white"
+            fill: symbolColor
 
         }
         

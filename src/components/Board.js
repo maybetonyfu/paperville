@@ -105,7 +105,8 @@ class Board extends Component {
                 key={tile.id}
                 tile={tile}
                 canMove={board.status==="WAIT_PLAYER_MOVE"}
-                symbolName={level.groupMap[tile.value]}
+                symbolName={level.groupMap[tile.value]["name"]}
+                symbolColor={level.groupMap[tile.value]["color"]}
                 positions={board.positions}
                 tileMeasurements={measurements.tile}
                 panEnd={
