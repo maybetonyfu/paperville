@@ -78,25 +78,23 @@ const Tile = Radium( prop => {
             
                 position: "absolute",
                 
-                width: "80%",
+                width: "90%",
                 
-                height: "80%",
+                height: "90%",
                 
                 left: 0,
                 
                 right: 0,
                 
-                margin: "10%",
+                margin: "5%",
                 
             },
             
-            selected: {
+            visible: {
                 
-                background: "#e5e5e5",
+                background: "#7695BC",
                 
                 borderRadius: "13%",
-                
-                boxShadow: "0px 0px 1vh 0 rgba(66,65,66,.5)"
                 
             },
             
@@ -116,11 +114,11 @@ const Tile = Radium( prop => {
             
             symbol : {
                 
-                width: "60%",
+                width: "70%",
                 
-                height: "60%",
+                height: "70%",
                 
-                margin: "20%",
+                margin: "15%",
                 
                 backgroundRepeat: "no-repeat",
                 
@@ -135,6 +133,8 @@ const Tile = Radium( prop => {
             left: "0px",
             
             top: "0px",
+            
+            fill: "white"
 
         }
         
@@ -161,7 +161,7 @@ const Tile = Radium( prop => {
                     style={tileStyle} 
                 >
                     <span
-                        style={[contentStyle.base, contentStyle.selected]}
+                        style={[contentStyle.base, contentStyle.visible]}
                     > </span>
                     <span
                         style={[contentStyle.base, contentStyle.marked]}

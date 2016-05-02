@@ -104,13 +104,13 @@ const ProgressBox = Radium((prop) => {
         
         height: "2px",
         
-        backgroundColor: "white",
+        // backgroundColor: "white",
         
         borderWidth: objectiveBorder,
         
         borderStyle: "solid",
         
-        borderColor: "black"
+        borderColor: "white"
         
     }
     
@@ -122,13 +122,13 @@ const ProgressBox = Radium((prop) => {
         
         height: "2px",
         
-        backgroundColor : "#EF4836",
+        backgroundColor : "#F7CA18",
         
         borderWidth: overkillBorder,
         
         borderStyle: "solid",
         
-        borderColor: "black"
+        borderColor: "white"
         
     }
     
@@ -140,7 +140,7 @@ const ProgressBox = Radium((prop) => {
         
         height: "100%",
         
-        background: "black"
+        background: "white"
         
     }
     
@@ -152,7 +152,7 @@ const ProgressBox = Radium((prop) => {
         
         height: "100%",
         
-        background: "black"
+        background: "white"
         
     }
     
@@ -189,7 +189,7 @@ const ProgressBox = Radium((prop) => {
     return (
         <span style={boxStyle}>
             <span style={groupSymbleStyle}>
-                <svg viewBox={svgSymbols[groupName]["viewBox"]}>
+                <svg style={{fill: "white"}} viewBox={svgSymbols[groupName]["viewBox"]}>
                     <path d={svgSymbols[groupName]["paths"][0]} />
                 </svg>
             </span>
@@ -197,7 +197,7 @@ const ProgressBox = Radium((prop) => {
             <span style={indicatorStyle}>
                 {ruleProgress}
                 <span>{minimum ? "/" + minimum : ""}</span>
-                <span style={{color: "#96281B"}}>{maximum ? "/" + maximum : ""}</span>
+                <span style={{color: "#F7CA18"}}>{maximum ? "/" + maximum : ""}</span>
             </span>
             
             <br/>
