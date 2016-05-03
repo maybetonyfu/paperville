@@ -34,7 +34,7 @@ const Campaign = Radium(({ levels, profile, onLevelClick }) => {
 
         lineHeight: "5vh",
 
-        marginLeft: "50%",
+        left: "50%",
 
         transform: "translateX(-50%)",
 

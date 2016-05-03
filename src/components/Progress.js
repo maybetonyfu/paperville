@@ -103,7 +103,8 @@ class Progress extends Component {
             { level.objectiveAmount.map((rule, index) => {
                 return ( <ProgressBox
                 key={index}
-                groupName={level.groupMap[rule.group]["name"]} 
+                groupName={level.groupMap[rule.group]["name"]}
+                groupColor={level.groupMap[rule.group]["color"]} 
                 minimum={rule.minimum || 0}
                 maximum={rule.maximum || null}
                 ruleProgress={board.progress[rule.group]}/>)

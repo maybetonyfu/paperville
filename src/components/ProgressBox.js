@@ -6,83 +6,97 @@ import svgSymbols from "../assets/svg"
 
 const ProgressBox = Radium((prop) => {
     
-    let { groupName, minimum, maximum, ruleProgress } = prop
+    let { groupName, groupColor, minimum, maximum, ruleProgress } = prop
+    
+    let positiveAmount = Math.min(minimum , ruleProgress)
+    
+    let negativeAmount = Math.min(maximum , ruleProgress)
+    
+    let positiveRatio = minimum ? 100 * positiveAmount/minimum : 0
+    
+    let negativeRatio = maximum ? 100 * negativeAmount/maximum : 0
 
-    let objective,
+    // let objective,
         
-        overkill,
+    //     overkill,
     
-        objectiveWidth,
+    //     objectiveWidth,
+        
+    //     negativeWidth,
     
-        overkillWidth,
+    //     overkillWidth,
         
-        objectiveTotal,
+    //     objectiveTotal,
         
-        overkillTotal,
+    //     overkillTotal,
         
-        objectiveBorder,
+    //     objectiveBorder,
         
-        overkillBorder
+    //     overkillBorder
     
-    if ( maximum && minimum ) {
+    // if ( maximum && minimum ) {
         
-        objective =  Math.min(minimum , ruleProgress)
+    //     objective =  Math.min(minimum , ruleProgress)
         
-        overkill =  Math.min(maximum - minimum, Math.max(ruleProgress - minimum , 0))
+    //     overkill =  Math.min(maximum - minimum, Math.max(ruleProgress - minimum , 0))
         
-        objectiveWidth = 100 * objective/minimum
+    //     objectiveWidth = 100 * objective/minimum
         
-        overkillWidth = 100 * overkill/(maximum - minimum)
+    //     negativeWidth = 100 * objective/maximum
         
-        objectiveTotal = 90 * minimum / maximum
+    //     overkillWidth = 100 * overkill/(maximum - minimum)
         
-        overkillTotal =  90 * (maximum - minimum) / maximum
+    //     objectiveTotal = 90 * minimum / maximum
         
-        objectiveBorder = "2px 1px 2px 2px"
+    //     overkillTotal =  90 * (maximum - minimum) / maximum
         
-        overkillBorder = "2px 2px 2px 1px"
+    //     objectiveBorder = "2px 1px 2px 2px"
         
-    }
+    //     overkillBorder = "2px 2px 2px 1px"
+        
+    // }
     
-    if (maximum && !minimum) {
+    // if (maximum && !minimum) {
         
-        objective = 0
+    //     objective = 0
         
-        overkill =  Math.min(maximum, ruleProgress)
+    //     overkill =  Math.min(maximum, ruleProgress)
         
-        objectiveWidth = 0
+    //     objectiveWidth = 0
         
-        overkillWidth = 100 * overkill/maximum
+    //     negativeWidth = 100 * objective/maximum
         
-        objectiveTotal = 0
+    //     overkillWidth = 100 * overkill/maximum
         
-        overkillTotal = 90
+    //     objectiveTotal = 0
         
-        objectiveBorder = "0px"
+    //     overkillTotal = 90
         
-        overkillBorder = "2px"
+    //     objectiveBorder = "0px"
         
-    }
+    //     overkillBorder = "2px"
+        
+    // }
     
-    if (minimum && !maximum) {
+    // if (minimum && !maximum) {
         
-        objective = Math.min(minimum , ruleProgress)
+    //     objective = Math.min(minimum , ruleProgress)
         
-        overkill =  0
+    //     overkill =  0
         
-        objectiveWidth = 100 * objective/minimum
+    //     objectiveWidth = 100 * objective/minimum
         
-        overkillWidth = 0
+    //     overkillWidth = 0
         
-        objectiveTotal = 90
+    //     objectiveTotal = 90
         
-        overkillTotal = 0
+    //     overkillTotal = 0
         
-        objectiveBorder = "2px"
+    //     objectiveBorder = "2px"
         
-        overkillBorder = "0px"
+    //     overkillBorder = "0px"
         
-    }
+    // }
     
     let boxStyle = {
         
@@ -96,65 +110,65 @@ const ProgressBox = Radium((prop) => {
         
     }
     
-    let objectiveBorderStyle = {
+    // let objectiveBorderStyle = {
         
-        display: "inline-block",
+    //     display: "inline-block",
         
-        width: objectiveTotal + "%",
+    //     width: objectiveTotal + "%",
         
-        height: "2px",
+    //     height: "2px",
         
-        // backgroundColor: "white",
+    //     // backgroundColor: "white",
         
-        borderWidth: objectiveBorder,
+    //     borderWidth: objectiveBorder,
         
-        borderStyle: "solid",
+    //     borderStyle: "solid",
         
-        borderColor: "white"
+    //     borderColor: "white"
         
-    }
+    // }
     
-    let overkillBorderStyle = {
+    // let overkillBorderStyle = {
         
-        display: "inline-block",
+    //     display: "inline-block",
         
-        width: overkillTotal + "%",
+    //     width: overkillTotal + "%",
         
-        height: "2px",
+    //     height: "2px",
         
-        backgroundColor : "#F7CA18",
+    //     backgroundColor : "#F7CA18",
         
-        borderWidth: overkillBorder,
+    //     borderWidth: overkillBorder,
         
-        borderStyle: "solid",
+    //     borderStyle: "solid",
         
-        borderColor: "white"
+    //     borderColor: "white"
         
-    }
+    // }
     
-    let objectiveStyle = {
+    // let objectiveStyle = {
         
-        display: "block",
+    //     display: "block",
         
-        width: objectiveWidth + "%",
+    //     width: objectiveWidth + "%",
         
-        height: "100%",
+    //     height: "100%",
         
-        background: "white"
+    //     background: "white"
         
-    }
+    // }
     
-    let overkillStyle = {
+    // let overkillStyle = {
         
-        display: "block",
+    //     display: "block",
         
-        width: overkillWidth + "%",
+    //     width: overkillWidth + "%",
         
-        height: "100%",
+    //     height: "100%",
         
-        background: "white"
+    //     background: "white"
         
-    }
+    // }
     
     let indicatorStyle = {
         
@@ -174,22 +188,84 @@ const ProgressBox = Radium((prop) => {
         
     }
     
-            
-    // let svgStyle = {
-
-    //     position: "absolute",
+    let objectiveBox  = {
         
-    //     left: "0px",
+        display: "block",
         
-    //     top: "0px",
-
-    // }
+        padding: "2px",
         
+        margin: "2px",
+        
+        background: "rgba(0, 0, 0, 0.25)",
+        
+        borderRadius: "6px",
+        
+        boxShadow: "inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08)",
+      
+    }
+    
+    let positiveBar = {
+        
+        height: "4px",
+        
+        display: "block",
+        
+        borderRadius: "4px",
+        
+        width: positiveRatio + "%",
+        
+        backgroundImage: "linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05))",
+        
+        backgroundColor: "#86e01e",
+        
+        transition: "0.4s linear",
+        
+        transitionProperty: "width",
+        
+        boxShadow: "0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1)",
+        
+    }
+    
+    let negativeBar = {
+        
+        height: "4px",
+        
+        display: "block",
+        
+        borderRadius: "4px",
+        
+        width: negativeRatio + "%",
+        
+        backgroundImage: "linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05))",
+        
+        backgroundColor: "#C0392B",
+        
+        transition: "0.4s linear",
+        
+        transitionProperty: "width",
+        
+        boxShadow: "0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1)",
+        
+    }
+        
+    let positive = minimum ? 
+            (   
+                <span style={objectiveBox}>
+                    <span style={positiveBar}></span>
+                </span>
+            ) : ""
+    
+    let negative = maximum ? 
+            (
+                <span style={objectiveBox}>
+                    <span style={negativeBar}></span>
+                </span>
+            ) : ""
     
     return (
         <span style={boxStyle}>
             <span style={groupSymbleStyle}>
-                <svg style={{fill: "white"}} viewBox={svgSymbols[groupName]["viewBox"]}>
+                <svg style={{fill: groupColor}} viewBox={svgSymbols[groupName]["viewBox"]}>
                     <path d={svgSymbols[groupName]["paths"][0]} />
                 </svg>
             </span>
@@ -197,18 +273,14 @@ const ProgressBox = Radium((prop) => {
             <span style={indicatorStyle}>
                 {ruleProgress}
                 <span>{minimum ? "/" + minimum : ""}</span>
-                <span style={{color: "#F7CA18"}}>{maximum ? "/" + maximum : ""}</span>
+                <span style={{color: "#C0392B"}}>{maximum ? "/" + maximum : ""}</span>
             </span>
             
             <br/>
             
-            <span style={objectiveBorderStyle}>
-                <span style={objectiveStyle}></span>
-            </span>
+            {positive}
             
-            <span style={overkillBorderStyle}>
-                <span style={overkillStyle}></span>
-            </span>
+            {negative}
 
         </span>
     )

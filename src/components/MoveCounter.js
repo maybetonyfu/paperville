@@ -8,9 +8,9 @@ const MoveCounter = Radium(({levelIndex, moveLeft, rotateHourglass}) => {
     
     let boxStyle = {
         
-        display: "inline-block",
+        display: "block",
         
-        width: "20%",
+        width: "100%",
         
         margin: "10px 1vh 1vh 1vh",
         

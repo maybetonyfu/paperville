@@ -96,7 +96,9 @@ const Tile = Radium( prop => {
                 
                 background: "black",
                 
-                opacity: "0.2"
+                opacity: "0.2",
+                
+                // boxShadow: "0 0 2px white, inset 0 0 37px white"
                 
             },
             
