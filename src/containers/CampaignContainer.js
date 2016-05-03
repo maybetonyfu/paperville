@@ -10,9 +10,7 @@ const mapStateToProps = (state) => {
     
         levels: state.levels,
         
-        profile: state.profile,
-        
-        measurements: state.measurements
+        profile: state.profile
     
     }
   

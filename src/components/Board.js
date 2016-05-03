@@ -86,9 +86,21 @@ class Board extends Component {
     
     let BoardStyle = {
         
+        margin: measurements.board.boardMargin,
+        
         width: measurements.board.boardWidth,
         
-        height: measurements.board.boardWidth,
+        height: measurements.board.boardHeight,
+        
+        borderStyle : "solid",
+        
+        borderWidth: measurements.board.borderWidth + "px",
+        
+        borderColor: board.status === "WAIT_PLAYER_MOVE" ? "#8DE7C6" : "#F2784B",
+        
+        boxSizing: "border-box",
+        
+        borderRadius: "5px",
         
     }
 
@@ -105,6 +117,7 @@ class Board extends Component {
                 key={tile.id}
                 tile={tile}
                 canMove={board.status==="WAIT_PLAYER_MOVE"}
+                shift={measurements.tile.tileShift}
                 symbolName={level.groupMap[tile.value]["name"]}
                 symbolColor={level.groupMap[tile.value]["color"]}
                 positions={board.positions}

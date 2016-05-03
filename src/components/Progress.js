@@ -87,18 +87,8 @@ class Progress extends Component {
     
             height: progressHeight,
             
-            // width: progressWidth,
-            
             padding: progressPadding,
             
-            // backgroundColor: "#ECECEC",
-            
-            borderBottom: "3px solid",
-            
-            borderBottomColor: board.status === "WAIT_PLAYER_MOVE" ? "#66CC99": "#FEA786",
-            
-            boxSizing: "border-box"
-    
         }
 
         return (

@@ -14,10 +14,6 @@ let initMeasurements = {
         
         tile: {
             
-            tileMargin: 5,
-            
-            tileBleeding: 10
-            
         }
         
     }
@@ -30,6 +26,14 @@ const measurements = (state = initMeasurements, action) => {
         
         let { appHeight, appWidth } = action.payload
         
+        let boardMargin = 5
+        
+        let tileShift = 5
+        
+        let borderWidth = 2
+        
+        let progressPadding = 5
+        
         return Object.assign({}, state, {
             
             global: {
@@ -38,55 +42,65 @@ const measurements = (state = initMeasurements, action) => {
                 
                 appWidth: appWidth,
                 
-                navHeight: appHeight * 0.06,
-                
-                activeWidth: appWidth,
-                
-                activeHeight: appHeight * 0.94
-                
             },
             
             progress: {
                 
-                progressWidth: appWidth - 10,
+                progressWidth: appWidth - (2 * progressPadding),
                 
-                progressHeight: appHeight - appWidth - 10,
-                
-                progressPadding : 5,
-                
-                progressBleeding : 10, 
-                
-                // boxWidth : (appWidth - 10 )/4 - 24,
-                // boxMargin: 5,
-                // rowHeight: (appHeight * 0.9 - appWidth - 10) / 10,
+                progressPadding : progressPadding,
                 
             },
             
             board: {
                 
-                boardWidth: appWidth,
+                boardMargin : boardMargin,
                 
-                boardHeight: appWidth
+                boardWidth: appWidth - 2 * boardMargin,
+                
+                borderWidth : borderWidth
+                
+            },
+            
+            tile : {
+                
+                tileShift: tileShift,
                 
             }
             
         })
         
     case "CREATE_BOARD":
+        {
         
-        let { boardConfig } = action.payload
+            let { boardConfig } = action.payload
+            
+            let boardWidth = state.board.boardWidth
+            
+            let boardMargin = state.board.boardMargin
+            
+            let borderWidth = state.board.borderWidth
+            
+            let tileShift = state.tile.tileShift
+            
+            let progressPadding = state.progress.progressPadding
+    
+            let tileSize =  ( (boardWidth - 2 * (tileShift + borderWidth)) / boardConfig.cols )
+            
+            let nextState = Object.assign({}, state)
+            
+            nextState.tile.tileWidth = tileSize
+            
+            nextState.tile.tileHeight = tileSize
+            
+            nextState.board.boardHeight = ( tileSize * boardConfig.rows ) +  2 * (tileShift + borderWidth)
+            
+            nextState.progress.progressHeight = state.global.appHeight - (( tileSize * boardConfig.rows ) 
+                + 2 * (tileShift + borderWidth + boardMargin)) - (2 * progressPadding)
+            
+            return nextState
         
-        let tileWidth =  ( state.board.boardWidth / boardConfig.cols ) - state.tile.tileBleeding
-        
-        let tileHeight = ( state.board.boardHeight / boardConfig.rows ) - state.tile.tileBleeding
-        
-        let nextState = Object.assign({}, state)
-        
-        nextState.tile.tileWidth = tileWidth
-        
-        nextState.tile.tileHeight = tileHeight
-        
-        return nextState
+        }
 
     default:
     

@@ -33,7 +33,7 @@ const LostModal = Radium((prop) => {
             
             position: "absolute",
             
-            width: "100%",
+            width: appWidth,
             
             height: "100%",
             

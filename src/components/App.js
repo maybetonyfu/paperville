@@ -66,16 +66,12 @@ class App extends Component {
                         
                         fontFamily: "'BenchNine', sans-serif",
                         
-                        // fontFamily: "'Roboto', sans-serif",
-                        
                         fontStyle: "bold"
                         
                     },
                     
                     "p" : {
                     
-                        // fontFamily: "'BenchNine', sans-serif",
-                        
                         fontFamily: "'Roboto', sans-serif",
                         
                         textAlign: "left",

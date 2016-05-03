@@ -5,15 +5,7 @@ import Radium from 'radium'
 
 import Level from "./Level"
 
-const Campaign = Radium(({ levels, profile, measurements, onLevelClick }) => {
-    
-    let {
-        
-        activeHeight, 
-        
-        activeWidth
-        
-    } = measurements.global
+const Campaign = Radium(({ levels, profile, onLevelClick }) => {
     
     
     let campaignStyle = {

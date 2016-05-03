@@ -20,7 +20,9 @@ const Tile = Radium( prop => {
             
             symbolColor,
             
-            positions, 
+            positions,
+            
+            shift,
             
             canMove, 
             
@@ -34,23 +36,17 @@ const Tile = Radium( prop => {
             
             tileWidth, 
             
-            tileHeight, 
-            
-            tileBleeding, 
-            
-            tileMargin
+            tileHeight 
             
         } = tileMeasurements
         
         let translateX = positions[tile.position][1] * 
-            (tileWidth + tileBleeding)
+            (tileWidth) + shift
             
         let translateY = positions[tile.position][0] *
-            (tileHeight + tileBleeding)
+            (tileHeight) + shift
             
         let tileStyle = {
-            
-            margin: tileMargin,
             
             width: tileWidth,
             
@@ -98,9 +94,9 @@ const Tile = Radium( prop => {
                 
                 borderRadius: "5%",
                 
-                background: "white",
+                background: "black",
                 
-                opacity: "0.1"
+                opacity: "0.2"
                 
             },
             
