@@ -28,7 +28,9 @@ const Tile = Radium( prop => {
             
             canMove, 
             
-            panEnd
+            panEnd,
+            
+            transitionEnd
             
         } = prop
         
@@ -145,7 +147,10 @@ const Tile = Radium( prop => {
         
 
         return (
-            <Hammer vertical={true} onPanEnd={
+            <Hammer 
+                vertical={true} 
+                onTransitionEnd={transitionEnd}
+                onPanEnd={
                 (ev) => {
                     if(ev.additionalEvent && canMove) {
                         panEnd(ev.additionalEvent)
@@ -154,7 +159,8 @@ const Tile = Radium( prop => {
                 }
             }>
                 <span 
-                    style={tileStyle} 
+                    style={tileStyle}
+                    
                 >
                     <span
                         style={[contentStyle.base, contentStyle.visible]}

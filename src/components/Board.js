@@ -7,82 +7,22 @@ import Tile from "./Tile"
 
 let eventAccumulator = 0
 
-
-class Board extends Component {
+const Board = Radium( prop => {
     
-    constructor(props) {
-
-        super(props)
-
-    }
-    
-    transitionEndHandle (e) {
-        
-        e.preventDefault()
-
-        e.stopPropagation()
-        
-        if (this.props.board.status === "DID_MARK" && this.props.setting.vibrator) {
-            
-            window.navigator.vibrate(500)
-        }
-        
-        eventAccumulator ++ 
-        
-        if (eventAccumulator !== this.props.board.dispatchAwait) return
-
-        eventAccumulator = 0 
-        
-        this.props.onBoardMoveEnd(this.props.board.status)
-        
-    }
-    
-    componentWillMount () {
-
-        if (this.boardNode) {
-            
-            this.boardNode.removeEventListener(
-                
-                "transitionend", 
-                
-                this.transitionEndHandle.bind(this),
-                
-                false
-            )
-            
-        }
-    }
-    
-    componentDidMount () {
-        
-        if (this.boardNode) {
-            
-            this.boardNode.addEventListener(
-                
-                "transitionend", 
-                
-                this.transitionEndHandle.bind(this),
-                
-                false
-            )
-            
-        }
-    }
-    
-    render() {
-        
     let { 
         board,
         
         level,
         
-        measurements, 
+        measurements,
+        
+        onBoardMoveEnd,
         
         onPlayerPan,
         
         setting
         
-    } = this.props
+    } = prop
     
     let BoardStyle = {
         
@@ -94,6 +34,12 @@ class Board extends Component {
         
         borderStyle : "solid",
         
+        transitionProperty: "border-color",
+                
+        transitionDuration: "500ms",
+                
+        transitionTimingFunction: "ease",
+        
         borderWidth: measurements.board.borderWidth + "px",
         
         borderColor: board.status === "WAIT_PLAYER_MOVE" ? "#8DE7C6" : "#F2784B",
@@ -103,11 +49,10 @@ class Board extends Component {
         borderRadius: "5px",
         
     }
-
+    
     return (
         
-    <div style={BoardStyle} 
-         ref={node => { this.boardNode = node }}>
+    <div style={BoardStyle}>
     
         {
         
@@ -129,6 +74,23 @@ class Board extends Component {
                         onPlayerPan(tile.id, direction)
                     }
                 }
+                transitionEnd={() => {
+                    
+                        if (board.status === "DID_MARK" && setting.vibrator) {
+                            
+                            window.navigator.vibrate(500)
+                        }
+                        
+                        eventAccumulator ++ 
+                        
+                        if (eventAccumulator !== board.dispatchAwait) return
+                
+                        eventAccumulator = 0 
+                        
+                        onBoardMoveEnd(board.status)
+                    }
+                    
+                }
                 />
                 
             })
@@ -138,9 +100,9 @@ class Board extends Component {
     </div>
     
     )
-}
-
-}
+    
+    
+})
 
 
 Board.PropTypes = {
