@@ -28,8 +28,11 @@ const Level = Radium(({ level, onClick, unlocked}) => {
         
         borderRadius: "50%",
         
-        backgroundColor: unlocked? "#59d4d9" : "#BDC3C7",
+        boxShadow: unlocked? "0 0 0.1vh #59d4d9" : "0 0 0.1vh #BDC3C7",
         
+        // border: "2px solid black",
+        
+        backgroundColor: unlocked? "#59d4d9" : "#BDC3C7",
     }
     
     return (

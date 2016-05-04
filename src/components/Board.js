@@ -115,7 +115,9 @@ class Board extends Component {
         
             return <Tile 
                 key={tile.id}
-                tile={tile}
+                willMark={tile.willMark}
+                removed={tile.removed}
+                position={tile.position}
                 canMove={board.status==="WAIT_PLAYER_MOVE"}
                 shift={measurements.tile.tileShift}
                 symbolName={level.groupMap[tile.value]["name"]}
@@ -127,7 +129,6 @@ class Board extends Component {
                         onPlayerPan(tile.id, direction)
                     }
                 }
-                animationEnd={this.transitionEndHandle.bind(this)}
                 />
                 
             })

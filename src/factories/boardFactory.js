@@ -404,7 +404,7 @@ let findMatchAndMark = (board) => {
             
             let value = boardClone.tiles[match1].value
             
-            if (!match[value]) {
+            if (match[value] === undefined) {
                 
                 match[value] = new Set()
                 
@@ -416,11 +416,11 @@ let findMatchAndMark = (board) => {
             
             match[value].add(match3)
             
-            boardClone.tiles[match1]["willMark"] = true
+            boardClone.tiles[match1].willMark = true
             
-            boardClone.tiles[match2]["willMark"] = true
+            boardClone.tiles[match2].willMark = true
             
-            boardClone.tiles[match3]["willMark"] = true
+            boardClone.tiles[match3].willMark = true
 
         }
 
@@ -506,7 +506,7 @@ let removeAllMatch = (board) => {
 
         boardClone.match[key].forEach(id => {
             
-            boardClone.tiles[id]["willMark"] = false
+            // boardClone.tiles[id]["willMark"] = false
             
             boardClone.tiles[id]["removed"] = true
 
@@ -618,6 +618,8 @@ let refillBoard = (board) => {
             let value = groupPool[valueIndex]
 
             boardClone.tiles[id]["value"] = value
+            
+            boardClone.tiles[id]["willMark"] = false
             
             boardClone.tiles[id]["removed"] = false
 

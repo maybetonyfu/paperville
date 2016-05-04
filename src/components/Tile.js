@@ -6,13 +6,9 @@ import Hammer from "react-hammerjs"
 import svgSymbols from "../assets/svg"
 
 
-
-
 const Tile = Radium( prop => {
             
         let { 
-            
-            tile, 
             
             tileMeasurements, 
             
@@ -22,13 +18,17 @@ const Tile = Radium( prop => {
             
             positions,
             
+            willMark,
+            
+            removed,
+            
+            position,
+            
             shift,
             
             canMove, 
             
-            panEnd,
-            
-            animationEnd
+            panEnd
             
         } = prop
         
@@ -40,10 +40,10 @@ const Tile = Radium( prop => {
             
         } = tileMeasurements
         
-        let translateX = positions[tile.position][1] * 
+        let translateX = positions[position][1] * 
             (tileWidth) + shift
             
-        let translateY = positions[tile.position][0] *
+        let translateY = positions[position][0] *
             (tileHeight) + shift
             
         let tileStyle = {
@@ -96,23 +96,15 @@ const Tile = Radium( prop => {
                 
                 background: "black",
                 
-                opacity: "0.2",
+                opacity: willMark ?  0 : "0.2",
+                
+                transitionProperty: willMark ? "opacity" : "none",
+                
+                transitionDuration: "500ms",
+                
+                transitionTimingFunction: "ease",
                 
                 // boxShadow: "0 0 2px white, inset 0 0 37px white"
-                
-            },
-            
-            marked: {
-                
-                borderRadius: "5%",
-                
-                opacity: 0,
-                
-                animation: "x 1s ease-in 0s 1" ,
-                
-                animationName: tile.willMark? markKeyframes : "none",
-                
-                backgroundColor: "#66CC99",
                 
             },
             
@@ -145,7 +137,7 @@ const Tile = Radium( prop => {
 
 
         
-        if (tile.removed) {
+        if (removed) {
             
             tileStyle.transform = `translate(${translateX}px, ${translateY}px) scale(0)`
 
@@ -167,10 +159,7 @@ const Tile = Radium( prop => {
                     <span
                         style={[contentStyle.base, contentStyle.visible]}
                     > </span>
-                    <span
-                        style={[contentStyle.base, contentStyle.marked]}
-                        onAnimationEnd={animationEnd}
-                    / >
+
                     <span
                         style={[contentStyle.base, contentStyle.symbol]}
                     >
@@ -182,33 +171,11 @@ const Tile = Radium( prop => {
 
                 </span>
             </Hammer>
-    
         )
 
     }
+    
 )
-
-let markKeyframes = Radium.keyframes({
-
-    '0%': {
-    
-        opacity: '0',
-        
-    },
-    
-    '50%': {
-    
-        opacity: '1',
-        
-    },
-    
-    '100%': {
-    
-        opacity: '0',
-        
-    },
-    
-})
 
 
 
@@ -227,5 +194,7 @@ Tile.PropTypes = {
     positions: PropTypes.array.isRequired,
     
 }
+
+
 
 export default Tile
