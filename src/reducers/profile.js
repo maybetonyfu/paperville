@@ -22,6 +22,19 @@ const profile = (state = initProfile, action) => {
     
     switch (action.type) {
         
+    case "GAME_INIT":
+        {
+            let profileJSON = window.localStorage.getItem("profile")
+            
+            if ( !profileJSON ) {
+                
+                return state
+                
+            }
+            
+            return JSON.parse(profileJSON)
+        }
+        
     case "CHANGE_SETTING":
         {
             let { key, value } = action.payload
@@ -29,6 +42,8 @@ const profile = (state = initProfile, action) => {
             let profile = Object.assign({}, state)
             
             profile.setting[key] = value
+            
+            window.localStorage.setItem("profile", JSON.stringify(profile))
             
             return profile
         }
@@ -48,6 +63,8 @@ const profile = (state = initProfile, action) => {
             profile.completedLevels.push(levelIndex)
             
             profile.unlockedLevels.push(levelIndex + 1)
+            
+            window.localStorage.setItem("profile", JSON.stringify(profile))
             
             return profile
             
