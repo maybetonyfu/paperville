@@ -44,15 +44,11 @@ const Menu = Radium(() => {
 
         lineHeight: "5vh",
 
-        // color: "black",
-
         marginLeft: "50%",
 
         transform: "translateX(-50%)",
 
         borderRadius: "6px",
-
-        // border: "2px solid black",
 
         marginTop : "2vh",
 

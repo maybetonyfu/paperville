@@ -52,24 +52,6 @@ const board = (state = initBoard, action) => {
     case "DID_SWAP":
         {
 
-            // let match = findMatch(state)
-            
-            // let matchCount = Object
-            //     .values(match)
-            //     .reduce((prevCount, curr) => {
-            //         return prevCount + curr.size
-            //     }, 0)
-                
-            // if (matchCount === 0) {
-                
-            //     return Object.assign({}, state, {
-                    
-            //         status: "WAIT_PLAYER_MOVE"
-                    
-            //     })
-                
-            // }
-            
             return findMatchAndMark(state)
 
         }
@@ -78,8 +60,6 @@ const board = (state = initBoard, action) => {
         {
             
             return removeAllMatch(state)
-            // return unmarkAllMatch(state)
-            
 
         }
         
@@ -114,26 +94,6 @@ const board = (state = initBoard, action) => {
         
     case "DID_REFILL":
         {
-
-            // let match = findMatch(state)
-            
-            // let matchCount = Object.values(match)
-                
-            //     .reduce((prevCount, curr) => {
-                    
-            //         return prevCount + curr.size
-                    
-            //     }, 0)
-                
-            // if (matchCount === 0) {
-                
-            //     return Object.assign({}, state, {
-                    
-            //         status: "WAIT_PLAYER_MOVE"
-                    
-            //     })
-                
-            // }
 
             return findMatchAndMark(state)
 

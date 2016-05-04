@@ -256,8 +256,6 @@ const levels = (state = initLevels, action) => {
                 newLevels[level.index] = level
             })
             
-            // console.log(newLevels)
-            
             return newLevels
             
         }

@@ -56,35 +56,6 @@ const MoveCounter = Radium(({levelIndex, moveLeft, rotateHourglass}) => {
     )
 })
 
-
-let hourglass = Radium.keyframes({
-    
-    '0%': {
-        
-        transform: "rotate(0deg)",
-        
-        boxShadow: 'inset #ECECEC 0 0 0 0, inset #000000 0 1.5vh 0 0, inset #ECECEC 0 3vh 0 0, inset #000000 0 3vh 0 0',
-        
-    },
-    
-    '60%': {
-        
-        transform: "rotate(0deg)",
-        
-        boxShadow: 'inset #ECECEC 0 1.5vh 0 0, inset #000000 0 1.5vh 0 0, inset #ECECEC 0 1.5vh 0 0, inset #000000 0 3vh 0 0',
-        
-    },
-    
-    '100%': {
-        
-        transform: "rotate(180deg)",
-        
-        boxShadow: 'inset #ECECEC 0 1.5vh 0 0, inset #000000 0 1.5vh 0 0, inset #ECECEC 0 1.5vh 0 0, inset #000000 0 3vh 0 0',
-        
-    },
-    
-})
-
 MoveCounter.PropTypes = {
 
 }
