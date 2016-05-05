@@ -56,7 +56,7 @@ const LostModal = Radium((prop) => {
             
             textAlign: "center",
             
-            backgroundColor: "#59D4D9",
+            backgroundColor: "#E74C3C",
             
             color: "white",
             
@@ -93,7 +93,7 @@ const LostModal = Radium((prop) => {
 
         backgroundColor: "white",
         
-        color: "#59D4D9",
+        color: "#E74C3C",
 
     }
     return (

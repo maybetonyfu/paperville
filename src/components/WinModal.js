@@ -59,7 +59,7 @@ const WinModal = Radium((prop) => {
             
             textAlign: "center",
             
-            backgroundColor: "#59D4D9",
+            backgroundColor: "#5AD8A4",
             
             color: "white",
             
@@ -96,7 +96,7 @@ const WinModal = Radium((prop) => {
 
         backgroundColor: "white",
         
-        color: "#59D4D9",
+        color: "#5AD8A4",
 
     }
     

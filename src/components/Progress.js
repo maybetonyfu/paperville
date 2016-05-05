@@ -25,9 +25,23 @@ class Progress extends Component {
 
         let violateMaxMove = false
         
-        let maxMove = (level.maxMove === -1) ? Infinity : level.maxMove
-
-        violateMaxMove = maxMove <= board.playerMove
+        let achieveMinMove = true
+        
+        
+        
+        if (level.minMove) {
+            
+            achieveMinMove = level.minMove <= board.playerMove
+            
+        }
+        
+        if (level.maxMove) {
+            
+            let maxMove = (level.maxMove === -1 || level.maxMove === undefined) ? Infinity : level.maxMove
+            
+            violateMaxMove = maxMove <= board.playerMove
+            
+        }
         
         let fulfillMinAmount = level.objectiveAmount
             .every((rule) => {
@@ -61,7 +75,7 @@ class Progress extends Component {
             
         }
 
-        if (fulfillMinAmount && gameStatus == "START") {
+        if (fulfillMinAmount && achieveMinMove && gameStatus == "START") {
             
             onGameWinning(level.index)
             
@@ -99,8 +113,10 @@ class Progress extends Component {
             
             <MoveCounter 
                 levelIndex={level.index}
-                rotateHourglass={board.status !== "WAIT_PLAYER_MOVE"}
-                moveLeft={ (level.maxMove === -1) ? Infinity: level.maxMove - board.playerMove} />
+                maxMove={level.maxMove}
+                minMove={level.minMove}
+                playerMove={board.playerMove}
+            />
     
             { level.objectiveAmount.map((rule, index) => {
                 return ( <ProgressBox

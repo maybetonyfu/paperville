@@ -4,7 +4,7 @@ import Radium from 'radium'
 import svgSymbols from "../assets/svg"
 
 
-const MoveCounter = Radium(({levelIndex, moveLeft, rotateHourglass}) => {
+const MoveCounter = Radium(({levelIndex, maxMove, minMove, playerMove}) => {
     
     let boxStyle = {
         
@@ -36,6 +36,18 @@ const MoveCounter = Radium(({levelIndex, moveLeft, rotateHourglass}) => {
         
         paddingRight: "1vh"
         
+    }
+    
+    let moveLeft
+    
+    if (minMove) {
+        
+        moveLeft = minMove - playerMove
+    }
+    
+    if (maxMove) {
+        
+        moveLeft = (maxMove === -1) ? Infinity : maxMove - playerMove
     }
     
     return (
