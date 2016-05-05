@@ -54,7 +54,7 @@ const MenuModal = Radium((prop) => {
             
             textAlign: "center",
             
-            backgroundColor: "#262d37",
+            backgroundColor: "#59D4D9",
             
             color: "white",
             
@@ -89,9 +89,9 @@ const MenuModal = Radium((prop) => {
 
         marginTop : "10%",
 
-        backgroundColor: "#5ad8a4",
+        backgroundColor: "white",
         
-        color: "white",
+        color: "#59D4D9",
 
     }
     

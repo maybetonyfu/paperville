@@ -24,8 +24,10 @@ class Progress extends Component {
         }
 
         let violateMaxMove = false
+        
+        let maxMove = (level.maxMove === -1) ? Infinity : level.maxMove
 
-        violateMaxMove = level.maxMove <= board.playerMove
+        violateMaxMove = maxMove <= board.playerMove
         
         let fulfillMinAmount = level.objectiveAmount
             .every((rule) => {
@@ -98,7 +100,7 @@ class Progress extends Component {
             <MoveCounter 
                 levelIndex={level.index}
                 rotateHourglass={board.status !== "WAIT_PLAYER_MOVE"}
-                moveLeft={ level.maxMove - board.playerMove} />
+                moveLeft={ (level.maxMove === -1) ? Infinity: level.maxMove - board.playerMove} />
     
             { level.objectiveAmount.map((rule, index) => {
                 return ( <ProgressBox

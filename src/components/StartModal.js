@@ -59,7 +59,7 @@ const StartModal = Radium((prop) => {
             
             textAlign: "center",
             
-            backgroundColor: "#262d37",
+            backgroundColor: "#59D4D9",
             
             color: "white",
             
@@ -94,9 +94,9 @@ const StartModal = Radium((prop) => {
 
         marginTop : "2vh",
 
-        backgroundColor: "#5ad8a4",
+        backgroundColor: "white",
         
-        color: "white",
+        color: "#59D4D9",
         
         position: "absolute",
         

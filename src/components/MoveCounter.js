@@ -49,7 +49,7 @@ const MoveCounter = Radium(({levelIndex, moveLeft, rotateHourglass}) => {
             </span>
             
             <span style={indicatorStyle}>
-                {moveLeft}
+                {(moveLeft === Infinity) ? "∞" : moveLeft }
             </span>
 
         </span>
