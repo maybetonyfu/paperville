@@ -32,6 +32,14 @@ const Game = Radium((prop) => {
         
     } = prop
     
+    let GameStyle = {
+        
+        width: "100%",
+        
+        height: "100%"
+        
+    }
+    
     let isLastLevel = levels[game.currentLevel + 1] === undefined
     
     return (
@@ -87,10 +95,8 @@ const Game = Radium((prop) => {
     
 })
 
-
-let GameStyle = {
-    width: "100%",
-    height: "100%"
+Game.PropTypes = {
+    
 }
 
 export default Game

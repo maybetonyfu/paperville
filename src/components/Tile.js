@@ -1,6 +1,5 @@
 import React, { PropTypes } from "react"
 import Radium from "radium"
-import ReactDOM from "react-dom"
 import Hammer from "react-hammerjs"
 
 import svgSymbols from "../assets/svg"

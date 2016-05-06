@@ -1,4 +1,5 @@
 import { connect } from "react-redux"
+
 import Game from "../components/Game"
 import { createBoard, gameStart, showMenu, hideMenu } from "../actions"
 

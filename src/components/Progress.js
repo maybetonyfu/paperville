@@ -1,5 +1,4 @@
 import React, { PropTypes, Component } from "react"
-import Link from 'react-router/lib/Link'
 import Radium from 'radium'
 
 import ProgressBox from "./ProgressBox"

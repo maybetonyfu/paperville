@@ -14,7 +14,9 @@ let initProfile = {
         
         vibrator: false
         
-    }
+    },
+    
+    language: "en"
     
 }
 

@@ -2,13 +2,7 @@ import boardFactory, {
     
     removeInitialMatch,
     
-    findMatch, 
-    
     findMatchAndMark,
-    
-    markAllMatch,
-    
-    unmarkAllMatch,
     
     removeAllMatch,
     

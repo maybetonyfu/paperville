@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 
 import Board from "../components/Board"
-import { playerClick, playerPan, transitionEnd } from "../actions"
+import { playerPan, transitionEnd } from "../actions"
 
 const mapStateToProps = (state) => {
     

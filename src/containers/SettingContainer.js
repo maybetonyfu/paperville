@@ -1,7 +1,6 @@
 import { connect } from "react-redux"
 
 import { changeSetting } from "../actions"
-
 import Setting from "../components/Setting"
 
 const mapStateToProps = (state) => {

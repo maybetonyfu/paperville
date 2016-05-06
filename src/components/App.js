@@ -2,8 +2,6 @@ import React, { Component, PropTypes }from "react"
 import Radium, { Style }from "radium"
 import ReactCSSTransitionGroup from "react-addons-css-transition-group"
 
-import Nav from "./Nav"
-
 class App extends Component {
     
     constructor(props) {
@@ -28,7 +26,15 @@ class App extends Component {
         
         let {
             
-            children, measurements
+            children, 
+            
+            measurements, 
+            
+            location : { 
+
+                pathname 
+
+            }
             
         } = this.props
 
@@ -107,8 +113,8 @@ class App extends Component {
                     transitionEnterTimeout={500} 
                     transitionLeaveTimeout={300}>
                     
-                {React.cloneElement(this.props.children || <Menu/>, {
-                    key: this.props.location.pathname
+                {React.cloneElement(children || <Menu/>, {
+                    key: pathname
                  })}
                 </ReactCSSTransitionGroup>
 

@@ -1,7 +1,5 @@
 import React, { PropTypes } from "react"
-// import { Link } from "react-router"
-import Link from 'react-router/lib/Link'
-import Radium from 'radium'
+import Radium from "radium"
 import Modal from "react-modal"
 
 

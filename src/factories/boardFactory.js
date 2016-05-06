@@ -506,8 +506,6 @@ let removeAllMatch = (board) => {
 
         boardClone.match[key].forEach(id => {
             
-            // boardClone.tiles[id]["willMark"] = false
-            
             boardClone.tiles[id]["removed"] = true
 
         })
