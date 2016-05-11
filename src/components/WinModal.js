@@ -10,6 +10,8 @@ const WinModal = Radium((prop) => {
         
         measurements,
         
+        language,
+        
         modalOpen, 
         
         onNextLevelClick, 
@@ -108,7 +110,8 @@ const WinModal = Radium((prop) => {
         width: "8vh",
         
         height: "8vh"
-    } 
+    }
+    
     
     let nextLevel = isLastLevel ? 
         "" : <a style={LinkStyle} onClick={onNextLevelClick}  href="#">Next Level</a>

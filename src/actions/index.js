@@ -70,6 +70,14 @@ export const changeSetting = (key, value) => {
     }
 }
 
+export const resetSetting = () => {
+    return {
+        type: "RESET_SETTING",
+        payload: {
+        }
+    }
+}
+
 export const requestLevels = () => {
     return {
         type: "REQUEST_LEVELS",

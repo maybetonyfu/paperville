@@ -2,7 +2,7 @@ import React, { PropTypes } from "react"
 import Link from 'react-router/lib/Link'
 import Radium from 'radium'
 
-const Menu = Radium(() => {
+const Menu = Radium(({language}) => {
 
 
     let menuStyle = {
@@ -56,16 +56,32 @@ const Menu = Radium(() => {
         color: "white",
 
     }
+    
+    const titleText = {
+        
+        "en": "Paperville"
+        
+    }
+    
+    const campaignText = {
+        
+        "en": "Campaign"
+    }
+    
+    const settingText = {
+        
+        "en": "Setting"
+    }
 
     return (
 
         <div style={menuStyle}>
         
-            <p style={titleStyle}>Paperville</p>
+            <p style={titleStyle}>{titleText[language]} </p>
             
-            <Link style={menuLinkStyle} to="/campaign">Campaign</Link>
+            <Link style={menuLinkStyle} to="/campaign">{campaignText[language]}</Link>
             
-            <Link style={menuLinkStyle} to="/setting">Setting</Link>
+            <Link style={menuLinkStyle} to="/setting">{settingText[language]}</Link>
             
         </div>
 

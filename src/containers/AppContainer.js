@@ -7,8 +7,8 @@ const mapStateToProps = (state) => {
     
     return {
         
-        measurements: state.measurements
-        
+        measurements: state.measurements,
+
     }
     
 }

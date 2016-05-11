@@ -17,7 +17,7 @@ import AppContainer from "./src/containers/AppContainer.js"
 import GameContainer from "./src/containers/GameContainer.js"
 import CampaignContainer from "./src/containers/CampaignContainer.js"
 import SettingContainer from "./src/containers/SettingContainer.js"
-import Menu from "./src/components/Menu.js"
+import MenuContainer from "./src/containers/MenuContainer.js"
 import reducer from "./src/reducers"
 
 import { fetchLevels } from "./src/actions"
@@ -67,7 +67,7 @@ function startEverything (e) {
             <StyleRoot>
                 <Router history={browserHistory}>
                     <Route path="/" component={AppContainer}>
-                    <IndexRoute component={Menu}/>
+                    <IndexRoute component={MenuContainer}/>
                       <Route path="/campaign" component={CampaignContainer} />
                       <Route path="/setting" component={SettingContainer} />
                       <Route path="/game" component={GameContainer} />

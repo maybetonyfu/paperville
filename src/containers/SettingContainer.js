@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 
-import { changeSetting } from "../actions"
+import { changeSetting, resetSetting } from "../actions"
 import Setting from "../components/Setting"
 
 const mapStateToProps = (state) => {
@@ -20,6 +20,12 @@ const mapDispatchToProps = (dispatch) => {
         onChangeSetting : (key, value) => {
             
             dispatch(changeSetting(key, value))
+            
+        },
+        
+        onResetSetting : () => {
+            
+            dispatch(resetSetting())
             
         }
         

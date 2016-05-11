@@ -6,12 +6,12 @@ const Level = Radium(({ level, onClick, unlocked}) => {
     
 
     let levelStyle = {
-        
+
         textDecoration: "none",
         
         textAlign: "center",
         
-        display: "inline-block",
+        // display: "inline-block",
         
         width: "8vh",
         
@@ -21,7 +21,7 @@ const Level = Radium(({ level, onClick, unlocked}) => {
         
         fontSize: "4vh",
         
-        margin: "1vh",
+        // margin: "1vh",
         
         color: "white",
         
@@ -32,8 +32,19 @@ const Level = Radium(({ level, onClick, unlocked}) => {
         backgroundColor: unlocked? "#59d4d9" : "#BDC3C7",
     }
     
-    return (
+    let boxStyle = {
         
+        flexBasis: "25%",
+        
+        height: "10vh",
+        
+        display: "flex",
+        
+        justifyContent: "center",
+    }
+    
+    return (
+        <div style={boxStyle}>
             <Link style={levelStyle}
                 onClick={ (e)=> {
                         if (unlocked) {
@@ -46,6 +57,7 @@ const Level = Radium(({ level, onClick, unlocked}) => {
                     }
                 }
                 to="/game">{level.index}</Link>
+        </div>
             
     )
     

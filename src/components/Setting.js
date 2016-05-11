@@ -8,7 +8,9 @@ const Setting = Radium((prop) => {
         
         profile, 
         
-        onChangeSetting 
+        onChangeSetting,
+        
+        onResetSetting
         
     } = prop
     
@@ -65,6 +67,22 @@ const Setting = Radium((prop) => {
         
     }
     
+    let buttonBoxStyle = {
+        
+        height: "70%",
+        
+        display: "flex",
+        
+        flexDirection: "column",
+        
+        flexWrap: "wrap",
+        
+        justifyContent: "flex-end",
+        
+        alignItems: "center",
+        
+    }
+    
     let LinkStyle = {
         
         textDecoration: "none",
@@ -79,10 +97,6 @@ const Setting = Radium((prop) => {
 
         lineHeight: "5vh",
 
-        left: "50%",
-
-        transform: "translateX(-50%)",
-
         borderRadius: "6px",
 
         marginTop : "2vh",
@@ -90,8 +104,6 @@ const Setting = Radium((prop) => {
         backgroundColor: "#5ad8a4",
         
         color: "white",
-        
-        position: "absolute",
         
         bottom: "20%"
 
@@ -113,9 +125,13 @@ const Setting = Radium((prop) => {
                             checkBoxStyle.checked: checkBoxStyle.unchecked]}></span>
                     <span style={settingItemStyle}>Vibrator <small>Not available in iOS and desktop devices</small></span>
                 </div>
+
             </div>
             
-            <Link style={LinkStyle} to="/">Home</Link>
+            <div style={buttonBoxStyle}>
+                 <a style={LinkStyle} onClick={()=> { onResetSetting()} } href="#">Reset</a>
+                <Link style={LinkStyle} to="/">Home</Link>
+            </div>
         </div>
 
     )}

@@ -9,13 +9,25 @@ const Campaign = Radium(({ levels, profile, onLevelClick }) => {
     
     let campaignStyle = {
         
-        width: "100%",
-        
         height: "100%",
         
-        paddingTop: "30px",
+        paddingTop: "10%",
         
-        textAlign: "center"
+        paddingLeft: "15%",
+        
+        paddingRight: "15%",
+        
+        textAlign: "center",
+        
+        display: "flex",
+        
+        flexDirection: "row",
+        
+        flexWrap: "wrap",
+        
+        justifyContent: "flex-start",
+        
+        alignContent: "flex-start",
         
     }
     
@@ -50,6 +62,12 @@ const Campaign = Radium(({ levels, profile, onLevelClick }) => {
         bottom: "20%"
 
     }
+    
+    const homeText = {
+        
+        "en": "Home"
+        
+    }
 
     return (
         
@@ -71,7 +89,9 @@ const Campaign = Radium(({ levels, profile, onLevelClick }) => {
                     level={level}/>
                 )
             }
-            <Link style={LinkStyle} to="/">Home</Link>
+            <Link style={LinkStyle} to="/">
+                {homeText[profile.setting.language]}
+            </Link>
         </div>
         
     )

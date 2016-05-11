@@ -11,7 +11,9 @@ const mapStateToProps = (state) => {
         
         measurements: state.measurements,
         
-        levels: state.levels
+        levels: state.levels,
+        
+        setting: state.profile.setting
         
     }
     

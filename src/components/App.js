@@ -1,6 +1,8 @@
-import React, { Component, PropTypes }from "react"
-import Radium, { Style }from "radium"
+import React, { Component, PropTypes } from "react"
+import Radium, { Style } from "radium"
 import ReactCSSTransitionGroup from "react-addons-css-transition-group"
+
+import Menu from "./Menu"
 
 class App extends Component {
     
@@ -28,7 +30,9 @@ class App extends Component {
             
             children, 
             
-            measurements, 
+            measurements,
+            
+            setting,
             
             location : { 
 
@@ -113,7 +117,7 @@ class App extends Component {
                     transitionEnterTimeout={500} 
                     transitionLeaveTimeout={300}>
                     
-                {React.cloneElement(children || <Menu/>, {
+                {React.cloneElement(children || <MenuContainer />, {
                     key: pathname
                  })}
                 </ReactCSSTransitionGroup>

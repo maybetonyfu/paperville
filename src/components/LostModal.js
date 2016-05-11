@@ -10,6 +10,8 @@ const LostModal = Radium((prop) => {
         
         measurements, 
         
+        language,
+        
         modalOpen, 
         
         onRetryLevelClick, 
@@ -95,6 +97,19 @@ const LostModal = Radium((prop) => {
         color: "#E74C3C",
 
     }
+    
+    const retryText = {
+        
+        "en" : "Try Again"
+        
+    }
+    
+    const backText = {
+        
+        "en": "Back"
+        
+    }
+    
     return (
          <Modal style={modalStyle}  isOpen={modalOpen}>
             
@@ -102,9 +117,9 @@ const LostModal = Radium((prop) => {
             
             <h3>{lostMessage.message || "Let's try again"}</h3>
 
-            <a style={LinkStyle} onClick={onRetryLevelClick} href="#">Try Again</a>
+            <a style={LinkStyle} onClick={onRetryLevelClick} href="#">{retryText[language]}</a>
             
-            <Link style={LinkStyle} to="/campaign">Back</Link>
+            <Link style={LinkStyle} to="/campaign">{backText[language]}</Link>
 
         </Modal>
 

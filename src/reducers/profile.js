@@ -12,11 +12,13 @@ let initProfile = {
         
         developer: false,
         
-        vibrator: false
+        vibrator: false,
+        
+        language: "en"
         
     },
     
-    language: "en"
+    
     
 }
 
@@ -44,6 +46,36 @@ const profile = (state = initProfile, action) => {
             let profile = Object.assign({}, state)
             
             profile.setting[key] = value
+            
+            window.localStorage.setItem("profile", JSON.stringify(profile))
+            
+            return profile
+        }
+        
+    case "RESET_SETTING":
+        {
+
+            let profile = {
+                
+                id: 0,
+    
+                name: "Tony",
+                
+                completedLevels: [],
+                
+                unlockedLevels: [1],
+                
+                setting: {
+                    
+                    developer: false,
+                    
+                    vibrator: false,
+                    
+                    language: "en"
+        
+                },
+    
+            }
             
             window.localStorage.setItem("profile", JSON.stringify(profile))
             
