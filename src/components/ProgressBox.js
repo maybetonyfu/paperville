@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react"
 import Radium from 'radium'
 
-import svgSymbols from "../assets/svg"
+import svgSymbols from "../assets"
 
 
 const ProgressBox = Radium((prop) => {
@@ -127,9 +127,7 @@ const ProgressBox = Radium((prop) => {
     return (
         <span style={boxStyle}>
             <span style={groupSymbleStyle}>
-                <svg style={{fill: groupColor}} viewBox={svgSymbols[groupName]["viewBox"]}>
-                    <path d={svgSymbols[groupName]["paths"][0]} />
-                </svg>
+                {svgSymbols.get(groupName)}
             </span>
             
             <span style={indicatorStyle}>
