@@ -46,7 +46,6 @@ const Game = Radium((prop) => {
     
     return (
         <Hammer onDoubleTap={()=>{
-                console.log("Double Clicked")
                 showMenu()}}>
             <div style={GameStyle} >
                 <ProgressContainer />

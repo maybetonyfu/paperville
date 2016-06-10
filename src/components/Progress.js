@@ -38,7 +38,7 @@ class Progress extends Component {
             
             let maxMove = (level.maxMove === -1 || level.maxMove === undefined) ? Infinity : level.maxMove
             
-            violateMaxMove = maxMove <= board.playerMove
+            violateMaxMove = maxMove + board.extraMove <= board.playerMove
             
         }
         
@@ -115,6 +115,8 @@ class Progress extends Component {
                 maxMove={level.maxMove}
                 minMove={level.minMove}
                 playerMove={board.playerMove}
+                shields={board.shield}
+                extraMove={board.extraMove}
             />
     
             { level.objectiveAmount.map((rule, index) => {

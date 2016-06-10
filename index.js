@@ -40,43 +40,25 @@ let store = createStore(
 
 store.dispatch(fetchLevels())
 
-let sign = document.getElementById("sign")
 
-let text = document.getElementById("text")
 
-let parent = document.getElementById("parent")
+ReactDOM.render(
+    <Provider store={store}>
+        <StyleRoot>
+            <Router history={browserHistory}>
+                <Route path="/" component={AppContainer}>
+                <IndexRoute component={MenuContainer}/>
+                  <Route path="/campaign" component={CampaignContainer} />
+                  <Route path="/setting" component={SettingContainer} />
+                  <Route path="/game" component={GameContainer} />
+                </Route>
+            </Router>
+        </StyleRoot>
+    </Provider>,
+    document.getElementById("root")
+)
 
-sign.addEventListener("animationend", startEverything, false)
+let loading = document.getElementById("loading")
 
-sign.addEventListener("webkitAnimationEnd", startEverything, false)
-
-sign.style.animation = "swing 1s ease"
-
-sign.style.webkitAnimation = "swing 1s ease"
-
-text.innerHTML = "OPEN"
-
-function startEverything (e) {
-
-    e.preventDefault()
-    
-    document.body.removeChild(parent)
-    
-    ReactDOM.render(
-        <Provider store={store}>
-            <StyleRoot>
-                <Router history={browserHistory}>
-                    <Route path="/" component={AppContainer}>
-                    <IndexRoute component={MenuContainer}/>
-                      <Route path="/campaign" component={CampaignContainer} />
-                      <Route path="/setting" component={SettingContainer} />
-                      <Route path="/game" component={GameContainer} />
-                    </Route>
-                </Router>
-            </StyleRoot>
-        </Provider>,
-        document.getElementById("root")
-    )
-}
-
+document.body.removeChild(loading)
 

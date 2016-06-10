@@ -36,11 +36,11 @@ const board = (state = initBoard, action) => {
     case "PLAYER_PAN":
         
         {
-            
+
             let {tileId, direction} = action.payload
-            
+
             return panTile(state, tileId, direction)
-            
+
         }
 
     case "DID_SWAP":
@@ -52,16 +52,16 @@ const board = (state = initBoard, action) => {
         
     case "DID_MARK":
         {
-            
+
             return removeAllMatch(state)
 
         }
         
     case "DID_UNMARK":
         {
-        
+
             return removeAllMatch(state)
-            
+
         }
         
     case "DID_REMOVE":

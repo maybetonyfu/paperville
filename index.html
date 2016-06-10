@@ -4,6 +4,7 @@
         <title>Paperville</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <link rel="manifest" href="/manifest.json">
         <link rel="apple-touch-icon-precomposed" sizes="57x57" href="favicon/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="favicon/apple-touch-icon-114x114.png" />
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="favicon/apple-touch-icon-72x72.png" />
@@ -32,139 +33,86 @@
         <link href='https://fonts.googleapis.com/css?family=BenchNine:700' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
         <style>
-            @-webkit-keyframes swing {
-                from {
-                    -webkit-transform: rotate(-77deg);
-                            transform: rotate(-77deg);
-                    opacity: 0;
-                }
-                20% {
-                    -webkit-transform: rotate(45deg);
-                            transform: rotate(45deg);
-                }
-                40% {
-                    -webkit-transform: rotate(-35deg);
-                            transform: rotate(-35deg);
-                }
-                60% {
-                    -webkit-transform: rotate(20deg);
-                            transform: rotate(20deg);
-                }
-                80% {
-                    -webkit-transform: rotate(-15deg);
-                            transform: rotate(-15deg);
-                }
-                to {
-                    -webkit-transform: rotate(0deg);
-                            transform: rotate(0deg);
-                    opacity: 1;
-                }
-            }
-
-            @keyframes swing {
-                from {
-                    -webkit-transform: rotate(-77deg);
-                            transform: rotate(-77deg);
-                    opacity: 0;
-                }
-                20% {
-                    -webkit-transform: rotate(45deg);
-                            transform: rotate(45deg);
-                }
-                40% {
-                    -webkit-transform: rotate(-35deg);
-                            transform: rotate(-35deg);
-                }
-                60% {
-                    -webkit-transform: rotate(20deg);
-                            transform: rotate(20deg);
-                }
-                80% {
-                    -webkit-transform: rotate(-15deg);
-                            transform: rotate(-15deg);
-                }
-                to {
-                    -webkit-transform: rotate(0deg);
-                            transform: rotate(0deg);
-                    opacity: 1;
-                }
-            }
-            html, body {
-                margin: 0;
-            }
-            #parent {
-                width: 100%;
-                height:100%;
-                position: absolute;
-                background-color: white;
-            }
-            #sign {
-              width: 2px;
-              height: 2px;
-              position: relative;
-              top: 40%;
-              left: 50%;
-              margin-left: -1px;
-              border-radius: 50%;
-              border: 2px solid black;
-            }
-            #sign:before {
-              content: "";
-              display: block;
-              width: 2px;
-              height: 30px;
-              background-color: black;
-              position: absolute;
-              top: 2px;
-              left: -1px;
-              -webkit-transform: rotate(45deg);
-                    transform: rotate(45deg);
-              -webkit-transform-origin: top left;
-                    transform-origin: top left;
-              border-radius: 5px;
-            }
-            #sign:after {
-              content: "";
-              display: block;
-              width: 2px;
-              height: 30px;
-              background-color: black;
-              position: absolute;
-              top: 4px;
-              left: 3px;
-              -webkit-transform: rotate(-45deg);
-                    transform: rotate(-45deg);
-              -webkit-transform-origin: top left;
-                    transform-origin: top left;
-              border-radius: 5px;
-            }
-            #signtext {
-              width: 80px;
-              height: 30px;
-              position: absolute;
-              top: 24px;
-              left: -40px;
-              border: 2px solid black;
-              border-radius: 5px;
-              color: black;
-              font-family: sans-serif;
-              text-align: center;
-              margin: 0;
-            }
-            #text {
-              height: 20px;
-              line-height: 30px;
-            }
+        body {
+          background: #303844;
+        }
+        
+        #loading {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -webkit-transform: translateY(-50%);
+                  transform: translateY(-50%);
+          height: 25px;
+          width: 10px;
+          border-radius: 10%;
+          background: #2c3e50;
+          border-top-color: #2980b9;
+          -webkit-animation: fade2 1s infinite;
+                  animation: fade2 1s infinite;
+          -webkit-transition: background .2s;
+          transition: background .2s;
+        }
+        #loading:after, #loading:before {
+          content: '';
+          position: absolute;
+          display: block;
+          height: 20px;
+          width: 10px;
+          background: #2c3e50;
+          top: 50%;
+          -webkit-transform: translateY(-50%);
+                  transform: translateY(-50%);
+          left: -15px;
+          border-radius: 10%;
+          -webkit-animation: fade1 1s infinite;
+                  animation: fade1 1s infinite;
+          -webkit-transition: background .2s;
+          transition: background .2s;
+        }
+        #loading:before {
+          left: 15px;
+          -webkit-animation: fade3 1s infinite;
+                  animation: fade3 1s infinite;
+        }
+        
+        @-webkit-keyframes fade1 {
+          0% {
+            background: #2980b9;
+          }
+        }
+        
+        @keyframes fade1 {
+          0% {
+            background: #2980b9;
+          }
+        }
+        @-webkit-keyframes fade2 {
+          33% {
+            background: #2980b9;
+          }
+        }
+        @keyframes fade2 {
+          33% {
+            background: #2980b9;
+          }
+        }
+        @-webkit-keyframes fade3 {
+          66% {
+            background: #2980b9;
+          }
+        }
+        @keyframes fade3 {
+          66% {
+            background: #2980b9;
+          }
+        }
         </style>
     </head>
     <body>
 
         <div id="root"></div>
-        <div id="parent">
-            <div id="sign">
-              <span id="signtext"><span id="text">CLOSE</span></span>
-            </div>
-        </div>
+        <div id='loading'></div>
         
     </body>
 </html>

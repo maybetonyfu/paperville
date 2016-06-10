@@ -1,10 +1,26 @@
 import React, { PropTypes } from "react"
 import Radium from 'radium'
 
-import svgSymbols from "../assets/svg"
+import hourglass from "../assets/hourglass"
+import svg from "../assets"
 
 
-const MoveCounter = Radium(({levelIndex, maxMove, minMove, playerMove}) => {
+const MoveCounter = Radium((prop) => {
+    
+    let {
+            levelIndex, 
+            
+            maxMove, 
+            
+            minMove, 
+            
+            playerMove, 
+            
+            extraMove,
+            
+            shields
+        
+    } =  prop
     
     let boxStyle = {
         
@@ -34,7 +50,7 @@ const MoveCounter = Radium(({levelIndex, maxMove, minMove, playerMove}) => {
         
         height: "3vh",
         
-        paddingRight: "1vh"
+        padding: "0 1vh"
         
     }
     
@@ -55,14 +71,33 @@ const MoveCounter = Radium(({levelIndex, maxMove, minMove, playerMove}) => {
             <span style={{fontSize: "3vh"}}>lv.</span>
             <span style={{fontSize: "4vh", paddingRight: "1vh"}}>{levelIndex}</span>
             <span style={groupSymbleStyle}>
-                <svg style={{fill: "white"}} viewBox={svgSymbols["clock"]["viewBox"]}>
-                    <path d={svgSymbols["clock"]["paths"][0]} />
-                </svg>
+                {hourglass}
             </span>
             
             <span style={indicatorStyle}>
                 {(moveLeft === Infinity) ? "∞" : moveLeft }
             </span>
+
+            <span>
+                <span style={groupSymbleStyle}>{svg.get("bolt")}</span>
+                <span style={indicatorStyle}>{extraMove}</span>
+            </span>
+
+            <span>
+                <span style={groupSymbleStyle}>{svg.get("shield")}</span>
+                <span style={indicatorStyle}>{shields}</span>
+            </span>
+
+
+            <span>
+                <span style={groupSymbleStyle}>{svg.get("star")}</span>
+            </span>
+
+            <span>
+                <span style={groupSymbleStyle}>{svg.get("snowflake")}</span>
+            </span>
+            
+            
 
         </span>
     )

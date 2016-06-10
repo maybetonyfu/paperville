@@ -82,16 +82,40 @@ let BoardFactory = (boardConfig) => {
     /*
         Generate propability 
         groups = {
-            0: 2,
-            1: 5,
-            3, 1
+            0: {
+                probability: 1,
+                powerup: "extra_move"
+            },
+            1: {
+                probability: 1,
+            },
+            3, {
+                probability: 1,
+            }
         }
         will generate [0, 0, 1, 1, 1, 1, 1, 3]
     */
+
     const groupPool = Object
         .keys(groups)
-        .reduce((prevPool, group) => [...prevPool, ...Array(groups[group]).fill(+group)], [])
+        .reduce((prevPool, group) => [...prevPool, ...Array(groups[group]["probability"]).fill(+ group)], [])
         
+    
+    const powerups = {}
+    
+    Object
+    
+        .keys(groups)
+        
+        .forEach(group => {
+            
+            if (groups[group]["powerup"] !== undefined ) {
+                
+                powerups[group] = groups[group]["powerup"] 
+                
+            }
+            
+        })
     
     const status = "WAIT_PLAYER_MOVE"
     
@@ -106,7 +130,25 @@ let BoardFactory = (boardConfig) => {
     const positionToTile = new Map()
     
     const playerMove = 0
-
+    
+    const extraMove = 0
+    
+    const doubleScore = {
+        
+        pending: false,
+        
+        active: false
+    }
+    
+    const freeze = {
+        
+        pending: false,
+        
+        active: false
+    }
+    
+    const shield = 0
+    
     let board = {
         rows,
         cols,
@@ -121,6 +163,12 @@ let BoardFactory = (boardConfig) => {
         groupPool,
         tiles: {},
         positionToTile,
+        powerups,
+        extraMove,
+        doubleScore,
+        shield,
+        freeze
+        
     }
 
     /*
@@ -340,9 +388,33 @@ let panTile = (board, tileId, direction) => {
     
     boardClone.dispatchAwait = 2
     
-    boardClone.playerMove ++
+    if (boardClone.extraMove) {
+        
+        boardClone.extraMove -= 1
+        
+    } else {
+        
+        boardClone.playerMove ++
+        
+    }
+    
+
     
     boardClone.status = "DID_SWAP"
+    
+    if (boardClone.doubleScore.pending) {
+        
+        boardClone.doubleScore.pending = false
+        
+        boardClone.doubleScore.active = true
+    }
+    
+    if (boardClone.freeze.pending) {
+        
+        boardClone.freeze.pending = false
+        
+        boardClone.freeze.active = true
+    }
 
     return boardClone
 
@@ -399,7 +471,7 @@ let findMatchAndMark = (board) => {
         
         let match3 = boardClone.positionToTile.get(position[2])
 
-        if ((boardClone.tiles[match1].value === boardClone.tiles[match2].value) && 
+        if ((boardClone.tiles[match1].value === boardClone.tiles[match2].value ) && 
             (boardClone.tiles[match2].value === boardClone.tiles[match3].value)) {
             
             let value = boardClone.tiles[match1].value
@@ -431,11 +503,63 @@ let findMatchAndMark = (board) => {
     boardClone.matchCount = Object.values(match)
         .reduce((prevSize, cur) => { return prevSize + cur.size }, 0)
         
+    Object
+        .keys(match)
+        .forEach(matchValue => {
+            
+            let valueSize = match[matchValue].size 
+            
+            if (valueSize >= 4) {
+                
+                let powerup = boardClone.powerups[matchValue] || "nothing"
+                
+                switch (powerup) {
+                    
+                    case 'extra_move':
+                        
+                        boardClone.extraMove = boardClone.extraMove + 1
+                        
+                        break;
+
+                    case 'shield_up':
+                        
+                        boardClone.shield = 2
+                        
+                        break;
+                        
+                    case 'doubler':
+                        
+                        boardClone.doubleScore.pending = true
+
+                    case 'freeze':
+                        
+                        boardClone.freeze.pending = true
+                        
+                        break;
+                        
+                    default:
+
+                }
+                
+            }
+            
+        })
+        
     boardClone.dispatchAwait = boardClone.matchCount
         
     if (boardClone.matchCount === 0) {
         
         boardClone.status = "WAIT_PLAYER_MOVE"
+        
+        boardClone.doubleScore.active = false
+        
+        boardClone.freeze.active = false
+        
+        if (boardClone.shield) {
+            
+            boardClone.shield -= 1
+            
+        }
         
     } else {
         
@@ -510,7 +634,14 @@ let removeAllMatch = (board) => {
 
         })
         
-        boardClone.progress[key] += boardClone.match[key].size
+        if (!boardClone.freeze.active) {
+
+            boardClone.progress[key] += boardClone.doubleScore.active ? 
+                boardClone.match[key].size * 2
+                :
+                boardClone.match[key].size
+
+        }
 
     })
 
