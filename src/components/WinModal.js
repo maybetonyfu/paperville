@@ -118,7 +118,7 @@ const WinModal = Radium((prop) => {
     
     
     return (
-         <Modal style={modalStyle} isOpen={modalOpen}>
+         <Modal style={modalStyle} isOpen={modalOpen} contentLabel="win">
             
             <h1>{winMessage.title || "Congrats!"}</h1>
             

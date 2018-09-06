@@ -38,7 +38,7 @@ let store = createStore(
 
 )
 
-store.dispatch(fetchLevels())
+// store.dispatch(fetchLevels())
 
 
 

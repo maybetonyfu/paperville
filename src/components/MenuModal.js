@@ -96,7 +96,7 @@ const MenuModal = Radium((prop) => {
     }
     
     return (
-         <Modal style={modalStyle}  isOpen={modalOpen}>
+         <Modal style={modalStyle}  isOpen={modalOpen} contentLabel="Menu">
          
             <Link style={LinkStyle} to="/campaign">Campaign</Link>
             

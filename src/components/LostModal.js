@@ -111,7 +111,7 @@ const LostModal = Radium((prop) => {
     }
     
     return (
-         <Modal style={modalStyle}  isOpen={modalOpen}>
+         <Modal style={modalStyle}  isOpen={modalOpen} contentLabel="lost">
             
             <h1>{lostMessage.title || "Darn!"}</h1>
             

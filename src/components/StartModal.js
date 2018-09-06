@@ -103,7 +103,7 @@ const StartModal = Radium((prop) => {
     }
     
     return (
-         <Modal style={modalStyle} isOpen={modalOpen}>
+         <Modal style={modalStyle} isOpen={modalOpen} contentLabel={levelName}>
             
             <h1>{levelName}</h1>
             
