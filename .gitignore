@@ -32,8 +32,3 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
-# Distribution directory
-dist
-
-# Stamplay deploy configuration
-stamplay.json
